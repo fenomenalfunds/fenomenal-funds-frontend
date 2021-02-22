@@ -1,12 +1,12 @@
 services:
   - type: web
     name: fenomenal-funds
-    env: node
+    env: static
     plan: starter
     repo: https://github.com/fenomenalfunds/fenomenal-funds-frontend.git
     branch: main
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
+    buildCommand: yarn; yarn build; yarn next export #npm install && npm run build
+    staticPublishPath: out
     healthCheckPath: /_health
     domains:
       - fenomenalfunds.org
