@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: fenomenal-funds
+    env: node
+    plan: starter
+    repo: https://github.com/fenomenalfunds/fenomenal-funds-frontend.git
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /_health
+    domains:
+      - fenomenalfunds.org
+    envVars:
+      - key: NODE_VERSION
+        value: 12.18.4
+      - key: NODE_ENV
+        value: production
