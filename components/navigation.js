@@ -6,7 +6,7 @@ const Navigation = ({active}) => {
 
 		<ul className={styles.mainNav}>
 			<li>
-				<Link href={`/`}>
+				<Link href={`/about-us`}>
 					<a>About Us</a>
 				</Link>
 			</li>
