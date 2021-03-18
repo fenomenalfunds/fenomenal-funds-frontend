@@ -20,11 +20,11 @@ const Navigation = ({active}) => {
 					<a>Our Approach</a>
 				</Link>
 			</li>
-			<li>
+			{/*<li>
 				<Link href={`/`}>
 					<a>Learnings</a>
 				</Link>
-			</li>
+			</li>*/}
 			<li>
 				<Link href={`/grants`}>
 					<a>Grants</a>
