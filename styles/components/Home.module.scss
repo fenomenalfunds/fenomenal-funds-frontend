@@ -58,7 +58,12 @@
 	}
 
 	.membersBubbles {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		flex-flow: wrap;
 		text-align: center;
+		gap: 3em;
 	}
 }
 

@@ -4,6 +4,7 @@ import TeamMember from "./team-member";
 const TeamBox = ({title, members, variant}) => {
 	return <section className={`${styles.teamBox} ${variant && styles.alt}`}>
 		<h2 className={styles.title}>{title}</h2>
+
 		<div className={styles.members}>
 			<TeamMember
 				name="Full Name"
@@ -60,7 +61,6 @@ const TeamBox = ({title, members, variant}) => {
 				image={{url:`/profiles/img10.png`, alternativeText:"photo"}}
 			/>
 		</div>
-
 	</section>
 }
 

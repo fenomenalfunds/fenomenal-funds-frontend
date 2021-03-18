@@ -55,19 +55,25 @@ export default function Home() {
 						</div>
 
 						<div className={styles.membersBubbles}>
-							<TeamBox
-								title="Steering Committee"
-							/>
+							<div>
+								<TeamBox
+									title="Steering Committee"
+									variant={true}
+								/>
+							</div>
 
-							<br/>
-							<TeamBox
-								title="Advisory Committee"
-								variant={true}
-							/>
-							<TeamBox
-								title="Advisory Committee"
-								variant={true}
-							/>
+							<div>
+								<TeamBox
+									title="Advisory Committee"
+									variant={true}
+								/>
+							</div>
+							<div>
+								<TeamBox
+									title="Advisory Committee"
+									variant={false}
+								/>
+							</div>
 						</div>
 					</section>
 				</Grid>
