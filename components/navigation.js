@@ -21,7 +21,7 @@ const Navigation = ({active}) => {
 				</Link>
 			</li>
 			<li>
-				<Link href={`/`}>
+				<Link href={`/grants`}>
 					<a>Grants</a>
 				</Link>
 			</li>
