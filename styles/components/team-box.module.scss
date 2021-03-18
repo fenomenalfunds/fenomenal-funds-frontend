@@ -3,7 +3,8 @@
 @import "styles/variables";
 
 .teamBox {
-	@include aspect-ratio(1 1, 35em);
+	@include aspect-ratio(1 1, 100%);
+	max-width: 30em;
 	display: inline-block;
 	border-radius: 100%;
 	text-align: center;
