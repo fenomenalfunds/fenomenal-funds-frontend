@@ -1,0 +1,16 @@
+@import "styles/colors";
+@import "styles/variables";
+@import "styles/mixins";
+
+.smallArticleBox {
+	text-align: left;
+
+	a {
+		color: $ff-color-white;
+		text-decoration: none;
+	}
+
+	.image {
+		@include aspect-ratio(16 9, 100%, true);
+	}
+}

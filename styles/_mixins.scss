@@ -1,0 +1,241 @@
+// @version 1.1
+
+@function is-number($value) {
+	@return type-of($value) == 'number';
+}
+
+@function is-percentage($value) {
+	@return is-number($value) and unit($value) == '%';
+}
+
+@function is-pixels($value){
+	@return is-number($value) and unit($value) == 'px';
+}
+
+@function opposite($side){
+	@if $side == top {
+		@return bottom;
+	} @else if $side == bottom {
+		@return top;
+	} @else if $side == right {
+		@return left;
+	} @else if $side == left {
+		@return right;
+	}
+}
+
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+
+	@return $number;
+}
+
+@mixin animate($property, $time) {
+	transition: $property $time ease-out;
+}
+
+@mixin angle($x, $y, $z){
+	transform: matrix3d($x, $y, $z);
+}
+
+@mixin clearfix {
+	display: table;
+	position: relative;
+	content: '';
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+
+@mixin border-radius($value) {
+	border-radius: $value;;
+}
+
+@mixin translateY($value) {
+	transform: translateY($value);
+}
+
+@mixin translateX($value) {
+	transform: translateX($value);
+}
+
+@mixin shadow($length, $opacity){
+	box-shadow: $length $length $length 0 rgba(0,0,0,$opacity);
+}
+
+@mixin text-shadow($length, $opacity){
+	text-shadow: $length $length $length rgba(0, 0, 0, $opacity);
+}
+
+@mixin maintain-ratio($wide, $ratio: 1 1, $percent:true) {
+	@if length($ratio) < 2 or length($ratio) > 2 {
+		@warn "$ratio must be a list with two values.";
+	}
+
+	@if unitless($wide) == false{
+		@warn "$wide must be unitless";
+	}
+
+	@if $percent == true {
+		$width: $wide / 100;
+		$height: (nth($ratio, 2) / nth($ratio, 1)) * $width;
+
+		width: percentage($width);
+		padding-bottom: percentage($height);
+	}
+	@else{
+		$width: $wide;
+		$height: (nth($ratio, 2) / nth($ratio, 1)) * $width;
+
+		width: $width + 0px;
+		padding-bottom: $height + 0px;
+	}
+
+	height: 0;
+}
+
+@mixin respond-to($device, $alt_device: null){
+	@if $alt_device == null {
+		@if($device == web){
+			@media only screen and (min-width: 993px){
+				@content
+			}
+		} @else if ($device == tablet){
+			@media only screen and (min-width: 601px) and (max-width: 992px){
+				@content
+			}
+		} @else if ($device == phone){
+			@media only screen and (max-width: 600px){
+				@content
+			}
+		}
+	} @else{
+		$phone: false;
+		$tablet: false;
+		$web: false;
+
+		$index: str-index($device, web);
+		$alt_index: str-index($alt_device, web);
+		@if is-number($index) or is-number($alt_index) {
+			$web: true;
+		}
+
+		$index: str-index($device, tablet);
+		$alt_index: str-index($alt_device, tablet);
+		@if is-number($index) or is-number($alt_index) {
+			$tablet: true;
+		}
+
+		$index: str-index($device, phone);
+		$alt_index: str-index($alt_device, phone);
+		@if is-number($index) or is-number($alt_index) {
+			$phone: true;
+		}
+
+		@if $phone and $tablet {
+			@media only screen and (max-width: 992px){
+				@content
+			}
+		} @else if $tablet and $web{
+			@media only screen and (min-width: 600px) {
+				@content
+			}
+		} @else {
+			@warn 'es neta??? no creo que necesites un media query si vas a abarcar de móvil a web ¬_¬';
+		}
+	}
+}
+
+@mixin caret($side, $size, $color){
+	@if is-pixels($size) == false{
+		@warn "el tamaño debe estar en pixeles";
+	}
+
+	$opposite: opposite($side);
+	display: block;
+	position: absolute;
+	border: $size solid transparent;
+	border-#{$opposite}: $size solid $color;
+	border-#{$side}: 0;
+	height: 0;
+	width: 0;
+	#{$side}: -($size - 1px);
+	content: ' ';
+}
+
+@mixin rotate($value){
+	transform: rotate($value);
+}
+
+@mixin columns($cols, $width: false, $gap: 20px, $rule: false){
+	-webkit-column-count: $cols;
+	-moz-column-count: $cols;
+	column-count: $cols;
+	@if($rule){
+		column-rule: 1px solid black;
+	}
+	@if($width){
+		column-width: $width;
+	}
+	column-gap: $gap;
+}
+
+/** @param {number} $ratio
+     Parameter for aspect ratio Ex: 1 1
+     @param {number} $with
+     Image with represented in px, em or %
+     @param {boolean} $image (optional) True if you want predefined image alignment
+     @param {string} $adjust (optional) Options are high to adjust vertical, max to strech image to cover container o empty for top left
+ */
+@mixin aspect-ratio($ratio, $width: 100%, $image: false, $adjust: false) {
+	@if length($ratio) != 2 {
+		@warn "ratio must have two values";
+	}
+
+	$height: 0 !default;
+
+	@if is-percentage($width){
+
+		$h: percentage(nth($ratio, 2) / nth($ratio, 1));
+		$height: ((strip-unit($h) * strip-unit($width)) / 100) * 1%;
+
+	} @else {
+
+		$height: (nth($ratio, 2) / nth($ratio, 1)) * $width;
+	}
+
+	position: relative;
+	display: block;
+	width: $width;
+	height: 0;
+	padding: 0 0 $height 0;
+	overflow: hidden;
+	@if($image){
+		img{
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			@if $adjust == high {
+				height: 100%;
+				width: auto;
+				max-width: none;
+				left: 50%;
+				@include translateX(-50%);
+			} @else if $adjust == max {
+				height: auto;
+				width: auto;
+				max-width: 100%;
+				max-height: 100%;
+			} @else{
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+}

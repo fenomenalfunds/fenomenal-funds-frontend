@@ -1,0 +1,51 @@
+@import "styles/colors";
+@import "styles/mixins";
+@import "styles/variables";
+
+.teamBox {
+	@include aspect-ratio(1 1, 35em);
+	display: inline-block;
+	border-radius: 100%;
+	text-align: center;
+	margin: 2em;
+	background: $gradient-3;
+
+	&.alt {
+		background: $gradient-2;
+	}
+
+	.title {
+		margin-top: 2em;
+	}
+
+	.members {
+		display: flex;
+		padding: 1em 2.5em;
+		margin: 0 auto;
+		max-width: 30em;
+		flex-wrap: wrap;
+		flex-grow: 0;
+		justify-content: center;
+	}
+}
+
+.teamMember {
+	display: inline-block;
+	flex-basis: 25%;
+	padding: 0 .6em;
+
+	.photo {
+		@include aspect-ratio(1 1, 100%, true);
+		border-radius: 100%;
+	}
+
+	.caption {
+		font-size: .8em;
+		text-align: center;
+		margin: .3em 0 2em 0;
+
+		&:first-line {
+			text-transform: uppercase;
+		}
+	}
+}

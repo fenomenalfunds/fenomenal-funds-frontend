@@ -1,0 +1,65 @@
+@import "styles/colors";
+@import "styles/variables";
+@import "styles/mixins";
+
+.largeArticleBox {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: 1fr 2fr;
+	padding: 0;
+	margin: 4em 0;
+
+	.imageOverlay {
+		position: relative;
+
+		figure {
+			@include aspect-ratio(2 3, 100%, true, high);
+			margin: 0;
+		}
+
+		.textOverlay {
+			position: absolute;
+			display: grid;
+			justify-content: center;
+			align-items: center;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			padding: 0 2em;
+			backdrop-filter: brightness(.7);
+
+			.overlayContent {
+				display: block;
+				color: $ff-color-white;
+				text-align: center;
+				background-color: transparent;
+
+				.title {
+					font-weight: 400;
+					font-size: 1.5em;
+				}
+
+				.caption {
+					font-weight: 400;
+				}
+			}
+
+		}
+	}
+
+	.content {
+		display: grid;
+		grid-auto-flow: row;
+		justify-content: center;
+		align-items: center;
+		color: $ff-color-black;
+		background-color: $ff-color-white;
+
+		.contentText {
+			padding: 0 2em 0 4em;
+			color: $ff-color-purple;
+			text-align: right;
+		}
+	}
+}

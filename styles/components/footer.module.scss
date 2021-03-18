@@ -1,0 +1,87 @@
+@import "styles/variables";
+@import "styles/colors";
+
+.footer {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-areas: "leftCol leftCol leftCol leftCol rightCol" "btRow btRow btRow btRow btRow";
+	padding: 3em 0 0 0;
+	font-size: .9em;
+	background-color: $ff-color-purple;
+
+	.leftColumn {
+		grid-area: leftCol;
+		display: grid;
+		grid-gap: 1em;
+		grid-auto-flow: column;
+		padding: 0 0 2em 3em;
+
+		.nav {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+
+			li {
+				margin: 0 0 .5em 0;
+			}
+		}
+
+		.social {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+
+			li {
+				margin: 0 0 .5em 0;
+
+				svg {
+					margin-right: 1em;
+				}
+			}
+		}
+
+		.newsletter {
+			.fieldGroup {
+				white-space: nowrap;
+
+				input {
+					border: 0;
+					padding: .5em;
+					margin: .5em 0;
+					border-radius: .3em;
+					color: $ff-color-white;
+					outline: none;
+					width: auto;
+					background-color: rgba($ff-color-black, .4);
+				}
+
+				button {
+					color: $ff-color-white;
+					padding: .5em 1em;
+					border: 0;
+					border-radius: .3em;
+					margin-left: 1em;
+					background-color: $ff-color-salmon;
+				}
+			}
+		}
+	}
+
+	.rightColumn {
+		grid-area: rightCol;
+		text-align: right;
+		padding: 0 3em 2em 0;
+	}
+
+	.bottomRow {
+		grid-area: btRow;
+		text-align: right;
+		font-size: .9em;
+		padding: 2em 3em;
+		background-color: darken($ff-color-purple, 5%);
+
+		a {
+			margin-left: 1em;
+		}
+	}
+}
