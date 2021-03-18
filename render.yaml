@@ -1,17 +1,5 @@
 services:
   - type: web
-    name: fenomenal-funds-landing
-    env: static
-    plan: starter
-    repo: https://github.com/fenomenalfunds/fenomenal-funds-frontend.git
-    branch: main
-    buildCommand: yarn; yarn build; yarn next export #npm install && npm run build
-    staticPublishPath: out
-    healthCheckPath: /_health
-    domains:
-    - fenomenalfunds.org
-
-  - type: web
     name: fenomenalfunds-frontend-qa
     env: static
     plan: starter
