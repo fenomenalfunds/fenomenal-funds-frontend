@@ -64,6 +64,11 @@
 		flex-flow: wrap;
 		text-align: center;
 		gap: 3em;
+		flex-grow: 0;
+
+		&>div {
+			flex-basis: 40%;
+		}
 	}
 }
 
