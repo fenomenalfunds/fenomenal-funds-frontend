@@ -1,0 +1,19 @@
+@import "styles/colors";
+@import "styles/variables";
+
+.termsAndConditions {
+	background: $gradient-2;
+
+	article {
+		padding: 5em 0;
+
+		.termsLogo {
+			text-align: right;
+			padding: 5em 0;
+
+			img {
+				width: 15em;
+			}
+		}
+	}
+}

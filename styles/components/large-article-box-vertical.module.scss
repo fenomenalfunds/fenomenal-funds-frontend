@@ -1,0 +1,36 @@
+@import "styles/colors";
+@import "styles/variables";
+@import "styles/mixins";
+
+.largeArticleBoxHorizontal {
+	color: $ff-color-purple;
+	background-color: $ff-color-white;
+
+	.image {
+		@include aspect-ratio(22 9, 100%, true);
+	}
+
+	.body {
+		text-align: left;
+		padding: 5em;
+		font-weight: 400;
+
+		.author {
+			margin-right: 2em;
+			text-transform: uppercase;
+		}
+
+		svg {
+			margin-right: .5em;
+		}
+
+		.text {
+			padding: 3em 0;
+			columns: 2;
+
+			p {
+				margin: 0 0 1em 0;
+			}
+		}
+	}
+}

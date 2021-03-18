@@ -1,0 +1,47 @@
+@import "styles/colors";
+@import "styles/variables";
+@import "styles/mixins";
+
+.coverArticleBox {
+	position: relative;
+	overflow: hidden;
+
+	a {
+		display: block;
+	}
+
+	.image {
+		@include aspect-ratio(1 1.5, 100%, true, high);
+	}
+
+	.content {
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		width: 100%;
+		padding: 20em 1em 1em 1em;
+		text-align: left;
+		backdrop-filter: brightness(.5);
+
+		.title {
+
+		}
+
+		.subtitle {
+			font-size: .8em;
+		}
+
+		.author, .date {
+			font-size: .8em;
+
+			svg {
+				margin-right: .5em;
+			}
+		}
+
+		.author {
+			text-transform: uppercase;
+			margin-right: 1em;
+		}
+	}
+}

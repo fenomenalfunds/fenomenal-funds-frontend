@@ -28,6 +28,11 @@ const Footer = () => {
 					</Link>
 				</li>
 				<li>
+					<Link href={`/blog`}>
+						<a>Blog</a>
+					</Link>
+				</li>
+				<li>
 					<Link href={`/`}>
 						<a>Contact</a>
 					</Link>
@@ -71,7 +76,7 @@ const Footer = () => {
 		</div>
 
 		<div className={styles.bottomRow}>
-			<Link href={`/termn-and-conditions`}>
+			<Link href={`/terms-and-conditions`}>
 				<a>Terms and Conditions</a>
 			</Link>
 			<Link href={`/privacy-policy`}>
