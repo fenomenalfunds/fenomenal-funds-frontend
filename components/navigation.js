@@ -11,7 +11,7 @@ const Navigation = ({active}) => {
 				</Link>
 			</li>
 			<li>
-				<Link href={`/`}>
+				<Link href={`/our-approach`}>
 					<a>Our Approach</a>
 				</Link>
 			</li>
