@@ -16,28 +16,5 @@
 				max-width: 20em;
 			}
 		}
-
-		.articleGrid {
-			display: grid;
-			grid-gap: 2em;
-			grid-template-areas: "large large large small1"
-			"large large large small2"
-			"large large large small3"
-			"small4 small5 small6 small7";
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-rows: repeat(3, 1fr);
-
-			& div {
-				&:first-child {
-					grid-area: large;
-				}
-
-				@for $i from 1 through 7 {
-					&:nth-child(#{$i + 1}) {
-						grid-area: small#{$i};
-					}
-				}
-			}
-		}
 	}
 }

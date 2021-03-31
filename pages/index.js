@@ -1,29 +1,31 @@
-import Head from 'next/head';
+import _ from 'lodash';
 import styles from './../styles/components/Home.module.scss';
 import Grid from '@material-ui/core/Grid';
 import LargeArticleBox from "../components/large-article-box";
-import TeamBox from "../components/team-box";
 import ArticleBox from "../components/article-box";
-import SmallArticleBox from "../components/small-article-box";
 import Layout from "../layout/website-layout";
+import Seo from "../components/seo";
+import {fetchAPI} from "../lib/api";
+import Image from "../components/image";
+import NotFound from "../components/not-found";
+import AboutSection from "../components/about-section";
+import BlogSection from "../components/blog-section";
 
-export default function Home() {
+const Home = ({home, blog, about}) => {
+	if(!home && !blog) return <NotFound />
+
 	return <Layout>
+		<Seo seo={home.seo} />
 		<div className={styles.homepage}>
-			<Head>
-				<title>Fenomenal Funds</title>
-			</Head>
 
 			<Grid container justify="center" className={styles.homepage}>
 				<Grid item xs={12}>
 					<div className={styles.header}>
-						<p className={styles.caption}>Fenomenal Funds aims to stregthen the sustainability, resilience
-							and visibility of women's funds in order to
-							advance the impact of feminist movements around the world.</p>
+						<p className={styles.caption}>{home.header_text}</p>
 
 						<span className={styles.diagonal}>&nbsp;</span>
 
-						<img src="/fenomenal-funds-logo-alt.svg" alt="Fenomenal Funds Logo" className={styles.logo}/>
+						<Image image={home.header_image} className={styles.logo} />
 					</div>
 				</Grid>
 
@@ -31,10 +33,7 @@ export default function Home() {
 					<LargeArticleBox
 						title="Letter from Co-Chairs"
 						content="<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien non accumsan. Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis. Vestibulum mattis in urna sed ultricies. Etiam dictum lectus sit amet metus tincidunt tincidunt. Vivamus ut sem et massa aliquet dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur non mattis nibh. Maecenas euismod mi vel est gravida, in sagittis elit vehicula. Sed gravida justo ac semper lacinia. Sed rutrum mauris ligula, pretium condimentum ante aliquet tempor. Proin vel leo erat. Integer vel neque ac velit rhoncus blandit id sit amet metus. Nam sodales purus non quam pharetra tempor.</p>"
-						overlay={{
-							title: "Stories",
-							text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-						}}
+						overlay={null}
 						image={{
 							url: "/temp/doug-linstedt-jEEYZsaxbH4-unsplash.png",
 							alternativeText: "Young girl sitting at desk"
@@ -43,41 +42,16 @@ export default function Home() {
 				</Grid>
 			</Grid>
 
-			<Grid container justify="center" className={styles.about}>
+			{about &&
+			<Grid container justify="center">
 				<Grid item xs={10}>
-					<section>
-						<div className={styles.titleBox}>
-							<h2 className={styles.title}>Who we are</h2>
-							<p className={styles.subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Pellentesque iaculis
-								non sapien non accumsan. Donec euismod dictum iaculis. Proin nec leo vel dui convallis
-								lobortis.</p>
-						</div>
-
-						<div className={styles.membersBubbles}>
-							<div>
-								<TeamBox
-									title="Steering Committee"
-									variant={true}
-								/>
-							</div>
-
-							<div>
-								<TeamBox
-									title="Advisory Committee"
-									variant={true}
-								/>
-							</div>
-							<div>
-								<TeamBox
-									title="Advisory Committee"
-									variant={false}
-								/>
-							</div>
-						</div>
-					</section>
+					<AboutSection
+							title={about.title}
+							subtitle={about.subtitle}
+							teams={(about.staff && about.staff.teams) ? about.staff.teams : null}
+					/>
 				</Grid>
-			</Grid>
+			</Grid>}
 
 			<Grid container justify="center" className={styles.highlights}>
 				<Grid item xs={10}>
@@ -108,92 +82,16 @@ export default function Home() {
 				</Grid>
 			</Grid>
 
-			<Grid container justify="center" className={styles.blog}>
+			{blog &&
+			<Grid container justify="center">
 				<Grid item xs={8}>
-					<section>
-						<h1 className={styles.title}>Our Blog</h1>
-						<p className={styles.subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Pellentesque iaculis non sapien non accumsan.
-							Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis.</p>
-
-						<div className={styles.articles}>
-							<SmallArticleBox
-								title="Excepteur sint occaecat cupidatat non proident"
-								subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-								image={{url: "/temp/loren-joseph-GVeJ-TXWJ1g-unsplash.png", alternativeText: null}}
-								link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-							/>
-							<SmallArticleBox
-								title="Excepteur sint occaecat cupidatat non proident"
-								subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-								image={{url: "/temp/max-panama-Gt1A0jNzzbM-unsplash.png", alternativeText: null}}
-								link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-							/>
-							<SmallArticleBox
-								title="Excepteur sint occaecat cupidatat non proident"
-								subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-								image={{url: "/temp/mostafa-meraji-rql24m2eO2s-unsplash.png", alternativeText: null}}
-								link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-							/>
-							<SmallArticleBox
-								title="Excepteur sint occaecat cupidatat non proident"
-								subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-								image={{url: "/temp/naxph-pKyY_fosG90-unsplash.png", alternativeText: null}}
-								link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-							/>
-							<SmallArticleBox
-								title="Excepteur sint occaecat cupidatat non proident"
-								subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-								image={{url: "/temp/ron-hansen-MmfIwBHX1bY-unsplash.png", alternativeText: null}}
-								link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-							/>
-							<SmallArticleBox
-								title="Excepteur sint occaecat cupidatat non proident"
-								subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-								image={{url: "/temp/sean-k-q-ayX003Mabk4-unsplash.png", alternativeText: null}}
-								link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-							/>
-							{/*<SmallArticleBox
-                title="Excepteur sint occaecat cupidatat non proident"
-                subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                image={{url: "/temp/sharon-christina-rorvik-CLyL_YVsWI8-unsplash.png", alternativeText: null}}
-                link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-            />
-              <SmallArticleBox
-              title="Excepteur sint occaecat cupidatat non proident"
-              subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              image={{url:"/temp/thought-catalog-Jnxtlv_Fo14-unsplash.png", alternativeText: null}}
-              link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-              />
-              <SmallArticleBox
-              title="Excepteur sint occaecat cupidatat non proident"
-              subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              image={{url:"/temp/wan-san-yip-mApKTAqxxsY-unsplash.png", alternativeText: null}}
-              link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-              />
-              <SmallArticleBox
-              title="Excepteur sint occaecat cupidatat non proident"
-              subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              image={{url:"/temp/annie-spratt-0cgpyigyIkM-unsplash.png", alternativeText: null}}
-              link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-              />
-              <SmallArticleBox
-              title="Excepteur sint occaecat cupidatat non proident"
-              subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              image={{url:"/temp/artem-beliaikin-BHpxhJdkI1s-unsplash.png", alternativeText: null}}
-              link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-              />
-              <SmallArticleBox
-              title="Excepteur sint occaecat cupidatat non proident"
-              subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              image={{url:"/temp/belinda-fewings-znbWNyxfUn0-unsplash.png", alternativeText: null}}
-              link="/blog/excepteur-sint-occaecat-cupidatat-non-proident"
-              />*/}
-
-						</div>
-					</section>
+					<BlogSection
+						title={blog.title}
+						subtitle={blog.subtitle}
+						articles={blog.articles}
+					/>
 				</Grid>
-			</Grid>
+			</Grid>}
 
 			<Grid container justify="center" className={styles.contact}>
 				<Grid item xs={10}>
@@ -241,3 +139,22 @@ export default function Home() {
 		</div>
 	</Layout>
 }
+
+export async function getStaticProps() {
+	const [home, blog, about] = await Promise.all([
+			fetchAPI('/home'),
+			fetchAPI('/blog'),
+			fetchAPI('/about-us')
+	]);
+
+	return {
+		props: {
+			home,
+			blog,
+			about
+		},
+		revalidate: 1
+	}
+}
+
+export default Home;

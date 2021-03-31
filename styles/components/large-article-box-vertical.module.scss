@@ -21,15 +21,26 @@
 		}
 
 		svg {
+			width: 1em;
+			height: 1em;
 			margin-right: .5em;
 		}
 
 		.text {
-			padding: 3em 0;
+			padding: 3em 0 1em 0;
 			columns: 2;
 
 			p {
 				margin: 0 0 1em 0;
+			}
+		}
+
+		.link {
+			display: block;
+			text-align: right;
+
+			a {
+				color: $ff-color-purple;
 			}
 		}
 	}

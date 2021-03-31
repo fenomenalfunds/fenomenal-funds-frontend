@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import propTypes from 'prop-types';
 import styles from './../styles/components/team-box.module.scss';
 import TeamMember from "./team-member";
 
@@ -6,62 +8,29 @@ const TeamBox = ({title, members, variant}) => {
 		<h2 className={styles.title}>{title}</h2>
 
 		<div className={styles.members}>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img1.jpg`, alternativeText:"photo"}}
-			/>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img9.png`, alternativeText:"photo"}}
-			/>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img3.jpg`, alternativeText:"photo"}}
-			/>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img4.png`, alternativeText:"photo"}}
-			/>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img5.jpg`, alternativeText:"photo"}}
-			/>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img6.png`, alternativeText:"photo"}}
-			/>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img7.png`, alternativeText:"photo"}}
-			/>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img8.png`, alternativeText:"photo"}}
-			/>
-			<TeamMember
-				name="Full Name"
-				slug="full-name"
-				position="Position"
-				image={{url:`/profiles/img10.png`, alternativeText:"photo"}}
-			/>
+			{_.map(members, (member) => {
+				return <TeamMember
+						key={member.id}
+						name={member.fullname}
+						slug={member.username}
+						position={member.position}
+						image={member.photo}
+				/>
+			})}
 		</div>
 	</section>
+}
+
+TeamBox.propTypes = {
+	title: propTypes.string.isRequired,
+	members: propTypes.array.isRequired,
+	variant: propTypes.bool
+}
+
+TeamBox.defaultProps = {
+	title: "Please add title",
+	members: [],
+	variant: true
 }
 
 export default TeamBox;

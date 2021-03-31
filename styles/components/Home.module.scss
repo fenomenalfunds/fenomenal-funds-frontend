@@ -38,40 +38,6 @@
 	}
 }
 
-.about {
-	padding: 3em 0;
-	background-color: $ff-color-purple;
-
-	.titleBox {
-		display: grid;
-		align-items: center;
-		grid-auto-flow: column;
-		grid-template-columns: 15em auto;
-
-		.title {
-			font-size: 2em;
-		}
-
-		.subtitle {
-
-		}
-	}
-
-	.membersBubbles {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		flex-flow: wrap;
-		text-align: center;
-		gap: 3em;
-		flex-grow: 0;
-
-		&>div {
-			flex-basis: 35%;
-		}
-	}
-}
-
 .highlights {
 	padding: 5em 0;
 	text-align: center;
@@ -92,24 +58,6 @@
 		grid-gap: 4em;
 		grid-template-columns: repeat(2, 1fr);
 		margin: 3em 0;
-	}
-}
-
-.blog {
-	padding: 5em 0;
-	text-align: center;
-	background-color: $ff-color-purple;
-
-	.subtitle {
-		margin: 0 auto;
-		max-width: 70%;
-	}
-
-	.articles {
-		display: grid;
-		grid-gap: 2em;
-		grid-template-columns: repeat(3, 1fr);
-		margin: 5em 0;
 	}
 }
 

@@ -1,0 +1,26 @@
+@import "styles/colors";
+
+.loading {
+	display: grid;
+	width: 100%;
+	min-height: 50rem;
+	justify-content: center;
+	align-items: center;
+	font-size: 5em;
+	animation: animate_loading 1s infinite alternate;
+}
+
+@keyframes animate_loading {
+	0% {
+		color: $ff-color-yellow;
+	}
+	25% {
+		color: $ff-color-green;
+	}
+	50% {
+		color: $ff-color-salmon;
+	}
+	100% {
+		color: $ff-color-red;
+	}
+}
