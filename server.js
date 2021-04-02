@@ -13,15 +13,16 @@ app.prepare().then(() => {
 		const parsedUrl = parse(req.url, true)
 		const { pathname, query } = parsedUrl
 
-		/*if (pathname === '/a') {
-			app.render(req, res, '/a', query)
-		} else if (pathname === '/b') {
+		handle(req, res, parsedUrl);
+		/*if (pathname === '/') {
+			app.render(req, res, '/', query)
+		} else if (pathname === '/') {
 			app.render(req, res, '/b', query)
 		} else {
 			handle(req, res, parsedUrl)
 		}*/
 	}).listen(10000, (err) => {
 		if (err) throw err
-		console.log('> Ready on http://0.0.0.0:10000')
+		console.log('> Ready on http://localhost:10000')
 	})
 })

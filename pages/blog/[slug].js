@@ -22,7 +22,6 @@ const BlogDetail = ({article, related}) => {
 					<div className={styles.header}>
 						<div className={styles.title}>
 							<h1>{article.title}</h1>
-							{console.log('******** AUTHOR *********', article.author)}
 							{!_.isEmpty(article.author) && <p className={styles.author}>{article.author.fullname && article.author.fullname}</p>}
 							{article.publish && <p className={styles.date}>{moment(article.publish).format('LL')}</p>}
 							{article.category && <p className={styles.category}>

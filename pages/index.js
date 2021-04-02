@@ -31,7 +31,6 @@ const Home = ({home, blog, about, editorial}) => {
 				</Grid>
 
 				<Grid item xs={10}>
-					{console.log('====== EDITORIAL ======', editorial)}
 					<LargeArticleBox
 							title={editorial.title}
 							content={editorial.body}
