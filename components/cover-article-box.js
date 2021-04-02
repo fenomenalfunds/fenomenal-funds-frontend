@@ -18,9 +18,10 @@ const CoverArticleBox = ({title, subtitle, author, publish, image, link}) => {
 					<h4 className={styles.title}>{title}</h4>
 					<p className={styles.subtitle}>{subtitle}</p>
 					<p>
+						{(author && author.fullname) &&
 						<span className={styles.author}>
 							<FontAwesomeIcon icon={faGlobeAfrica}/> {author.fullname}
-						</span>
+						</span>}
 						<span className={styles.date}>
 							<FontAwesomeIcon icon={faClock}/> {publish}
 						</span>

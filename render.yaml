@@ -10,4 +10,4 @@ services:
     healthCheckPath: /_health
     envVars:
     - key: STRAPI_API_URL
-      value: 'cms-staging.fenomenalfunds.org'
+      value: 'https://cms-staging.fenomenalfunds.org'

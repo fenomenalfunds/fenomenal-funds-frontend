@@ -3,16 +3,12 @@ import _ from 'lodash';
 import Grid from "@material-ui/core/Grid";
 import Layout from "../../layout/website-layout";
 import moment from "moment";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGlobeAfrica} from "@fortawesome/free-solid-svg-icons";
 import CoverArticleBox from "../../components/cover-article-box";
 import {fetchAPI} from "../../lib/api";
 import Seo from "../../components/seo";
 import Image from "../../components/image";
 
 const BlogDetail = ({article, related}) => {
-
-	console.info('CATEGORY', article.category);
 
 	return <Layout>
 		<Seo seo={article.seo} />
@@ -26,7 +22,8 @@ const BlogDetail = ({article, related}) => {
 					<div className={styles.header}>
 						<div className={styles.title}>
 							<h1>{article.title}</h1>
-							{article.author && <p className={styles.author}>{article.author.fullname}</p>}
+							{console.log('******** AUTHOR *********', article.author)}
+							{!_.isEmpty(article.author) && <p className={styles.author}>{article.author.fullname && article.author.fullname}</p>}
 							{article.publish && <p className={styles.date}>{moment(article.publish).format('LL')}</p>}
 							{article.category && <p className={styles.category}>
 								{article.category.icon && <Image image={article.category.icon} />}
