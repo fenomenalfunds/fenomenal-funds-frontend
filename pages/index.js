@@ -11,11 +11,11 @@ import NotFound from "../components/not-found";
 import AboutSection from "../components/about-section";
 import BlogSection from "../components/blog-section";
 
-const Home = ({home, blog, about}) => {
-	if(!home && !blog) return <NotFound />
+const Home = ({home, blog, about, editorial}) => {
+	if (!home && !blog) return <NotFound/>
 
 	return <Layout>
-		<Seo seo={home.seo} />
+		<Seo seo={home.seo}/>
 		<div className={styles.homepage}>
 
 			<Grid container justify="center" className={styles.homepage}>
@@ -25,34 +25,31 @@ const Home = ({home, blog, about}) => {
 
 						<span className={styles.diagonal}>&nbsp;</span>
 
-						<Image image={home.header_image} className={styles.logo} />
+						{home.header_image &&
+						<Image image={home.header_image} className={styles.logo}/>}
 					</div>
 				</Grid>
 
 				<Grid item xs={10}>
+					{console.log('====== EDITORIAL ======', editorial)}
 					<LargeArticleBox
-						title="Letter from Co-Chairs"
-						content="<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien non accumsan. Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis. Vestibulum mattis in urna sed ultricies. Etiam dictum lectus sit amet metus tincidunt tincidunt. Vivamus ut sem et massa aliquet dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur non mattis nibh. Maecenas euismod mi vel est gravida, in sagittis elit vehicula. Sed gravida justo ac semper lacinia. Sed rutrum mauris ligula, pretium condimentum ante aliquet tempor. Proin vel leo erat. Integer vel neque ac velit rhoncus blandit id sit amet metus. Nam sodales purus non quam pharetra tempor.</p>"
-						overlay={null}
-						image={{
-							url: "/temp/doug-linstedt-jEEYZsaxbH4-unsplash.png",
-							alternativeText: "Young girl sitting at desk"
-						}}
+							title={editorial.title}
+							content={editorial.body}
+							overlay={null}
+							image={editorial.thumbnail}
+							publish={editorial.publish}
 					/>
 				</Grid>
 			</Grid>
 
 			{about &&
-			<Grid container justify="center">
-				<Grid item xs={10}>
-					<AboutSection
-							title={about.title}
-							subtitle={about.subtitle}
-							teams={(about.staff && about.staff.teams) ? about.staff.teams : null}
-					/>
-				</Grid>
-			</Grid>}
+			<AboutSection
+					title={about.title}
+					subtitle={about.subtitle}
+					teams={(about.staff && about.staff.teams) ? about.staff.teams : null}
+			/>}
 
+			{/* HIGHLIGHTS SECTION */}
 			<Grid container justify="center" className={styles.highlights}>
 				<Grid item xs={10}>
 					<section>
@@ -63,35 +60,32 @@ const Home = ({home, blog, about}) => {
 
 						<div className={styles.articles}>
 							<ArticleBox
-								title="Activity Report 2021"
-								subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien non
+									title="Activity Report 2021"
+									subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien non
                 accumsan. Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis."
-								image={{url: "/temp/gemma-chua-tran-P_mprr4eka8-unsplash.png", alternativeText: null}}
-								url={`/reports/activity-report-2021`}
+									image={{url: "/temp/gemma-chua-tran-P_mprr4eka8-unsplash.png", alternativeText: null}}
+									url={`/reports/activity-report-2021`}
 							/>
 
 							<ArticleBox
-								title="Reports / documents"
-								subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien non
+									title="Reports / documents"
+									subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien non
                 accumsan. Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis."
-								image={{url: "/temp/jaikishan-patel-2eMemvByB-8-unsplash.png", alternativeText: null}}
-								url={`/reports/documents`}
+									image={{url: "/temp/jaikishan-patel-2eMemvByB-8-unsplash.png", alternativeText: null}}
+									url={`/reports/documents`}
 							/>
 						</div>
 					</section>
 				</Grid>
 			</Grid>
 
+			{/* BLOG SECTION */}
 			{blog &&
-			<Grid container justify="center">
-				<Grid item xs={8}>
-					<BlogSection
-						title={blog.title}
-						subtitle={blog.subtitle}
-						articles={blog.articles}
-					/>
-				</Grid>
-			</Grid>}
+			<BlogSection
+					title={blog.title}
+					subtitle={blog.subtitle}
+					articles={blog.articles}
+			/>}
 
 			<Grid container justify="center" className={styles.contact}>
 				<Grid item xs={10}>
@@ -113,21 +107,21 @@ const Home = ({home, blog, about}) => {
 							<Grid container spacing={3}>
 								<Grid item xs={6}>
 									<label htmlFor="name">Name</label>
-									<input type="text" id="name" placeholder="First name" />
+									<input type="text" id="name" placeholder="First name"/>
 								</Grid>
 								<Grid item xs={6}>
 									<label htmlFor="last_name">Last name</label>
-									<input type="text" id="last_name" placeholder="Last name" />
+									<input type="text" id="last_name" placeholder="Last name"/>
 								</Grid>
 								<Grid item xs={12}>
 									<label htmlFor="email">Email</label>
-									<input type="email" placeholder="Email" />
+									<input type="email" placeholder="Email"/>
 								</Grid>
 								<Grid item xs={12}>
 									<label htmlFor="message">Message</label>
-									<textarea id="message" rows="5" placeholder="Type your message here" />
+									<textarea id="message" rows="5" placeholder="Type your message here"/>
 								</Grid>
-								<Grid item xs={12} style={{textAlign:"right"}}>
+								<Grid item xs={12} style={{textAlign: "right"}}>
 									<button type="submit" className="btn">Send</button>
 								</Grid>
 							</Grid>
@@ -141,17 +135,19 @@ const Home = ({home, blog, about}) => {
 }
 
 export async function getStaticProps() {
-	const [home, blog, about] = await Promise.all([
-			fetchAPI('/home'),
-			fetchAPI('/blog'),
-			fetchAPI('/about-us')
+	const [home, about, blog, editorial] = await Promise.all([
+		fetchAPI('/home'),
+		fetchAPI('/about-us'),
+		fetchAPI('/blog'),
+		fetchAPI('/editorial')
 	]);
 
 	return {
 		props: {
 			home,
 			blog,
-			about
+			about,
+			editorial
 		},
 		revalidate: 1
 	}

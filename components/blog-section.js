@@ -2,24 +2,29 @@ import _ from "lodash";
 import propTypes from 'prop-types';
 import styles from './../styles/components/blog-section.module.scss';
 import SmallArticleBox from "./small-article-box";
+import Grid from "@material-ui/core/Grid";
 
 const BlogSection = ({title, subtitle, articles}) => {
 	return <section className={styles.blog}>
-		<h1 className={styles.title}>{title}</h1>
-		<p className={styles.subtitle}>{subtitle}</p>
+		<Grid container justify="center">
+			<Grid item xs={8}>
+				<h1 className={styles.title}>{title}</h1>
+				<p className={styles.subtitle}>{subtitle}</p>
 
-		{articles &&
-		<div className={styles.articles}>
-			{_.map(articles, (article) => {
-				return <SmallArticleBox
-						key={article.id}
-						title={article.title}
-						subtitle={article.subtitle}
-						image={article.thumbnail}
-						link={`/blog/${article.slug}`}
-				/>
-			})}
-		</div>}
+				{articles &&
+				<div className={styles.articles}>
+					{_.map(articles, (article) => {
+						return <SmallArticleBox
+								key={article.id}
+								title={article.title}
+								subtitle={article.subtitle}
+								image={article.thumbnail}
+								link={`/blog/${article.slug}`}
+						/>
+					})}
+				</div>}
+			</Grid>
+		</Grid>
 	</section>
 }
 

@@ -2,26 +2,31 @@ import _ from "lodash";
 import propTypes from 'prop-types';
 import styles from './../styles/components/about-section.module.scss';
 import TeamBox from "./team-box";
+import Grid from "@material-ui/core/Grid";
 
 const AboutSection = ({title, subtitle, teams}) => {
 	return <section className={styles.about}>
-		<div className={styles.titleBox}>
-			<h2 className={styles.title}>{title}</h2>
-			<p className={styles.subtitle}>{subtitle}</p>
-		</div>
-
-		{teams &&
-		<div className={styles.membersBubbles}>
-			{_.map(teams, (team, k) => {
-				return <div key={k}>
-					<TeamBox
-							title={team.title}
-							members={team.users}
-							variant={(k !== 0)}
-					/>
+		<Grid container justify="center">
+			<Grid item xs={10}>
+				<div className={styles.titleBox}>
+					<h2 className={styles.title}>{title}</h2>
+					<p className={styles.subtitle}>{subtitle}</p>
 				</div>
-			})}
-		</div>}
+
+				{teams &&
+				<div className={styles.membersBubbles}>
+					{_.map(teams, (team, k) => {
+						return <div key={k}>
+							<TeamBox
+									title={team.title}
+									members={team.users}
+									variant={(k !== 0)}
+							/>
+						</div>
+					})}
+				</div>}
+			</Grid>
+		</Grid>
 	</section>;
 }
 
