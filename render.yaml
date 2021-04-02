@@ -5,8 +5,8 @@ services:
     plan: standard
     repo: https://github.com/fenomenalfunds/fenomenal-funds-frontend.git
     branch: staging
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    buildCommand: yarn; yarn build #npm install && npm run build
+    startCommand: yarn start #npm start
     healthCheckPath: /_health
     envVars:
     - key: STRAPI_API_URL

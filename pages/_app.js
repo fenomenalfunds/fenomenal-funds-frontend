@@ -15,7 +15,7 @@ function MyApp({Component, pageProps}) {
 
 	const {global, navigation} = pageProps;
 
-	console.info('NAVIGATION +++++++++', navigation);
+	{/*console.info('NAVIGATION +++++++++', navigation)*/}
 
 	return <>
 		<Head>
