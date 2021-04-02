@@ -11,3 +11,5 @@ services:
     envVars:
     - key: STRAPI_API_URL
       value: 'https://cms-staging.fenomenalfunds.org'
+    - key: NODE_ENV
+      value: production
