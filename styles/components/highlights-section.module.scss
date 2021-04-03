@@ -1,0 +1,20 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.insights {
+	padding: 4em 0;
+	text-align: center;
+	background-color: $ff-color-purple;
+
+	.divider {
+		width: 50%;
+		border: 0;
+		height: 1px;
+		background-color: $ff-color-red;
+	}
+
+	.content {
+		padding: 3em 0;
+	}
+}

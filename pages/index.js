@@ -10,8 +10,9 @@ import Image from "../components/image";
 import NotFound from "../components/not-found";
 import AboutSection from "../components/about-section";
 import BlogSection from "../components/blog-section";
+import HighlightsSection from "../components/highlights-section";
 
-const Home = ({home, blog, about, editorial}) => {
+const Home = ({home, blog, about, editorial, highlights}) => {
 	if (!home && !blog) return <NotFound/>
 
 	return <Layout>
@@ -41,6 +42,13 @@ const Home = ({home, blog, about, editorial}) => {
 				</Grid>
 			</Grid>
 
+			{highlights &&
+			<HighlightsSection
+					title={highlights.title}
+					subtitle={highlights.subtitle}
+					stories={highlights.stories}
+			/>}
+
 			{about &&
 			<AboutSection
 					title={about.title}
@@ -49,7 +57,7 @@ const Home = ({home, blog, about, editorial}) => {
 			/>}
 
 			{/* HIGHLIGHTS SECTION */}
-			<Grid container justify="center" className={styles.highlights}>
+			<Grid container justify="center" className={styles.insights}>
 				<Grid item xs={10}>
 					<section>
 						<h1 className={styles.title}>Insights from our work</h1>
@@ -134,11 +142,12 @@ const Home = ({home, blog, about, editorial}) => {
 }
 
 export async function getStaticProps() {
-	const [home, about, blog, editorial] = await Promise.all([
+	const [home, about, blog, editorial, highlights] = await Promise.all([
 		fetchAPI('/home'),
 		fetchAPI('/about-us'),
 		fetchAPI('/blog'),
-		fetchAPI('/editorial')
+		fetchAPI('/editorial'),
+		fetchAPI('/highlights')
 	]);
 
 	return {
@@ -146,7 +155,8 @@ export async function getStaticProps() {
 			home,
 			blog,
 			about,
-			editorial
+			editorial,
+			highlights
 		},
 		revalidate: 1
 	}

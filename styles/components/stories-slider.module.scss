@@ -1,0 +1,15 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.storiesSlider {
+	position: relative;
+	width: 100%;
+	max-width: 1366px;
+	overflow: hidden;
+	margin: 2em auto 0 auto;
+
+	.slider {
+		width: 100%;
+	}
+}

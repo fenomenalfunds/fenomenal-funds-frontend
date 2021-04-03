@@ -1,4 +1,6 @@
 import '../styles/globals.scss';
+import 'slick-carousel/slick/slick.scss';
+import "slick-carousel/slick/slick-theme.css";
 import App from 'next/app';
 import Head from 'next/head';
 import {getStrapiMedia} from "../lib/media";

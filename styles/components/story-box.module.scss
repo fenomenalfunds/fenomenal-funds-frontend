@@ -1,0 +1,12 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.storyBox {
+	margin-right: 1em;
+
+	.cover {
+		@include aspect-ratio(1.2 2, 100%, true, high);
+		margin: 0;
+	}
+}

@@ -22,16 +22,33 @@
 	}
 
 	.membersBubbles {
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-areas: "circle1 circle1 circle1"
+							 "circle2 . circle3";
 		justify-content: center;
-		flex-flow: wrap;
 		text-align: center;
-		gap: 3em;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		gap: 2em;
 		flex-grow: 0;
 
-		&>div {
-			flex-basis: 35%;
+		div {
+			&:first-child {
+				grid-area: circle1;
+				grid-column-start: span 3;
+			}
+
+			&:nth-child(2) {
+				grid-area: circle2;
+			}
+
+			&:last-child {
+				grid-area: circle3;
+			}
 		}
+
+		/*&>div {
+			flex-basis: 35%;
+		}*/
 	}
 }
