@@ -9,12 +9,14 @@ const TeamBox = ({title, members, variant}) => {
 
 		<div className={styles.members}>
 			{_.map(members, (member) => {
+
 				return <TeamMember
 						key={member.id}
 						name={member.fullname}
 						slug={member.username}
 						position={member.position}
 						image={member.photo}
+						about={member.about}
 				/>
 			})}
 		</div>

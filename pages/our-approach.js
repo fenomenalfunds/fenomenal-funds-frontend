@@ -4,12 +4,14 @@ import Grid from '@material-ui/core/Grid';
 import Layout from "../layout/website-layout";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import {fetchAPI} from "../lib/api";
+import Seo from "../components/seo";
 
-const OurApproachPage = () => {
+const OurApproachPage = ({approach}) => {
+
+	console.log('%%%%%%%%% APPROACH %%%%%%%%%', approach);
 	return <Layout>
-		<Head>
-			<title>Our Approach</title>
-		</Head>
+		<Seo seo={approach.seo} />
 
 		<Grid container justify="center" spacing={0} className={styles.ourApproach}>
 			<Grid item xs={12}>
@@ -22,10 +24,8 @@ const OurApproachPage = () => {
 						<FontAwesomeIcon icon={faPlay} size="4x" />
 
 						<div className={styles.caption}>
-							<h1 className={styles.title}>Our approach</h1>
-							<p className={styles.subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Pellentesque iaculis non sapien non accumsan. Donec euismod dictum iaculis. Proin nec
-								leo vel dui convallis lobortis.</p>
+							<h1 className={styles.title}>{approach.title}</h1>
+							<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: approach.intro}} />
 						</div>
 					</section>
 
@@ -59,6 +59,16 @@ const OurApproachPage = () => {
 			</Grid>
 		</Grid>
 	</Layout>
+}
+
+export async function getStaticProps() {
+	const approach = await fetchAPI('/approach');
+
+	return {
+		props: {
+			approach
+		}
+	}
 }
 
 export default OurApproachPage;

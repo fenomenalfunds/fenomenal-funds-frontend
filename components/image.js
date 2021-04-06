@@ -1,20 +1,11 @@
-import {getStrapiMedia} from "../lib/media";
 import CloudImage from "./cloud-image";
+import {getLocalUrl} from "../lib/media";
 
 const Image = ({image, ...props}) => {
 	if(image && image.url) {
-		const imageUrl = getStrapiMedia(image);
-
-		return <>
-			<CloudImage image={image} {...props} />
-			{/*<img
-					src={imageUrl}
-					alt={image.alternativeText || image.name}
-					{...props}
-			/>*/}
-		</>;
+		return <CloudImage image={image} {...props} />;
 	} else {
-		return <img src="/FF_2021_ImagePlaceholder_1080x810.jpg" alt=""/>
+		return <img src={getLocalUrl('/FF_2021_ImagePlaceholder_1080x810.jpg')} alt=""/>
 	}
 };
 

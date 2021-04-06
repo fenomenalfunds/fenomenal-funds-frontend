@@ -8,14 +8,16 @@ import {fetchAPI} from "../lib/api";
 import {createContext} from "react";
 import {useRouter} from "next/router";
 import Loading from "../components/loading";
+import NotFound from "../components/not-found";
 
 export const GlobalContext = createContext({});
 
 function MyApp({Component, pageProps}) {
 	const router = useRouter();
-	if (router.isFallback) return <Loading/>
+	if (router.isFallback) return <Loading/>;
 
 	const {global, navigation} = pageProps;
+	if(!global) return <NotFound />;
 
 	{/*console.info('NAVIGATION +++++++++', navigation)*/}
 
@@ -36,6 +38,7 @@ MyApp.getInitialProps = async (ctx) => {
 		fetchAPI("/global"),
 		fetchAPI('/navigation/render/1?type=tree')
 	]);
+
 	return {
 		...appProps,
 		pageProps: {

@@ -1,18 +1,22 @@
 import { Image, Placeholder, Transformation } from 'cloudinary-react';
+import {getLocalUrl} from "../lib/media";
 
 const getCloudinaryDetails = (src) => {
-	const url = new URL(src);
-	if (url.host === 'res.cloudinary.com') {
-		try {
-			const path = url.pathname.split('/');
-			const vIndex = path.findIndex((el) => el.length && el.match(/^v\d*$/));
-			const version = path[vIndex].substr(1);
-			const id = path.slice(vIndex ? vIndex + 1 : 4).join('/');
-			return { cloudName: path[1], version, id };
-		} catch (e) {
-			console.warn(`URL ${src} could not be parsed as a Cloudinary image`);
+	if(src.startsWith('http://localhost')) {
+		const url = new URL(src);
+		if (url.host === 'res.cloudinary.com') {
+			try {
+				const path = url.pathname.split('/');
+				const vIndex = path.findIndex((el) => el.length && el.match(/^v\d*$/));
+				const version = path[vIndex].substr(1);
+				const id = path.slice(vIndex ? vIndex + 1 : 4).join('/');
+				return { cloudName: path[1], version, id };
+			} catch (e) {
+				console.warn(`URL ${src} could not be parsed as a Cloudinary image`);
+			}
 		}
 	}
+
 	return null;
 };
 
@@ -22,7 +26,8 @@ const CloudImage = (props) => {
 	delete attributes.image;
 	delete attributes.src;
 	if (!image || !image.url) return <></>;
-	const cloud = getCloudinaryDetails(image.url);
+	const imageUrl = getLocalUrl(image.url);
+	const cloud = getCloudinaryDetails(imageUrl);
 	return cloud ? (
 			<Image
 					responsive
@@ -44,7 +49,7 @@ const CloudImage = (props) => {
 			</Image>
 	) : (
 			<img
-					src={image.url}
+					src={imageUrl}
 					alt={image.alternativeText || image.caption}
 					title={image.alternativeText || image.caption}
 			/>

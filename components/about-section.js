@@ -4,13 +4,13 @@ import styles from './../styles/components/about-section.module.scss';
 import TeamBox from "./team-box";
 import Grid from "@material-ui/core/Grid";
 
-const AboutSection = ({title, subtitle, teams}) => {
-	return <section className={styles.about}>
+const AboutSection = ({title, subtitle, teams, background = true}) => {
+	return <section className={`${styles.about} ${background ? '' : styles.alt}`}>
 		<Grid container justify="center">
 			<Grid item xs={10}>
 				<div className={styles.titleBox}>
 					<h2 className={styles.title}>{title}</h2>
-					<p className={styles.subtitle}>{subtitle}</p>
+					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: subtitle}} />
 				</div>
 
 				{teams &&

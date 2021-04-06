@@ -19,6 +19,8 @@
 			left: 50%;
 			opacity: .6;
 			cursor: pointer;
+			width: 5em;
+			height: 5em;
 			transform: translateX(-50%) translateY(-50%);
 		}
 
@@ -44,7 +46,7 @@
 				position: absolute;
 				bottom: 1em;
 				right: 2em;
-				max-width: 22em;
+				max-width: 70%;
 				text-align: right;
 			}
 		}

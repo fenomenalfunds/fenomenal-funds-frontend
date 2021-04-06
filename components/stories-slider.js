@@ -27,7 +27,7 @@ class StoriesSlider extends Component{
 			arrows: false,
 			infinite: false,
 			speed: 500,
-			autoplay: false,
+			autoplay: true,
 			slidesToShow: 5,
 			slidesToScroll: 1,
 			responsive: [

@@ -60,21 +60,3 @@
 		margin: 3em 0;
 	}
 }
-
-.contact {
-	padding: 5em 0;
-	background-color: $ff-color-dark-green;
-
-	section {
-		display: grid;
-		grid-gap: 5em;
-		grid-template-columns: repeat(2, 1fr);
-		grid-auto-flow: column;
-
-		.form {
-			label {
-				display: block;
-			}
-		}
-	}
-}

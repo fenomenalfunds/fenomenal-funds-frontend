@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import styles from './../styles/components/Home.module.scss';
 import Grid from '@material-ui/core/Grid';
 import LargeArticleBox from "../components/large-article-box";
@@ -11,9 +10,14 @@ import NotFound from "../components/not-found";
 import AboutSection from "../components/about-section";
 import BlogSection from "../components/blog-section";
 import HighlightsSection from "../components/highlights-section";
+import ContactSection from "../components/contact-section";
+import {useRouter} from "next/router";
+import Loading from "../components/loading";
 
-const Home = ({home, blog, about, editorial, highlights}) => {
-	if (!home && !blog) return <NotFound/>
+const Home = ({home, blog, about, editorial, highlights, contact}) => {
+	const router = useRouter();
+	if (router.isFallback) return <Loading/>;
+	if (!home) return <NotFound/>
 
 	return <Layout>
 		<Seo seo={home.seo}/>
@@ -94,60 +98,24 @@ const Home = ({home, blog, about, editorial, highlights}) => {
 					articles={blog.articles}
 			/>}
 
-			<Grid container justify="center" className={styles.contact}>
-				<Grid item xs={10}>
-					<section>
-						<div className={styles.text}>
-							<h1>Get in touch!</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien
-								non accumsan. Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis.
-								Vestibulum mattis in urna sed ultricies. Etiam dictum lectus sit amet metus tincidunt
-								tincidunt. Vivamus ut sem et massa aliquet dignissim. Pellentesque habitant morbi
-								tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur non mattis
-								nibh. Maecenas euismod mi vel est gravida, in sagittis elit vehicula. Sed gravida justo
-								ac semper lacinia. Sed rutrum mauris ligula, pretium condimentum ante aliquet tempor.
-							</p>
-							<p>Or send us an email at <a href="mailto:hello@fenomenalfunds.org">hello@fenomenalfunds.org</a></p>
-						</div>
-
-						<div className={styles.form}>
-							<Grid container spacing={3}>
-								<Grid item xs={6}>
-									<label htmlFor="name">Name</label>
-									<input type="text" id="name" placeholder="First name"/>
-								</Grid>
-								<Grid item xs={6}>
-									<label htmlFor="last_name">Last name</label>
-									<input type="text" id="last_name" placeholder="Last name"/>
-								</Grid>
-								<Grid item xs={12}>
-									<label htmlFor="email">Email</label>
-									<input type="email" placeholder="Email"/>
-								</Grid>
-								<Grid item xs={12}>
-									<label htmlFor="message">Message</label>
-									<textarea id="message" rows="5" placeholder="Type your message here"/>
-								</Grid>
-								<Grid item xs={12} style={{textAlign: "right"}}>
-									<button type="submit" className="btn">Send</button>
-								</Grid>
-							</Grid>
-						</div>
-					</section>
-				</Grid>
-			</Grid>
+			{/* CONTACT SECTION */}
+			<ContactSection
+					title={contact.title}
+					subtitle={contact.body}
+			/>
 
 		</div>
 	</Layout>
 }
 
 export async function getStaticProps() {
-	const [home, about, blog, editorial, highlights] = await Promise.all([
+	const [home, about, blog, editorial, highlights, contact] = await Promise.all([
 		fetchAPI('/home'),
 		fetchAPI('/about-us'),
 		fetchAPI('/blog'),
 		fetchAPI('/editorial'),
-		fetchAPI('/highlights')
+		fetchAPI('/highlights'),
+		fetchAPI('/contact')
 	]);
 
 	return {
@@ -156,7 +124,8 @@ export async function getStaticProps() {
 			blog,
 			about,
 			editorial,
-			highlights
+			highlights,
+			contact
 		},
 		revalidate: 1
 	}
