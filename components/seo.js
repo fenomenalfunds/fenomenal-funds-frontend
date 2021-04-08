@@ -11,7 +11,7 @@ const Seo = ({ seo }) => {
 	};
 	const fullSeo = {
 		...seoWithDefaults,
-		metaTitle: `${seoWithDefaults.meta_title} | ${siteName}`,
+		metaTitle: `${seoWithDefaults.meta_title}`,
 		shareImage: getStrapiMedia(seoWithDefaults.meta_image),
 
 	};
