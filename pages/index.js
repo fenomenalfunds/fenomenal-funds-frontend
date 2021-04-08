@@ -127,8 +127,7 @@ export async function getServerSideProps() {
 			editorial,
 			highlights,
 			contact
-		},
-		revalidate: 1
+		}
 	}
 }
 
