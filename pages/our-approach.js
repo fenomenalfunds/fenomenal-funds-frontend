@@ -60,7 +60,7 @@ const OurApproachPage = ({approach}) => {
 	</Layout>
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const approach = await fetchAPI('/approach');
 
 	return {

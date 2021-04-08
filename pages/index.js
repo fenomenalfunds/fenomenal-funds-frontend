@@ -109,7 +109,7 @@ const Home = ({home, blog, about, editorial, highlights, contact}) => {
 	</Layout>
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const [home, about, blog, editorial, highlights, contact] = await Promise.all([
 		fetchAPI('/home'),
 		fetchAPI('/about-us'),

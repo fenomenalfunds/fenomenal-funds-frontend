@@ -13,8 +13,6 @@ const LearningsPage = ({learnings}) => {
 	return <Layout>
 		<Seo seo={learnings.seo} />
 
-		{console.log('%%%%%%%%%% LEARNINGS %%%%%%%%%%', learnings)}
-
 		<Grid container justify="center" spacing={0} className={styles.learnings}>
 			<Grid item lg={10}>
 				<article className={styles.article}>

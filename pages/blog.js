@@ -27,7 +27,7 @@ const Blog = ({blog, articles}) => {
 	</Layout>
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const [blog, articles] = await Promise.all([
 			fetchAPI('/blog'),
 			fetchAPI('/articles?_sort=publish:DESC')
