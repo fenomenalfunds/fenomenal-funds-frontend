@@ -38,7 +38,7 @@ const Home = ({home, blog, about, editorial, highlights, contact}) => {
 				<Grid item xs={10}>
 					<LargeArticleBox
 							title={editorial.title}
-							content={editorial.body}
+							content={editorial.subtitle}
 							overlay={null}
 							image={editorial.thumbnail}
 							publish={editorial.publish}
