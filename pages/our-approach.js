@@ -9,7 +9,6 @@ import Seo from "../components/seo";
 
 const OurApproachPage = ({approach}) => {
 
-	console.log('%%%%%%%%% APPROACH %%%%%%%%%', approach);
 	return <Layout>
 		<Seo seo={approach.seo} />
 

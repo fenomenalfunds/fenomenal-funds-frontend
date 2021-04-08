@@ -102,6 +102,7 @@ const Home = ({home, blog, about, editorial, highlights, contact}) => {
 			<ContactSection
 					title={contact.title}
 					subtitle={contact.body}
+					email={contact.sent_to}
 			/>
 
 		</div>

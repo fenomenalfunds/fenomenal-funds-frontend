@@ -1,0 +1,16 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.reportBox {
+	.cover {
+		@include aspect-ratio(1 1.4, 80%, true, high);
+		margin: 0;
+	}
+
+	.caption {
+		h3 {
+			font-size: 1.4em;
+		}
+	}
+}

@@ -1,14 +1,13 @@
 import styles from './../styles/components/contact-section.module.scss';
 import Grid from "@material-ui/core/Grid";
 
-const ContactSection = ({title, subtitle}) => {
+const ContactSection = ({title, subtitle, email}) => {
 	return <Grid container justify="center" className={styles.contact}>
 		<Grid item xs={10}>
 			<section>
 				<div className={styles.text}>
 					<h1>{title}</h1>
-					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: subtitle}} />
-					<p>Or send us an email at <a href="mailto:hello@fenomenalfunds.org">hello@fenomenalfunds.org</a></p>
+					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: subtitle.replace('{%EMAIL%}', email)}} />
 				</div>
 
 				<div className={styles.form}>

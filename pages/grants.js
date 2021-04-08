@@ -1,18 +1,20 @@
 import styles from './../styles/grants.module.scss';
-import Head from 'next/head';
+import _ from 'lodash';
 import Grid from "@material-ui/core/Grid";
 import Layout from "../layout/website-layout";
 import moment from "moment";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGlobeAfrica} from "@fortawesome/free-solid-svg-icons";
 import CoverArticleBox from "../components/cover-article-box";
 import SquareArticleBox from "../components/square-article-box";
+import {fetchAPI} from "../lib/api";
+import NotFound from "../components/not-found";
+import Seo from "../components/seo";
 
-const GrantDetail = () => {
+const GrantDetail = ({grants}) => {
+	if(!grants) return <NotFound />
+
 	return <Layout>
-		<Head>
-			<title>Sample Article</title>
-		</Head>
+		<Seo seo={grants.seo} />
+
 		<Grid container justify="center" spacing={0} className={styles.grantsDetail}>
 			<Grid item xs={10}>
 				<article className={styles.article}>
@@ -120,6 +122,7 @@ const GrantDetail = () => {
 					</div>
 				</article>
 
+				{grants.articles &&
 				<aside className={styles.blog}>
 					<div className={styles.titleBox}>
 						<h2 className={styles.title}>Blog</h2>
@@ -127,44 +130,33 @@ const GrantDetail = () => {
 					</div>
 
 					<div className={styles.articles}>
-						<CoverArticleBox
-							title="Excepteur sint occaecat cupidatat non proident"
-							subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-							image={{url: "/temp/evgeny-nelmin-d3C_idSlkh0-unsplash.png", alternativeText: null}}
-							author={{name: "Author Name"}}
-							publish={moment().calendar()}
-							link={`/blog/sample-article`}
-						/>
-
-						<CoverArticleBox
-							title="Excepteur sint occaecat cupidatat non proident"
-							subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-							image={{url: "/temp/gemma-chua-tran-jNVgCpQ0LhQ-unsplash.png", alternativeText: null}}
-							author={{name: "Author Name"}}
-							publish={moment().calendar()}
-							link={`/blog/sample-article`}
-						/>
-						<CoverArticleBox
-							title="Excepteur sint occaecat cupidatat non proident"
-							subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-							image={{url: "/temp/jeffrey-f-lin-rncKxDYyXqs-unsplash.png", alternativeText: null}}
-							author={{name: "Author Name"}}
-							publish={moment().calendar()}
-							link={`/blog/sample-article`}
-						/>
-						<CoverArticleBox
-							title="Excepteur sint occaecat cupidatat non proident"
-							subtitle="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-							image={{url: "/temp/joost-crop-lqBUJWTC7Dc-unsplash.png", alternativeText: null}}
-							author={{name: "Author Name"}}
-							publish={moment().calendar()}
-							link={`/blog/sample-article`}
-						/>
+						{_.map(_.slice(grants.articles, 0, 8), (article) => {
+							return <CoverArticleBox
+									key={article.id}
+									title={article.title}
+									subtitle={article.subtitle}
+									image={article.thumbnail}
+									publish={article.publish ? moment(article.publish).calendar() : null}
+									link={`/blog/${article.slug}`}
+							/>
+						})}
 					</div>
-				</aside>
+				</aside>}
 			</Grid>
 		</Grid>
 	</Layout>
+}
+
+export async function getServerSideProps() {
+	const [grants] = await Promise.all([
+			fetchAPI('/grants')
+	]);
+
+	return {
+		props: {
+			grants
+		}
+	}
 }
 
 export default GrantDetail;
