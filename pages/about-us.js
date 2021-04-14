@@ -55,7 +55,7 @@ const AboutUsPage = ({about, editorial}) => {
 	</Layout>
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const [about, editorial] = await Promise.all([
 			fetchAPI('/about-us'),
 			fetchAPI('/editorial')
@@ -65,7 +65,8 @@ export async function getServerSideProps() {
 		props: {
 			about,
 			editorial
-		}
+		},
+		revalidate: true
 	}
 }
 

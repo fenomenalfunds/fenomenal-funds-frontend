@@ -147,7 +147,7 @@ const GrantDetail = ({grants}) => {
 	</Layout>
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const [grants] = await Promise.all([
 			fetchAPI('/grants')
 	]);
@@ -155,7 +155,8 @@ export async function getServerSideProps() {
 	return {
 		props: {
 			grants
-		}
+		},
+		revalidate: true
 	}
 }
 

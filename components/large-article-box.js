@@ -22,7 +22,8 @@ const LargeArticleBox = ({title, content, overlay, image, publish}) => {
 				<h1 className={styles.title}>{title}</h1>
 				<div className={styles.text} dangerouslySetInnerHTML={{__html: content}} />
 				<br/>
-				<p>{moment(publish).format('LL')}</p>
+				{publish &&
+				<p>{moment(publish).format('LL')}</p>}
 			</div>
 		</div>
 	</article>

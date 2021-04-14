@@ -14,7 +14,7 @@ import ContactSection from "../components/contact-section";
 import {useRouter} from "next/router";
 import Loading from "../components/loading";
 
-const Home = ({home, blog, about, editorial, highlights, contact}) => {
+const Home = ({home, blog, about, editorial, highlights, insights, contact}) => {
 	const router = useRouter();
 	if (router.isFallback) return <Loading/>;
 	if (!home) return <NotFound/>
@@ -60,15 +60,14 @@ const Home = ({home, blog, about, editorial, highlights, contact}) => {
 					teams={(about.staff && about.staff.teams) ? about.staff.teams : null}
 			/>}
 
-			{/* HIGHLIGHTS SECTION */}
+			{/* INSIGHTS SECTION */}
 			<Grid container justify="center" className={styles.insights}>
 				<Grid item xs={10}>
 					<section>
-						<h1 className={styles.title}>Insights from our work</h1>
-						<p className={styles.subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Pellentesque iaculis non sapien non accumsan.
-							Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis.</p>
+						<h1 className={styles.title}>{insights.title}</h1>
+						<p className={styles.subtitle}>{insights.subtitle}</p>
 
+						{console.info('%%%%% INSIGHT %%%%%', insights)}
 						<div className={styles.articles}>
 							<ArticleBox
 									title="Activity Report 2021"
@@ -109,13 +108,14 @@ const Home = ({home, blog, about, editorial, highlights, contact}) => {
 	</Layout>
 }
 
-export async function getServerSideProps() {
-	const [home, about, blog, editorial, highlights, contact] = await Promise.all([
+export async function getStaticProps() {
+	const [home, about, blog, editorial, highlights, insights, contact] = await Promise.all([
 		fetchAPI('/home'),
 		fetchAPI('/about-us'),
 		fetchAPI('/blog'),
 		fetchAPI('/editorial'),
 		fetchAPI('/highlights'),
+		fetchAPI('/insights'),
 		fetchAPI('/contact')
 	]);
 
@@ -126,8 +126,10 @@ export async function getServerSideProps() {
 			about,
 			editorial,
 			highlights,
+			insights,
 			contact
-		}
+		},
+		revalidate: true
 	}
 }
 

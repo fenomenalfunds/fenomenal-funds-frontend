@@ -24,7 +24,6 @@ const LearningsPage = ({learnings}) => {
 					{learnings.reports &&
 					<div className={styles.reports}>
 						{_.map(learnings.reports, (report) => {
-							console.log('&&&&&&&&& REPORT &&&&&&&&', report);
 							return <ReportBox
 								key={report.id}
 								title={report.title}
@@ -39,13 +38,14 @@ const LearningsPage = ({learnings}) => {
 	</Layout>
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const learnings = await fetchAPI('/insights');
 
 	return {
 		props: {
 			learnings
-		}
+		},
+		revalidate: true
 	}
 }
 

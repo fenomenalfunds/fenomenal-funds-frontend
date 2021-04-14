@@ -11,17 +11,12 @@
 
 		.video {
 			@include aspect-ratio(16 9, 100%, true);
-		}
 
-		svg {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			opacity: .6;
-			cursor: pointer;
-			width: 5em;
-			height: 5em;
-			transform: translateX(-50%) translateY(-50%);
+			&>div {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
 		}
 
 		.caption {
@@ -31,23 +26,22 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			backdrop-filter: brightness(.6);
+			backdrop-filter: brightness(.4);
 
-			.title {
-				font-weight: bold;
+			.text {
 				position: absolute;
-				bottom: 10rem;
-				right: 2rem;
-				max-width: 22rem;
-				text-align: right;
-			}
-
-			.subtitle {
-				position: absolute;
-				bottom: 1em;
+				bottom: 2em;
 				right: 2em;
-				max-width: 70%;
-				text-align: right;
+				width: 50%;
+
+				.title {
+					font-weight: bold;
+					text-align: right;
+				}
+
+				.subtitle {
+					text-align: right;
+				}
 			}
 		}
 
@@ -57,6 +51,41 @@
 			left: 4rem;
 			max-width: 22rem;
 			font-size: 2.2em;
+		}
+
+		.playButton {
+			position: absolute;
+			top: 50%;
+			left: 24%;
+			cursor: pointer;
+			width: 5em;
+			height: 5em;
+			color: rgba($ff-color-white, .6);
+			background-color: transparent;
+			border: 0;
+			outline: none;
+			transform: translateX(-24%) translateY(-50%);
+			z-index: 10;
+			transition: all .2s ease-in-out;
+
+			&:hover {
+				color: $ff-color-white;
+			}
+		}
+
+		.pauseButton {
+			@extend .playButton;
+			top: auto;
+			bottom: 2em;
+			left: 2em;
+			width: 2.5em;
+			height: 2.5em;
+			transform: none;
+		}
+
+		.mutedButton {
+			@extend .pauseButton;
+			left: 5.5em;
 		}
 	}
 
