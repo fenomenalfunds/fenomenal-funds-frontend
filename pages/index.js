@@ -1,4 +1,5 @@
 import styles from './../styles/components/Home.module.scss';
+import _ from 'lodash';
 import Grid from '@material-ui/core/Grid';
 import LargeArticleBox from "../components/large-article-box";
 import ArticleBox from "../components/article-box";
@@ -68,23 +69,18 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 						<p className={styles.subtitle}>{insights.subtitle}</p>
 
 						{console.info('%%%%% INSIGHT %%%%%', insights)}
+						{insights.reports &&
 						<div className={styles.articles}>
-							<ArticleBox
-									title="Activity Report 2021"
-									subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien non
-                accumsan. Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis."
-									image={{url: "/temp/gemma-chua-tran-P_mprr4eka8-unsplash.png", alternativeText: null}}
-									url={`/reports/activity-report-2021`}
-							/>
-
-							<ArticleBox
-									title="Reports / documents"
-									subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis non sapien non
-                accumsan. Donec euismod dictum iaculis. Proin nec leo vel dui convallis lobortis."
-									image={{url: "/temp/jaikishan-patel-2eMemvByB-8-unsplash.png", alternativeText: null}}
-									url={`/reports/documents`}
-							/>
-						</div>
+							{_.map(_.slice(insights.reports, 0, 2), (report) => {
+								return <ArticleBox
+										key={report.id}
+										title={report.title}
+										subtitle={report.subtitle}
+										image={report.image}
+										url={`/reports/${report.slug}`}
+								/>
+							})}
+						</div>}
 					</section>
 				</Grid>
 			</Grid>
