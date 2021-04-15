@@ -1,0 +1,24 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.learnings {
+	background: $gradient-4;
+
+	.article {
+		padding: 8em 0;
+
+		header {
+			width: 70%;
+			margin: 0 auto;
+			text-align: center;
+		}
+	}
+
+	.reports {
+		display: grid;
+		grid-gap: 5em;
+		padding: 3em 0;
+		grid-template-columns: repeat(3, 1fr);
+	}
+}

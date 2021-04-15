@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,200;0,400;0,600;1,100;1,400;1,600&display=swap');
+
+$text-font-family: 'IBM Plex Sans';
+$text-font-size: 18px;
+
+$hlist: (
+	'IBM Plex Sans',
+	'IBM Plex Sans',
+	'IBM Plex Sans',
+	'IBM Plex Sans',
+	'IBM Plex Sans',
+	'IBM Plex Sans'
+);
+
+@for $i from 1 through 6 {
+	h#{$i} {
+		font-family: nth($hlist, $i), sans-serif;
+		font-weight: normal;
+	}
+}
+
+p, ul, li, blockquote, cite, a {
+	font-family: $text-font-family, sans-serif;
+}

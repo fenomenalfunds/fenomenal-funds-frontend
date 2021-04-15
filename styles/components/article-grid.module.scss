@@ -1,0 +1,26 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.articleGrid {
+	display: grid;
+	grid-gap: 2em;
+	grid-template-areas:
+			"large large large small1"
+			"large large large small2"
+			"small3 small4 small5 small6";
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+
+	& div {
+		&:first-child {
+			grid-area: large;
+		}
+
+		@for $i from 1 through 6 {
+			&:nth-child(#{$i + 1}) {
+				grid-area: small#{$i};
+			}
+		}
+	}
+}

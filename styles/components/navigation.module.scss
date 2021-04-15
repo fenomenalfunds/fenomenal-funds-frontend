@@ -1,0 +1,80 @@
+@import "styles/colors";
+@import "styles/variables";
+
+.navigation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: $navbar-height;
+	background-color: $ff-color-purple;
+	z-index: 10000;
+	padding: 0 3em;
+	overflow: hidden;
+	font-weight: 400;
+
+	.navContainer {
+		display: grid;
+		grid-gap: 3em;
+		grid-auto-flow: column;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		height: 100%;
+		max-width: 1366px;
+		margin: 0 auto;
+	}
+
+	.mainNav {
+		display: grid;
+		grid-gap: 1.5em;
+		grid-auto-flow: column;
+		justify-content: start;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		min-width: 400px;
+		list-style-type: none;
+
+		li {
+			text-transform: uppercase;
+			font-size: .9rem;
+			padding: 0;
+
+			&.logo {
+				img {
+					width: auto;
+					height: calc(#{$navbar-height} - 1em);
+				}
+			}
+		}
+	}
+
+	.secNav {
+		display: grid;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+
+		.btn {
+			font-size: .8em;
+			text-transform: uppercase;
+			padding: .5em 2em;
+			border-radius: 3px;
+			border: 1px solid $ff-color-white;
+		}
+	}
+
+	/*&.active {
+		height: $navbar-height;
+		background-color: $ff-color-red;
+
+		.mainNav {
+			display: grid;
+		}
+
+		.secNav {
+			display: grid;
+		}
+	}*/
+}

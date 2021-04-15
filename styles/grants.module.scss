@@ -1,0 +1,62 @@
+@import "variables";
+@import "colors";
+@import "mixins";
+
+.grantsDetail {
+	background: $gradient-3;
+
+	.article {
+		padding: 12em 0;
+
+		.header {
+			text-align: center;
+			max-width: 70%;
+			margin: 0 auto 12em auto;
+
+			.title {
+				font-size: 3em;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.body {
+		display: grid;
+		grid-gap: 2em;
+		align-items: center;
+		grid-template-columns: 1fr 1.5fr;
+
+		.mosaic {
+			display: grid;
+			grid-gap: .8em;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: repeat(3, 1fr);
+		}
+	}
+
+	.blog {
+		padding: 1em 0 8em 0;
+
+		.titleBox {
+			margin-bottom: 2em;
+
+			.title {
+				display: inline-block;
+				font-size: 2em;
+				font-weight: bold;
+				margin-right: 1em;
+			}
+
+			.subtitle {
+				display: inline-block;
+			}
+		}
+
+		.articles {
+			display: grid;
+			grid-gap: 2em;
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+		}
+	}
+}

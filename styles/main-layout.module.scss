@@ -1,0 +1,52 @@
+@import "variables";
+@import "mixins";
+@import "colors";
+
+.layout {
+
+}
+
+.toggle {
+	position: fixed;
+	top: 1.2rem;
+	left: 1.2em;
+	width: 2.5em;
+	height: 2.6em;
+	border: 0;
+	z-index: 100001;
+	outline: none;
+	cursor: pointer;
+	background-color: transparent;
+
+	span {
+		display: block;
+		width: 2.5em;
+		height: 5px;
+		margin: 0 0 .4em 0;
+		background-color: $ff-color-white;
+		transition: all .3s ease-in-out;
+
+		&:last-of-type {
+			width: 2em;
+		}
+	}
+
+	&.active {
+		span {
+			&:first-child {
+				transform-origin: center;
+				transform: rotate(-45deg) translateY(130%) translateX(-35%);
+			}
+
+			&:nth-child(2) {
+				transform-origin: center;
+				transform: rotate(45deg) translateY(130%) translateX(-5%);
+			}
+
+			&:last-child {
+				width: 0;
+			}
+		}
+	}
+}
+

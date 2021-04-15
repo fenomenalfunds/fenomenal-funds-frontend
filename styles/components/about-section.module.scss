@@ -1,0 +1,58 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.about {
+	padding: 3em 0;
+	background-color: $ff-color-purple;
+
+	&.alt {
+		background-color: transparent;
+	}
+
+	.titleBox {
+		display: grid;
+		align-items: center;
+		grid-auto-flow: column;
+		grid-template-columns: 15em auto;
+
+		.title {
+			font-size: 2em;
+		}
+
+		.subtitle {
+
+		}
+	}
+
+	.membersBubbles {
+		display: grid;
+		grid-template-areas: "circle1 circle1 circle1"
+							 "circle2 . circle3";
+		justify-content: center;
+		text-align: center;
+		grid-template-columns: 2fr 5em 2fr;
+		grid-template-rows: repeat(2, 1fr);
+		gap: 2em;
+		flex-grow: 0;
+
+		div {
+			&:first-child {
+				grid-area: circle1;
+				grid-column-start: span 3;
+			}
+
+			&:nth-child(2) {
+				grid-area: circle2;
+			}
+
+			&:last-child {
+				grid-area: circle3;
+			}
+		}
+
+		/*&>div {
+			flex-basis: 35%;
+		}*/
+	}
+}
