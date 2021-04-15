@@ -14,7 +14,7 @@ const AboutSection = ({title, subtitle, image, teams, background = true}) => {
 					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: subtitle}} />
 				</div>
 
-				<figure>
+				<figure className={styles.diagram}>
 					<Image  image={image} />
 				</figure>
 
