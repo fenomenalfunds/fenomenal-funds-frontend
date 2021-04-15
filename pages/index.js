@@ -59,7 +59,6 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 					title={about.title}
 					subtitle={about.subtitle}
 					image={about.image}
-					teams={(about.staff && about.staff.teams) ? about.staff.teams : null}
 			/>}
 
 			{/* INSIGHTS SECTION */}

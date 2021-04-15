@@ -36,7 +36,19 @@ const AboutUsPage = ({about, editorial}) => {
 
 						<div className={styles.image}>
 							<figure>
-								<img src="/temp/naxph-pKyY_fosG90-unsplash.png" alt=""/>
+								<Image image={about.mission_statement.image} />
+							</figure>
+						</div>
+					</section>
+
+					<section className={`${styles.complementary} ${styles.alt}`}>
+						<h1 className={styles.title}>{about.vision_statement.title}</h1>
+
+						<div className={styles.text} dangerouslySetInnerHTML={{__html: about.vision_statement.mission}} />
+
+						<div className={styles.image}>
+							<figure>
+								<Image image={about.vision_statement.image} />
 							</figure>
 						</div>
 					</section>

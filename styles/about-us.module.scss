@@ -43,6 +43,10 @@
 		grid-template-columns: 1fr 1.5fr;
 		grid-template-areas: "title title" "desc visual";
 
+		&.alt {
+			grid-template-areas: "title title" "visual desc";
+		}
+
 		.title {
 			grid-area: title;
 		}

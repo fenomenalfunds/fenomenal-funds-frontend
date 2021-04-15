@@ -14,11 +14,12 @@ const AboutSection = ({title, subtitle, image, teams, background = true}) => {
 					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: subtitle}} />
 				</div>
 
+				{image &&
 				<figure className={styles.diagram}>
 					<Image  image={image} />
-				</figure>
+				</figure>}
 
-				{/*teams &&
+				{teams &&
 				<div className={styles.membersBubbles}>
 					{_.map(teams, (team, k) => {
 						return <div key={k}>
@@ -29,7 +30,7 @@ const AboutSection = ({title, subtitle, image, teams, background = true}) => {
 							/>
 						</div>
 					})}
-				</div>*/}
+				</div>}
 			</Grid>
 		</Grid>
 	</section>;
