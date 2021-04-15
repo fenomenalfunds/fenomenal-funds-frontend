@@ -3,27 +3,34 @@
 
 .navigation {
 	position: fixed;
-	display: grid;
-	grid-gap: 3em;
-	grid-auto-flow: column;
-	//grid-template-columns: 3fr 1fr;
-	align-items: center;
-	justify-content: space-between;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 0;
-	background-color: transparent;
+	height: $navbar-height;
+	background-color: $ff-color-purple;
 	z-index: 10000;
-	padding: 0 3em 0 8em;
+	padding: 0 3em;
 	overflow: hidden;
-	transition: height .3s ease-in-out;
 	font-weight: 400;
 
-	.mainNav {
-		display: none;
-		grid-gap: 1em;
+	.navContainer {
+		display: grid;
+		grid-gap: 3em;
 		grid-auto-flow: column;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		height: 100%;
+		max-width: 1366px;
+		margin: 0 auto;
+	}
+
+	.mainNav {
+		display: grid;
+		grid-gap: 1.5em;
+		grid-auto-flow: column;
+		justify-content: start;
+		align-items: center;
 		margin: 0;
 		padding: 0;
 		min-width: 400px;
@@ -33,11 +40,18 @@
 			text-transform: uppercase;
 			font-size: .9rem;
 			padding: 0;
+
+			&.logo {
+				img {
+					width: auto;
+					height: calc(#{$navbar-height} - 1em);
+				}
+			}
 		}
 	}
 
 	.secNav {
-		display: none;
+		display: grid;
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
@@ -51,7 +65,7 @@
 		}
 	}
 
-	&.active {
+	/*&.active {
 		height: $navbar-height;
 		background-color: $ff-color-red;
 
@@ -62,5 +76,5 @@
 		.secNav {
 			display: grid;
 		}
-	}
+	}*/
 }

@@ -21,15 +21,8 @@ class Layout extends Component {
 	}
 
 	render() {
+
 		return <div className={styles.layout}>
-
-			<button className={`${styles.toggle} ${this.state.menuActive ? styles.active : null}`} onClick={this.toggleState}>
-				<span>&nbsp;</span>
-				<span>&nbsp;</span>
-				<span>&nbsp;</span>
-			</button>
-
-			<Navigation active={this.state.menuActive} />
 
 			<Grid container justify="center">
 				{this.props.children}

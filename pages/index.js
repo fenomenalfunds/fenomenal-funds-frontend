@@ -58,17 +58,18 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 			<AboutSection
 					title={about.title}
 					subtitle={about.subtitle}
+					image={about.image}
 					teams={(about.staff && about.staff.teams) ? about.staff.teams : null}
 			/>}
 
 			{/* INSIGHTS SECTION */}
+			{insights &&
 			<Grid container justify="center" className={styles.insights}>
 				<Grid item xs={10}>
 					<section>
 						<h1 className={styles.title}>{insights.title}</h1>
 						<p className={styles.subtitle}>{insights.subtitle}</p>
 
-						{console.info('%%%%% INSIGHT %%%%%', insights)}
 						{insights.reports &&
 						<div className={styles.articles}>
 							{_.map(_.slice(insights.reports, 0, 2), (report) => {
@@ -83,7 +84,7 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 						</div>}
 					</section>
 				</Grid>
-			</Grid>
+			</Grid>}
 
 			{/* BLOG SECTION */}
 			{blog &&

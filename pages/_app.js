@@ -9,6 +9,7 @@ import {createContext} from "react";
 import {useRouter} from "next/router";
 import Loading from "../components/loading";
 import NotFound from "../components/not-found";
+import Navigation from "../components/navigation";
 
 export const GlobalContext = createContext({});
 
@@ -19,14 +20,14 @@ function MyApp({Component, pageProps}) {
 	const {global, navigation} = pageProps;
 	if(!global) return <NotFound />;
 
-	{/*console.info('NAVIGATION +++++++++', navigation)*/}
-
 	return <>
 		<Head>
 			<link rel="shortcut icon" href={getStrapiMedia(global.favicon)}/>
 			<title>Fenomenal Funds</title>
 		</Head>
+
 		<GlobalContext.Provider value={global}>
+			<Navigation items={navigation} />
 			<Component {...pageProps} />
 		</GlobalContext.Provider>
 	</>

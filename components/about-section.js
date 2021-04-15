@@ -3,8 +3,9 @@ import propTypes from 'prop-types';
 import styles from './../styles/components/about-section.module.scss';
 import TeamBox from "./team-box";
 import Grid from "@material-ui/core/Grid";
+import Image from "./image";
 
-const AboutSection = ({title, subtitle, teams, background = true}) => {
+const AboutSection = ({title, subtitle, image, teams, background = true}) => {
 	return <section className={`${styles.about} ${background ? '' : styles.alt}`}>
 		<Grid container justify="center">
 			<Grid item xs={10}>
@@ -13,7 +14,11 @@ const AboutSection = ({title, subtitle, teams, background = true}) => {
 					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: subtitle}} />
 				</div>
 
-				{teams &&
+				<figure>
+					<Image  image={image} />
+				</figure>
+
+				{/*teams &&
 				<div className={styles.membersBubbles}>
 					{_.map(teams, (team, k) => {
 						return <div key={k}>
@@ -24,7 +29,7 @@ const AboutSection = ({title, subtitle, teams, background = true}) => {
 							/>
 						</div>
 					})}
-				</div>}
+				</div>*/}
 			</Grid>
 		</Grid>
 	</section>;

@@ -12,4 +12,19 @@ services:
     - key: STRAPI_API_URL
       value: 'https://cms-staging.fenomenalfunds.org'
     - key: NODE_ENV
+      value: development
+
+  - type: web
+    name: fenomenalfunds-frontend-production
+    env: node
+    plan: standard
+    repo: https://github.com/fenomenalfunds/fenomenal-funds-frontend.git
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /_health
+    envVars:
+    - key: STRAPI_API_URL
+      value: 'https://cms-production.fenomenalfunds.org'
+    - key: NODE_ENV
       value: production

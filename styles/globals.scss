@@ -21,6 +21,10 @@ body {
   }
 }
 
+body {
+  margin-top: $navbar-height;
+}
+
 p {
   line-height: 1.5;
 }
@@ -68,4 +72,8 @@ input, textarea {
   border-radius: .2em;
   border: 0;
   background-color: $ff-color-salmon;
+
+  &.red {
+    background-color: $ff-color-red;
+  }
 }

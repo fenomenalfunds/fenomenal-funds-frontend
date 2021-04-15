@@ -1,4 +1,5 @@
 import _ from "lodash";
+import Link from 'next/link';
 import propTypes from 'prop-types';
 import styles from './../styles/components/blog-section.module.scss';
 import SmallArticleBox from "./small-article-box";
@@ -23,6 +24,12 @@ const BlogSection = ({title, subtitle, articles}) => {
 						/>
 					})}
 				</div>}
+
+				<div>
+					<Link href="/blog">
+						<a className="btn red">View all</a>
+					</Link>
+				</div>
 			</Grid>
 		</Grid>
 	</section>

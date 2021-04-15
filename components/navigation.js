@@ -1,48 +1,40 @@
+import _ from 'lodash';
 import Link from 'next/link';
 import styles from './../styles/components/navigation.module.scss';
 
-const Navigation = ({active}) => {
-	return <nav className={`${styles.navigation} ${active ? styles.active : null}`}>
+const Navigation = ({items}) => {
 
-		<ul className={styles.mainNav}>
-			<li>
-				<Link href={`/`}>
-					<a>Home</a>
-				</Link>
-			</li>
-			<li>
-				<Link href={`/about-us`}>
-					<a>About Us</a>
-				</Link>
-			</li>
-			<li>
-				<Link href={`/our-approach`}>
-					<a>Our Approach</a>
-				</Link>
-			</li>
-			<li>
-				<Link href={`/`}>
-					<a>Learnings</a>
-				</Link>
-			</li>
-			<li>
-				<Link href={`/grants`}>
-					<a>Grants</a>
-				</Link>
-			</li>
-			<li>
-				<Link href={`/`}>
-					<a>Contact</a>
-				</Link>
-			</li>
-		</ul>
-		<ul className={styles.secNav}>
-			<li>
-				<Link href={`/`}>
-					<a className={styles.btn}>Login</a>
-				</Link>
-			</li>
-		</ul>
+	return <nav className={`${styles.navigation}`}>
+		<div className={styles.navContainer}>
+			<ul className={styles.mainNav}>
+				<li className={styles.logo}>
+					<Link href="/">
+						<a><img src="/fnfd-white.svg" alt="Fenomenal Funds logo icon" /></a>
+					</Link>
+				</li>
+				{_.map(items, (item, key) => {
+					return item.type === 'INTERNAL' ?
+							<li key={key}>
+								<Link href={item.path}>
+									<a>{item.title}</a>
+								</Link>
+							</li>
+							:
+							<li key={key}>
+								<a href={item.path} target="_blank" rel="noreferrer">
+									{item.title}
+								</a>
+							</li>
+				})}
+			</ul>
+			<ul className={styles.secNav}>
+				<li>
+					<Link href={`/`}>
+						<a className={styles.btn}>Login</a>
+					</Link>
+				</li>
+			</ul>
+		</div>
 	</nav>
 }
 
