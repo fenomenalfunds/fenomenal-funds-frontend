@@ -14,6 +14,7 @@ import HighlightsSection from "../components/highlights-section";
 import ContactSection from "../components/contact-section";
 import {useRouter} from "next/router";
 import Loading from "../components/loading";
+import Link from "next/link";
 
 const Home = ({home, blog, about, editorial, highlights, insights, contact}) => {
 	const router = useRouter();
@@ -81,6 +82,12 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 								/>
 							})}
 						</div>}
+
+						<div>
+							<Link href="/learnings">
+								<a className="btn red">View all insights</a>
+							</Link>
+						</div>
 					</section>
 				</Grid>
 			</Grid>}

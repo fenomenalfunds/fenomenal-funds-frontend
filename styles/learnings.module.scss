@@ -3,7 +3,7 @@
 @import "styles/mixins";
 
 .learnings {
-	background: $gradient-4;
+	background: $gradient-2;
 
 	.article {
 		padding: 8em 0;
@@ -20,5 +20,26 @@
 		grid-gap: 5em;
 		padding: 3em 0;
 		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.documents {
+		padding: 4em 0;
+		background-color: $ff-color-dark-green;
+
+		.header {
+			text-align: center;
+			margin-bottom: 4em;
+
+			h2 {
+				margin: 0 0 .5em 0;
+			}
+		}
+
+		.documentsList {
+			display: grid;
+			grid-gap: 2em;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(3, 1fr);
+		}
 	}
 }
