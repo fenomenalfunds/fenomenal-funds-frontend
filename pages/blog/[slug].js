@@ -10,6 +10,8 @@ import Image from "../../components/image";
 
 const BlogDetail = ({article, related}) => {
 
+	console.info('%%%%% article %%%%%', article);
+
 	return <Layout>
 		<Seo seo={article.seo} />
 
@@ -76,7 +78,7 @@ export async function getStaticProps({params}) {
 			article: articles ? articles[0] : {},
 			related: related ? related : []
 		},
-		revalidate: 1
+		revalidate: true
 	}
 }
 

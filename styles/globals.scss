@@ -2,6 +2,7 @@
 @import "fonts";
 @import "colors";
 @import "variables";
+@import "mixins";
 
 html,
 body {
@@ -64,6 +65,31 @@ input, textarea {
   outline: none;
   width: 100%;
   background-color: rgba($ff-color-black, .4);
+}
+
+blockquote {
+  font-size: 1.2em;
+  font-style: italic;
+  line-height: 1.4;
+  margin: 1em 0;
+  padding: 0 0 0 1em;
+  border-left: 2px solid $ff-color-red;
+}
+
+.image-style-align-left {
+  float: left;
+  clear: right;
+  margin: 1em 1em 1em 0;
+}
+
+.image-style-align-right {
+  float: right;
+  clear: left;
+  margin: 1em 0 1em 1em;
+
+  &:after {
+    @include clearfix;
+  }
 }
 
 .btn {

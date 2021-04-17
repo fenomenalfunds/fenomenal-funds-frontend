@@ -65,6 +65,17 @@
 			padding: 0 2em 0 4em;
 			color: $ff-color-purple;
 			text-align: right;
+
+			.text {
+				p {
+					margin-bottom: .8em;
+				}
+
+				a {
+					color: $ff-color-purple;
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }

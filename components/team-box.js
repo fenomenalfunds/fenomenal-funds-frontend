@@ -8,10 +8,9 @@ const TeamBox = ({title, members, variant}) => {
 		<h2 className={styles.title}>{title}</h2>
 
 		<div className={styles.members}>
-			{_.map(members, (member) => {
-
+			{_.map(members, (member, key) => {
 				return <TeamMember
-						key={member.id}
+						key={key}
 						name={member.fullname}
 						slug={member.username}
 						position={member.position}

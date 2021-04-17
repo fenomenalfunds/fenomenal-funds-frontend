@@ -1,7 +1,7 @@
 import Layout from "../layout/website-layout";
 import Grid from '@material-ui/core/Grid';
 import styles from './../styles/blog.module.scss';
-import {fetchAPI} from "../lib/api";
+import {fetchAPI, fetchBlogContent} from "../lib/api";
 import Seo from "../components/seo";
 import Image from "../components/image";
 import ArticleGrid from "../components/article-grid";
@@ -27,16 +27,16 @@ const Blog = ({blog, articles}) => {
 	</Layout>
 }
 
-export async function getStaticProps() {
-	const [blog, articles] = await Promise.all([
+export async function getStaticProps(preview={}) {
+	/*const [blog, articles] = await Promise.all([
 			fetchAPI('/blog'),
 			fetchAPI('/articles?_sort=publish:DESC')
-	]);
+	]);*/
+	const data = await fetchBlogContent(preview);
 
 	return {
 		props: {
-			blog,
-			articles
+			...data
 		},
 		revalidate: true
 	}
