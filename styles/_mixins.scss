@@ -43,7 +43,7 @@
 @mixin clearfix {
 	display: table;
 	position: relative;
-	content: '';
+	content: ' ';
 	clear: both;
 	height: 0;
 	overflow: hidden;

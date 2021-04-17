@@ -14,9 +14,9 @@ const BlogSection = ({title, subtitle, articles}) => {
 
 				{articles &&
 				<div className={styles.articles}>
-					{_.map(articles, (article) => {
+					{_.map(articles, (article, key) => {
 						return <SmallArticleBox
-								key={article.id}
+								key={key}
 								title={article.title}
 								subtitle={article.subtitle}
 								image={article.thumbnail}

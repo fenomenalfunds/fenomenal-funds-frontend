@@ -3,7 +3,7 @@ import Layout from "../layout/website-layout";
 import Head from 'next/head';
 import Grid from '@material-ui/core/Grid';
 import TeamBox from "../components/team-box";
-import {fetchAPI} from "../lib/api";
+import {fetchAboutContent, fetchAPI} from "../lib/api";
 import Seo from "../components/seo";
 import Image from "../components/image";
 import AboutSection from "../components/about-section";
@@ -67,16 +67,12 @@ const AboutUsPage = ({about, editorial}) => {
 	</Layout>
 }
 
-export async function getStaticProps() {
-	const [about, editorial] = await Promise.all([
-			fetchAPI('/about-us'),
-			fetchAPI('/editorial')
-	]);
+export async function getStaticProps(preview={}) {
+	const data = await fetchAboutContent(preview);
 
 	return {
 		props: {
-			about,
-			editorial
+			...data
 		},
 		revalidate: true
 	}

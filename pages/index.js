@@ -5,7 +5,7 @@ import LargeArticleBox from "../components/large-article-box";
 import ArticleBox from "../components/article-box";
 import Layout from "../layout/website-layout";
 import Seo from "../components/seo";
-import {fetchAPI} from "../lib/api";
+import {fetchAPI, fetchHomeContent} from "../lib/api";
 import Image from "../components/image";
 import NotFound from "../components/not-found";
 import AboutSection from "../components/about-section";
@@ -28,7 +28,7 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 			<Grid container justify="center" className={styles.homepage}>
 				<Grid item xs={12}>
 					<div className={styles.header}>
-						<p className={styles.caption}>{home.header_text}</p>
+						<div className={styles.caption} dangerouslySetInnerHTML={{__html:home.header_text}} />
 
 						<span className={styles.diagonal}>&nbsp;</span>
 
@@ -37,6 +37,7 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 					</div>
 				</Grid>
 
+				{editorial &&
 				<Grid item xs={10}>
 					<LargeArticleBox
 							title={editorial.title}
@@ -45,7 +46,7 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 							image={editorial.thumbnail}
 							publish={editorial.publish}
 					/>
-				</Grid>
+				</Grid>}
 			</Grid>
 
 			{highlights &&
@@ -101,36 +102,23 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 			/>}
 
 			{/* CONTACT SECTION */}
+			{contact &&
 			<ContactSection
 					title={contact.title}
 					subtitle={contact.body}
 					email={contact.sent_to}
-			/>
+			/>}
 
 		</div>
 	</Layout>
 }
 
-export async function getStaticProps() {
-	const [home, about, blog, editorial, highlights, insights, contact] = await Promise.all([
-		fetchAPI('/home'),
-		fetchAPI('/about-us'),
-		fetchAPI('/blog'),
-		fetchAPI('/editorial'),
-		fetchAPI('/highlights'),
-		fetchAPI('/insights'),
-		fetchAPI('/contact')
-	]);
+export async function getStaticProps(preview={}) {
+	const data = await fetchHomeContent(preview);
 
 	return {
 		props: {
-			home,
-			blog,
-			about,
-			editorial,
-			highlights,
-			insights,
-			contact
+			...data
 		},
 		revalidate: true
 	}

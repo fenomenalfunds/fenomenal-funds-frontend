@@ -2,6 +2,7 @@
 @import "fonts";
 @import "colors";
 @import "variables";
+@import "mixins";
 
 html,
 body {
@@ -73,6 +74,22 @@ blockquote {
   margin: 1em 0;
   padding: 0 0 0 1em;
   border-left: 2px solid $ff-color-red;
+}
+
+.image-style-align-left {
+  float: left;
+  clear: right;
+  margin: 1em 1em 1em 0;
+}
+
+.image-style-align-right {
+  float: right;
+  clear: left;
+  margin: 1em 0 1em 1em;
+
+  &:after {
+    @include clearfix;
+  }
 }
 
 .btn {

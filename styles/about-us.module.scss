@@ -21,7 +21,7 @@
 	.letter {
 		display: grid;
 		grid-gap: 3em;
-		align-items: center;
+		align-items: start;
 		grid-template-columns: 1fr 1.5fr;
 
 		.image {
@@ -33,6 +33,10 @@
 		.body {
 			text-align: right;
 			font-weight: 400;
+
+			.title {
+				margin: 0 0 1em 0;
+			}
 		}
 	}
 
@@ -40,6 +44,7 @@
 		padding: 8em 0;
 		display: grid;
 		grid-gap: 3em;
+		align-items: start;
 		grid-template-columns: 1fr 1.5fr;
 		grid-template-areas: "title title" "desc visual";
 
@@ -49,6 +54,7 @@
 
 		.title {
 			grid-area: title;
+			margin: 0 0 1em 0;
 		}
 
 		.text {
