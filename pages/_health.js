@@ -1,5 +1,5 @@
 const HealthPage = () => {
-	return <div>All systems go</div>
+	return <div>Beam me up Scotty!</div>
 }
 
 export default HealthPage;
