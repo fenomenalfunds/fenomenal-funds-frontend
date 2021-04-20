@@ -3,6 +3,7 @@ import Image from "./image";
 import _ from 'lodash';
 import {useState} from "react";
 import Grid from '@material-ui/core/Grid';
+import CloseButton from "./close-button";
 
 const DocumentBox = ({title, subtitle, icon, type, body, files}) => {
 	const [open, setOpen] = useState(false);
@@ -24,10 +25,7 @@ const DocumentBox = ({title, subtitle, icon, type, body, files}) => {
 		<div className={styles.overlay} style={(open ? {display:'flex'} : null)}>
 			<Grid container spacing={0} justify="center">
 				<Grid item lg={10}>
-					<button className={styles.close} onClick={() => setOpen(false)}>
-						<span>&nbsp;</span>
-						<span>&nbsp;</span>
-					</button>
+					<CloseButton  func={() => setOpen(false)}/>
 					<div className={styles.overlayContent}>
 						<article className={styles.content}>
 							<div className={styles.image}>

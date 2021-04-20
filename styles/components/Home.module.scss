@@ -1,5 +1,6 @@
-@import "./../variables";
-@import "./../colors";
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
 
 .homepage {
 	display: block;
@@ -14,10 +15,19 @@
 		margin: 0 auto;
 		padding: 5em 0;
 
+		@include respond-to(phone) {
+			width: 100%;
+			padding: 3em 0;
+		}
+
 		.caption {
 			font-size: 2em;
 			font-weight: 100;
 			text-align: center;
+
+			@include respond-to(phone) {
+				font-size: 1.6em;
+			}
 		}
 
 		.diagonal {
@@ -35,28 +45,5 @@
 			max-width: 25em;
 			height: auto;
 		}
-	}
-}
-
-.insights {
-	padding: 5em 0;
-	text-align: center;
-	background: $gradient-1;
-
-	.title {
-		font-size: 2rem;
-	}
-
-	.subtitle {
-		display: block;
-		margin: 0 auto;
-		max-width: 70%;
-	}
-
-	.articles {
-		display: grid;
-		grid-gap: 4em;
-		grid-template-columns: repeat(2, 1fr);
-		margin: 3em 0;
 	}
 }

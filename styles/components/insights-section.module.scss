@@ -1,0 +1,26 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.insights {
+	padding: 5em 0;
+	text-align: center;
+	background: $gradient-1;
+
+	.title {
+		font-size: 2rem;
+	}
+
+	.subtitle {
+		display: block;
+		margin: 0 auto;
+		max-width: 70%;
+	}
+
+	.articles {
+		display: grid;
+		grid-gap: 4em;
+		grid-template-columns: repeat(2, 1fr);
+		margin: 3em 0;
+	}
+}

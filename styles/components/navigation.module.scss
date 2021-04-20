@@ -1,5 +1,6 @@
 @import "styles/colors";
 @import "styles/variables";
+@import "styles/mixins";
 
 .navigation {
 	position: fixed;
@@ -12,8 +13,18 @@
 	padding: 0 3em;
 	overflow: hidden;
 	font-weight: 400;
+	transition: left .2s ease;
+
+	@include respond-to(phone) {
+		left: 0;
+		width: 100%;
+		padding: 0 1em;
+		height: $mobile-navbar-height;
+		background-color: $ff-color-purple;
+	}
 
 	.navContainer {
+		position: relative;
 		display: grid;
 		grid-gap: 3em;
 		grid-auto-flow: column;
@@ -23,6 +34,30 @@
 		height: 100%;
 		max-width: 1366px;
 		margin: 0 auto;
+		transition: all .2s ease;
+
+		@include respond-to(phone) {
+			position: fixed;
+			top: 0;
+			left: 0;
+			grid-gap: 1em;
+			grid-auto-flow: row;
+			grid-template-rows: auto;
+			justify-content: start;
+			align-items: start;
+			padding: 0;
+			width: 80%;
+			height: $mobile-navbar-height;
+			background-color: $ff-color-purple;
+			overflow: hidden;
+		}
+
+		&>button {
+			display: none;
+			position: absolute;
+			top: 0;
+			right: 1em;
+		}
 	}
 
 	.mainNav {
@@ -36,15 +71,48 @@
 		min-width: 400px;
 		list-style-type: none;
 
+		@include respond-to(phone) {
+			grid-auto-flow: row;
+			padding: 4em 1em;
+		}
+
 		li {
 			text-transform: uppercase;
 			font-size: .9rem;
 			padding: 0;
 
 			&.logo {
+
+				.webLink{
+					display: block;
+
+					@include respond-to(phone) {
+						display: none;
+					}
+				}
+
+				.mobLink{
+					display: none;
+					border: 0;
+					outline: none;
+					background-color: transparent;
+
+					@include respond-to(phone) {
+						display: block;
+						position: absolute;
+						margin: 0;
+						top: .5em;
+						left: 1em;
+					}
+				}
+
 				img {
 					width: auto;
 					height: calc(#{$navbar-height} - 1em);
+
+					@include respond-to(phone) {
+						height: calc(#{$mobile-navbar-height} - 1em);
+					}
 				}
 			}
 		}
@@ -56,6 +124,10 @@
 		margin: 0;
 		padding: 0;
 
+		@include respond-to(phone) {
+			padding: 1em;
+		}
+
 		.btn {
 			font-size: .8em;
 			text-transform: uppercase;
@@ -64,17 +136,19 @@
 			border: 1px solid $ff-color-white;
 		}
 	}
+}
 
-	/*&.active {
-		height: $navbar-height;
-		background-color: $ff-color-red;
+.navigationActive {
+	@extend .navigation;
 
-		.mainNav {
-			display: grid;
+	.navContainer {
+		@include respond-to(phone) {
+			height: 100%;
+			box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.40);
+
+			&>button {
+				display: grid;
+			}
 		}
-
-		.secNav {
-			display: grid;
-		}
-	}*/
+	}
 }

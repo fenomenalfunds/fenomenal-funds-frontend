@@ -24,6 +24,10 @@ body {
 
 body {
   margin-top: $navbar-height;
+
+  @include respond-to(phone) {
+    margin-top: 0;
+  }
 }
 
 p {
