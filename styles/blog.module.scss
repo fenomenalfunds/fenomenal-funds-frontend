@@ -1,5 +1,6 @@
 @import "styles/variables";
 @import "styles/colors";
+@import "styles/mixins";
 
 .blog {
 	text-align: center;
@@ -8,10 +9,19 @@
 	section {
 		padding: 5em 0;
 
+		@include respond-to(phone) {
+			padding: 6em 0 3em 0;
+		}
+
 		.header {
 			max-width: 50%;
 			margin: 0 auto;
 			padding: 0 0 5em 0;
+
+			@include respond-to(phone) {
+				width: 100%;
+				max-width: none;
+			}
 
 			.logo {
 				width: 100%;

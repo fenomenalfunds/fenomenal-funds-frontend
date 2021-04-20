@@ -12,9 +12,21 @@
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 
+	@include respond-to(phone) {
+		grid-gap: 1em;
+		grid-template-areas: "large" "small1" "small2" "small3" "small4" "small5" "small6";
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+	}
+
 	& div {
 		&:first-child {
 			grid-area: large;
+			grid-column-start: span 3;
+
+			@include respond-to(phone) {
+				grid-column-start: span 1;
+			}
 		}
 
 		@for $i from 1 through 6 {

@@ -7,18 +7,25 @@
 
 	.article {
 		color: $ff-color-purple;
-		font-weight: 400;
 		padding: 8em 0 3em 0;
 
 		.image {
 			@include aspect-ratio(25 9, 100%, true);
 			margin: 0 0 3em 0;
+
+			@include respond-to(phone) {
+				@include aspect-ratio(16 9, 100%, true);
+			}
 		}
 
 		.header {
 			display: grid;
 			grid-gap: 1em;
 			grid-template-columns: 1fr 2fr;
+
+			@include respond-to(phone) {
+				display: block;
+			}
 
 			.title {
 				p {
@@ -52,6 +59,11 @@
 
 			.intro {
 				columns: 2;
+
+				@include respond-to(phone) {
+					columns: 1;
+					font-style: italic;
+				}
 			}
 		}
 
@@ -82,6 +94,10 @@
 			display: grid;
 			grid-gap: 2em;
 			grid-template-columns: repeat(4, 1fr);
+
+			@include respond-to(phone) {
+				grid-template-columns: 1fr;
+			}
 		}
 	}
 }
