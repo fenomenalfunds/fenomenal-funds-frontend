@@ -9,7 +9,7 @@ const ArticleGrid = ({articles}) => {
 		{_.map(articles, (article, k) => {
 			return k === 0 ?
 					<LargeArticleBoxVertical
-							key={article.id}
+							key={k}
 							title={article.title}
 							image={article.image}
 							author={article.author}
@@ -18,7 +18,7 @@ const ArticleGrid = ({articles}) => {
 							link={`/blog/${article.slug}`}
 					/> :
 					<CoverArticleBox
-							key={article.id}
+							key={k}
 							title={article.title}
 							subtitle={article.subtitle}
 							image={article.thumbnail}

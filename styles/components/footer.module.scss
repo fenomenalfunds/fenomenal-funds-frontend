@@ -1,5 +1,6 @@
 @import "styles/variables";
 @import "styles/colors";
+@import "styles/mixins";
 
 .footer {
 	display: grid;
@@ -9,6 +10,11 @@
 	font-size: .9em;
 	background-color: $ff-color-purple;
 
+	@include respond-to(phone) {
+		grid-gap: 2em;
+		grid-template-areas: "leftCol" "rightCol" "btRow";
+	}
+
 	.leftColumn {
 		grid-area: leftCol;
 		display: grid;
@@ -16,10 +22,21 @@
 		grid-auto-flow: column;
 		padding: 0 0 2em 3em;
 
+		@include respond-to(phone) {
+			grid-auto-flow: row;
+			padding: 0 1em;
+		}
+
 		.nav {
 			margin: 0;
 			padding: 0;
 			list-style-type: none;
+
+			@include respond-to(phone) {
+				display: grid;
+				grid-template-rows: auto;
+				grid-template-columns: repeat(2, 1fr);
+			}
 
 			li {
 				margin: 0 0 .5em 0;
@@ -30,6 +47,10 @@
 			margin: 0;
 			padding: 0;
 			list-style-type: none;
+
+			@include respond-to(phone) {
+				font-size: .9em;
+			}
 
 			li {
 				margin: 0 0 .5em 0;
@@ -73,6 +94,11 @@
 		grid-area: rightCol;
 		text-align: right;
 		padding: 0 3em 2em 0;
+
+		@include respond-to(phone) {
+			font-size: .8em;
+			padding: 1em;
+		}
 	}
 
 	.bottomRow {
@@ -82,8 +108,24 @@
 		padding: 2em 3em;
 		background-color: darken($ff-color-purple, 5%);
 
+		@include respond-to(phone) {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			justify-content: space-between;
+			padding: 1em;
+			font-size: .8em;
+		}
+
 		a {
 			margin-left: 1em;
+
+			@include respond-to(phone) {
+				margin: 0;
+
+				&:first-child {
+					text-align: left;
+				}
+			}
 		}
 	}
 }

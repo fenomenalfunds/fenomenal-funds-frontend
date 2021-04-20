@@ -7,9 +7,23 @@
 	text-align: center;
 	background-color: $ff-color-purple;
 
+	@include respond-to(phone) {
+		padding: 3em 0;
+	}
+
+	.title {
+		@include respond-to(phone) {
+			margin: 0 0 1rem 0;
+		}
+	}
+
 	.subtitle {
 		margin: 0 auto;
 		max-width: 70%;
+
+		@include respond-to(phone) {
+			max-width: none;
+		}
 	}
 
 	.articles {
@@ -17,5 +31,10 @@
 		grid-gap: 2em;
 		grid-template-columns: repeat(3, 1fr);
 		margin: 5em 0;
+
+		@include respond-to(phone) {
+			grid-auto-flow: row;
+			grid-template-columns: auto;
+		}
 	}
 }

@@ -1,9 +1,7 @@
 import styles from './../styles/about-us.module.scss';
 import Layout from "../layout/website-layout";
-import Head from 'next/head';
 import Grid from '@material-ui/core/Grid';
-import TeamBox from "../components/team-box";
-import {fetchAboutContent, fetchAPI} from "../lib/api";
+import {fetchAboutContent} from "../lib/api";
 import Seo from "../components/seo";
 import Image from "../components/image";
 import AboutSection from "../components/about-section";
@@ -13,7 +11,7 @@ const AboutUsPage = ({about, editorial}) => {
 		<Seo seo={about.seo} />
 
 		<Grid container justify="center" className={styles.aboutUs}>
-			<Grid item xs={10}>
+			<Grid item xs={10} lg={10}>
 				<article>
 					<section className={styles.header} dangerouslySetInnerHTML={{__html: about.intro}} />
 

@@ -10,12 +10,23 @@
 	margin: 2em 0;
 	background: $gradient-3;
 
+	@include respond-to(phone) {
+		height: auto;
+		width: 100%;
+		padding-bottom: 0;
+		border-radius: .8em;
+	}
+
 	&.alt {
 		background: $gradient-2;
 	}
 
 	.title {
 		margin-top: 2em;
+
+		@include respond-to(phone) {
+			margin: 1em auto 0 auto;
+		}
 	}
 
 	.members {
@@ -26,6 +37,10 @@
 		flex-wrap: wrap;
 		flex-grow: 0;
 		justify-content: center;
+
+		@include respond-to(phone) {
+			padding: 1em;
+		}
 	}
 }
 
@@ -33,6 +48,10 @@
 	display: inline-block;
 	flex-basis: 25%;
 	padding: 0 .6em;
+
+	@include respond-to(phone) {
+		flex-basis: 48%;
+	}
 
 	.photo {
 		@include aspect-ratio(1 1, 100%, true);

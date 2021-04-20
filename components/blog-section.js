@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 const BlogSection = ({title, subtitle, articles}) => {
 	return <section className={styles.blog}>
 		<Grid container justify="center">
-			<Grid item xs={8}>
+			<Grid item xs={10} lg={8}>
 				<h1 className={styles.title}>{title}</h1>
 				<p className={styles.subtitle}>{subtitle}</p>
 

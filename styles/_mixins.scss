@@ -1,4 +1,4 @@
-// @version 1.1
+// @version 1.2
 
 @function is-number($value) {
 	@return type-of($value) == 'number';
@@ -63,10 +63,6 @@
 
 @mixin shadow($length, $opacity){
 	box-shadow: $length $length $length 0 rgba(0,0,0,$opacity);
-}
-
-@mixin text-shadow($length, $opacity){
-	text-shadow: $length $length $length rgba(0, 0, 0, $opacity);
 }
 
 @mixin maintain-ratio($wide, $ratio: 1 1, $percent:true) {
@@ -237,5 +233,29 @@
 				height: auto;
 			}
 		}
+	}
+}
+
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+	// For Google Chrome
+	&::-webkit-scrollbar {
+		width:  $size;
+		height: $size;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: .5em;
+		background: $foreground-color;
+	}
+
+	&::-webkit-scrollbar-track {
+		border-radius: .5em;
+		background: $background-color;
+	}
+
+	// For Internet Explorer
+	& {
+		scrollbar-face-color: $foreground-color;
+		scrollbar-track-color: $background-color;
 	}
 }

@@ -6,19 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Footer from "../components/footer";
 
 class Layout extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			menuActive: false
-		}
-		this.toggleState = this.toggleState.bind(this);
-	}
-
-	toggleState () {
-		this.setState({
-			menuActive: !this.state.menuActive
-		})
-	}
 
 	render() {
 

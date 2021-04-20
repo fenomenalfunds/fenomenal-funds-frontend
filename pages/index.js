@@ -15,20 +15,21 @@ import ContactSection from "../components/contact-section";
 import {useRouter} from "next/router";
 import Loading from "../components/loading";
 import Link from "next/link";
+import InsightsSection from "../components/insights-section";
 
 const Home = ({home, blog, about, editorial, highlights, insights, contact}) => {
 	const router = useRouter();
 	if (router.isFallback) return <Loading/>;
-	if (!home) return <NotFound/>
+	if (!home) return <NotFound/>;
 
 	return <Layout>
 		<Seo seo={home.seo}/>
 		<div className={styles.homepage}>
 
-			<Grid container justify="center" className={styles.homepage}>
-				<Grid item xs={12}>
+			<Grid container justify="center" spacing={0} className={styles.homepage}>
+				<Grid item xs={10} lg={12}>
 					<div className={styles.header}>
-						<div className={styles.caption} dangerouslySetInnerHTML={{__html:home.header_text}} />
+						<div className={styles.caption} dangerouslySetInnerHTML={{__html: home.header_text}}/>
 
 						<span className={styles.diagonal}>&nbsp;</span>
 
@@ -38,13 +39,14 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 				</Grid>
 
 				{editorial &&
-				<Grid item xs={10}>
+				<Grid item xs={12} lg={10}>
 					<LargeArticleBox
 							title={editorial.title}
 							content={editorial.subtitle}
 							overlay={null}
 							image={editorial.thumbnail}
 							publish={editorial.publish}
+							link={`/about-us#editorial-letter`}
 					/>
 				</Grid>}
 			</Grid>
@@ -65,33 +67,11 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 
 			{/* INSIGHTS SECTION */}
 			{insights &&
-			<Grid container justify="center" className={styles.insights}>
-				<Grid item xs={10}>
-					<section>
-						<h1 className={styles.title}>{insights.title}</h1>
-						<p className={styles.subtitle}>{insights.subtitle}</p>
-
-						{insights.reports &&
-						<div className={styles.articles}>
-							{_.map(_.slice(insights.reports, 0, 2), (report) => {
-								return <ArticleBox
-										key={report.id}
-										title={report.title}
-										subtitle={report.subtitle}
-										image={report.image}
-										url={`/reports/${report.slug}`}
-								/>
-							})}
-						</div>}
-
-						<div>
-							<Link href="/learnings">
-								<a className="btn red">View all insights</a>
-							</Link>
-						</div>
-					</section>
-				</Grid>
-			</Grid>}
+			<InsightsSection
+					title={insights.title}
+					subtitle={insights.subtitle}
+					reports={insights.reports}
+			/>}
 
 			{/* BLOG SECTION */}
 			{blog &&
@@ -113,7 +93,7 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 	</Layout>
 }
 
-export async function getStaticProps(preview={}) {
+export async function getStaticProps(preview = {}) {
 	const data = await fetchHomeContent(preview);
 
 	return {

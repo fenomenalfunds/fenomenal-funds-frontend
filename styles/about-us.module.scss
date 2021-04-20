@@ -6,8 +6,16 @@
 	padding: 12em 0;
 	background: $gradient-4;
 
+	@include respond-to(phone) {
+		padding: 8em 0;
+	}
+
 	.header {
 		padding: 0 0 12em 0;
+
+		@include respond-to(phone) {
+			padding: 0 0 6em 0;
+		}
 
 		.title {
 			font-size: 2.5em;
@@ -24,6 +32,12 @@
 		align-items: start;
 		grid-template-columns: 1fr 1.5fr;
 
+		@include respond-to(phone) {
+			grid-auto-flow: row;
+			grid-gap: 2em;
+			grid-template-columns: auto;
+		}
+
 		.image {
 			figure {
 				@include aspect-ratio(3 4, 100%, true, high);
@@ -32,7 +46,10 @@
 
 		.body {
 			text-align: right;
-			font-weight: 400;
+
+			@include respond-to(phone) {
+				text-align: left;
+			}
 
 			.title {
 				margin: 0 0 1em 0;
@@ -48,8 +65,19 @@
 		grid-template-columns: 1fr 1.5fr;
 		grid-template-areas: "title title" "desc visual";
 
+		@include respond-to(phone) {
+			padding: 5em 0 3em 0;
+			grid-gap: 2em;
+			grid-template-areas: "visual" "title" "desc";
+			grid-template-columns: auto;
+		}
+
 		&.alt {
 			grid-template-areas: "title title" "visual desc";
+
+			@include respond-to(phone) {
+				grid-template-areas: "title" "visual" "desc";
+			}
 		}
 
 		.title {

@@ -9,6 +9,11 @@
 	padding: 0;
 	margin: 4em 0;
 
+	@include respond-to(phone) {
+		grid-auto-flow: row;
+		grid-template-columns: auto;
+	}
+
 	.imageOverlay {
 		position: relative;
 
@@ -66,6 +71,11 @@
 			color: $ff-color-purple;
 			text-align: right;
 
+			@include respond-to(phone) {
+				padding: 1em 1.5em;
+				text-align: left;
+			}
+
 			.text {
 				p {
 					margin-bottom: .8em;
@@ -74,6 +84,21 @@
 				a {
 					color: $ff-color-purple;
 					text-decoration: underline;
+				}
+			}
+
+			.link {
+				color: $ff-color-purple;
+				font-weight: bold;
+				text-align: right;
+
+				@include respond-to(phone) {
+					display: block;
+				}
+
+				svg {
+					width: .9em;
+					height: .9em;
 				}
 			}
 		}

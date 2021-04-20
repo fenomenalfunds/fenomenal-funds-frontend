@@ -12,11 +12,11 @@ const ContactSection = ({title, subtitle, email}) => {
 
 				<div className={styles.form}>
 					<Grid container spacing={3}>
-						<Grid item xs={6}>
+						<Grid item xs={12} lg={6}>
 							<label htmlFor="name">Name</label>
 							<input type="text" id="name" placeholder="First name"/>
 						</Grid>
-						<Grid item xs={6}>
+						<Grid item xs={12} lg={6}>
 							<label htmlFor="last_name">Last name</label>
 							<input type="text" id="last_name" placeholder="Last name"/>
 						</Grid>
