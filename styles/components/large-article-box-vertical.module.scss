@@ -8,12 +8,20 @@
 
 	.image {
 		@include aspect-ratio(22 9, 100%, true);
+
+		@include respond-to(phone) {
+			@include aspect-ratio(16 9, 100%, true);
+		}
 	}
 
 	.body {
 		text-align: left;
 		padding: 5em;
 		font-weight: 400;
+
+		@include respond-to(phone) {
+			padding: 1em;
+		}
 
 		.author {
 			margin-right: 2em;
@@ -29,6 +37,10 @@
 		.text {
 			padding: 3em 0 1em 0;
 			columns: 2;
+
+			@include respond-to(phone) {
+				columns: 1;
+			}
 
 			p {
 				margin: 0 0 1em 0;

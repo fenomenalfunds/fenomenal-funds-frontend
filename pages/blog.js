@@ -11,7 +11,7 @@ const Blog = ({blog, articles}) => {
 		<Seo seo={blog.seo} />
 
 		<Grid container justify="center" spacing={0} className={styles.blog}>
-			<Grid item xs={10}>
+			<Grid item xs={10} lg={10}>
 				<section>
 					<div className={styles.header}>
 						<Image image={blog.image} className={styles.logo} />
@@ -28,10 +28,6 @@ const Blog = ({blog, articles}) => {
 }
 
 export async function getStaticProps(preview={}) {
-	/*const [blog, articles] = await Promise.all([
-			fetchAPI('/blog'),
-			fetchAPI('/articles?_sort=publish:DESC')
-	]);*/
 	const data = await fetchBlogContent(preview);
 
 	return {
