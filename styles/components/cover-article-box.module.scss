@@ -32,7 +32,15 @@
 		}
 
 		.author, .date {
+			font-family: $secondary-font-family;
 			font-size: .8em;
+			text-transform: uppercase;
+			margin-right: 1em;
+
+			&.date {
+				font-family: $text-font-family;
+				margin-right: 0;
+			}
 
 			svg {
 				width: 1em;
@@ -42,8 +50,7 @@
 		}
 
 		.author {
-			text-transform: uppercase;
-			margin-right: 1em;
+
 		}
 	}
 }

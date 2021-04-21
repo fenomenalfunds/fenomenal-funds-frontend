@@ -29,7 +29,7 @@ const LargeArticleBox = ({title, content, overlay, image, publish, link}) => {
 				<p>{moment(publish).format('LL')}</p>}
 				{link &&
 				<Link href={link}>
-					<a className={styles.link}>Read more <FontAwesomeIcon icon={faChevronRight} /></a>
+					<a className={styles.link}>Read article <FontAwesomeIcon icon={faChevronRight} /></a>
 				</Link>}
 			</div>
 		</div>

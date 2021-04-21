@@ -4,7 +4,7 @@ import { GlobalContext } from "../pages/_app";
 import { getStrapiMedia } from "../lib/media";
 
 const Seo = ({ seo }) => {
-	const { defaultSeo, siteName } = useContext(GlobalContext);
+	const { defaultSeo, site_name } = useContext(GlobalContext);
 	const seoWithDefaults = {
 		...defaultSeo,
 		...seo,
@@ -20,7 +20,7 @@ const Seo = ({ seo }) => {
 			<Head>
 				{fullSeo.metaTitle && (
 						<>
-							<title>{fullSeo.metaTitle}</title>
+							<title>{fullSeo.metaTitle} | {site_name}</title>
 							<meta property="og:title" content={fullSeo.metaTitle} />
 							<meta name="twitter:title" content={fullSeo.metaTitle} />
 						</>
@@ -39,7 +39,7 @@ const Seo = ({ seo }) => {
 							<meta name="image" content={fullSeo.shareImage} />
 						</>
 				)}
-				{fullSeo.article && <meta property="og:type" content="article" />}
+				{fullSeo.article && <meta property="og:type" content={fullSeo.meta_type} />}
 				<meta name="twitter:card" content="summary_large_image" />
 			</Head>
 	);

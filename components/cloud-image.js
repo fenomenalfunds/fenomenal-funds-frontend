@@ -1,4 +1,4 @@
-import { Image, Placeholder, Transformation } from 'cloudinary-react';
+import {Image, Placeholder, Transformation} from 'cloudinary-react';
 import {getLocalUrl} from "../lib/media";
 
 const getCloudinaryDetails = (src) => {

@@ -4,13 +4,13 @@ import Grid from "@material-ui/core/Grid";
 import Layout from "../../layout/website-layout";
 import moment from "moment";
 import CoverArticleBox from "../../components/cover-article-box";
-import {fetchAPI} from "../../lib/api";
+import {fetchArticleDetail} from "../../lib/api";
 import Seo from "../../components/seo";
 import Image from "../../components/image";
+import NotFound from "../../components/not-found";
 
 const BlogDetail = ({article, related}) => {
-
-	console.info('%%%%% article %%%%%', article);
+	if(!article) return <NotFound />;
 
 	return <Layout>
 		<Seo seo={article.seo} />
@@ -43,7 +43,7 @@ const BlogDetail = ({article, related}) => {
 					<div className={styles.body} dangerouslySetInnerHTML={{__html: article.body}} />
 				</article>
 
-				{related &&
+				{(related && !_.isEmpty(related)) &&
 				<aside className={styles.related}>
 					<h2 className={styles.title}>Related posts</h2>
 
@@ -66,17 +66,18 @@ const BlogDetail = ({article, related}) => {
 	</Layout>
 }
 
-export async function getStaticProps({params}) {
-	const articles = await fetchAPI(`/articles?slug=${params.slug}`);
+export async function getStaticProps({params}, preview = {}) {
+	/*const articles = await fetchAPI(`/articles?slug=${params.slug}`);
 
 	let where = articles ? _.join(_.map(articles[0].tags, (t) => `_where[0][tags_in]=${t.id}`), '&') : '';
 
-	const related = articles ? await fetchAPI(`/articles?_limit=4&id_ne=${articles[0].id}&${where}`) : [];
+	const related = articles ? await fetchAPI(`/articles?_limit=4&id_ne=${articles[0].id}&${where}`) : [];*/
+
+	const data = await fetchArticleDetail(params.slug, '"women", "test"', preview);
 
 	return {
 		props: {
-			article: articles ? articles[0] : {},
-			related: related ? related : []
+			...data
 		},
 		revalidate: true
 	}

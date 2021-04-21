@@ -53,7 +53,7 @@
 			grid-template-rows: repeat(3, 1fr);
 		}
 
-		div {
+		section {
 			&:first-child {
 				grid-area: circle1;
 				grid-column-start: span 3;
