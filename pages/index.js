@@ -5,7 +5,7 @@ import LargeArticleBox from "../components/large-article-box";
 import ArticleBox from "../components/article-box";
 import Layout from "../layout/website-layout";
 import Seo from "../components/seo";
-import {fetchAPI, fetchHomeContent} from "../lib/api";
+import {fetchHomeContent} from "../lib/api";
 import Image from "../components/image";
 import NotFound from "../components/not-found";
 import AboutSection from "../components/about-section";
@@ -14,7 +14,6 @@ import HighlightsSection from "../components/highlights-section";
 import ContactSection from "../components/contact-section";
 import {useRouter} from "next/router";
 import Loading from "../components/loading";
-import Link from "next/link";
 import InsightsSection from "../components/insights-section";
 
 const Home = ({home, blog, about, editorial, highlights, insights, contact}) => {

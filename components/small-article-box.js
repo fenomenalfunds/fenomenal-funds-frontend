@@ -4,7 +4,7 @@ import styles from './../styles/components/small-article-box.module.scss';
 import Image from "./image";
 
 const SmallArticleBox = ({title, subtitle, image, link}) => {
-	return <div className={styles.smallArticleBox}>
+	return <article className={styles.smallArticleBox}>
 		<Link href={link}>
 			<a>
 				<figure className={styles.image}>
@@ -17,7 +17,7 @@ const SmallArticleBox = ({title, subtitle, image, link}) => {
 				{subtitle && <p className={styles.subtitle}>{subtitle}</p>}
 			</a>
 		</Link>
-	</div>
+	</article>
 }
 
 SmallArticleBox.protoTypes = {

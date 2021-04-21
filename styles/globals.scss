@@ -1,5 +1,4 @@
 @import "~normalize.css";
-@import "fonts";
 @import "colors";
 @import "variables";
 @import "mixins";
@@ -13,7 +12,7 @@ body {
   color: $ff-color-white;
   font-size: $text-font-size;
   font-family: $text-font-family, sans-serif;
-  font-weight: 200;
+  font-weight: 400;
   overflow-x: hidden;
   background-color: $background-color;
 
@@ -26,21 +25,26 @@ body {
   margin-top: $navbar-height;
 
   @include respond-to(phone) {
-    margin-top: 0;
+    margin-top: $mobile-navbar-height;
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p, ul, li, blockquote, cite, a {
+  font-family: $text-font-family, sans-serif;
 }
 
 p {
   line-height: 1.5;
+  margin: 0 0 1em 0;
 }
 
 a {
   text-decoration: none;
   color: $ff-color-white;
-}
-
-p {
-  margin: 0 0 1em 0;
 }
 
 figure {
@@ -50,10 +54,6 @@ figure {
 img {
   width: 100%;
   height: auto;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 label {

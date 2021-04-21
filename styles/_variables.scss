@@ -3,6 +3,12 @@
 $navbar-height: 85px;
 $mobile-navbar-height: 65px;
 
+/* FONTS */
+$text-font-family: 'IBM Plex Sans';
+$secondary-font-family: 'Quattrocento';
+$text-font-size: 18px;
+
+/* GRADIENTS */
 $gradient-1: linear-gradient(0deg, $ff-color-purple 0%, $ff-color-purple 65%, $ff-color-salmon 100%);
 $gradient-2: linear-gradient(0deg, $ff-color-purple 0%, $ff-color-green 100%);
 $gradient-3: linear-gradient(0deg, $ff-color-purple 0%, $ff-color-salmon 100%);

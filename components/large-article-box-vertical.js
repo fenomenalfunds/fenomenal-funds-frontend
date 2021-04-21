@@ -7,7 +7,7 @@ import Image from "./image";
 
 const LargeArticleBoxVertical = ({title, intro, link, image, publish, author}) => {
 
-	return <div className={`${styles.largeArticleBoxHorizontal}`}>
+	return <article className={`${styles.largeArticleBoxHorizontal}`}>
 		<Link href={link}>
 			<a>
 				<figure className={styles.image}>
@@ -37,7 +37,7 @@ const LargeArticleBoxVertical = ({title, intro, link, image, publish, author}) =
 				</Link>
 			</p>
 		</div>
-	</div>
+	</article>
 }
 
 LargeArticleBoxVertical.propTypes = {

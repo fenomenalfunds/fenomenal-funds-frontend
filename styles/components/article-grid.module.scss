@@ -19,7 +19,7 @@
 		grid-template-rows: auto;
 	}
 
-	& div {
+	& article {
 		&:first-child {
 			grid-area: large;
 			grid-column-start: span 3;

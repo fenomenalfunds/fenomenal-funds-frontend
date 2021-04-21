@@ -6,13 +6,11 @@ import {faGlobeAfrica, faClock} from "@fortawesome/free-solid-svg-icons";
 import Image from "./image";
 
 const CoverArticleBox = ({title, subtitle, author, publish, image, link}) => {
-	return <div className={styles.coverArticleBox}>
+	return <article className={styles.coverArticleBox}>
 		<Link href={link}>
 			<a>
 				<figure className={styles.image}>
-					{image ?
-							<Image image={image}/> :
-							<img src="/FF_2021_ImagePlaceholder_510x288.jpg" alt="" />}
+					{image && <Image image={image}/>}
 				</figure>
 				<div className={styles.content}>
 					<h4 className={styles.title}>{title}</h4>
@@ -30,7 +28,7 @@ const CoverArticleBox = ({title, subtitle, author, publish, image, link}) => {
 				</div>
 			</a>
 		</Link>
-	</div>
+	</article>
 }
 
 CoverArticleBox.propTypes = {

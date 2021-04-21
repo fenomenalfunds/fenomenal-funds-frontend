@@ -7,7 +7,7 @@
 	display: inline-block;
 	border-radius: 100%;
 	text-align: center;
-	margin: 2em 0;
+	margin: 2em auto;
 	background: $gradient-3;
 
 	@include respond-to(phone) {
@@ -59,11 +59,12 @@
 	}
 
 	.caption {
-		font-size: .8em;
+		font-size: .6em;
 		text-align: center;
-		margin: .3em 0 2em 0;
+		margin: .5em 0 2em 0;
 
 		span {
+			font-weight: 600;
 			text-transform: uppercase;
 		}
 	}
