@@ -16,7 +16,7 @@ import {useRouter} from "next/router";
 import Loading from "../components/loading";
 import InsightsSection from "../components/insights-section";
 
-const Home = ({home, blog, about, editorial, highlights, insights, contact}) => {
+const Home = ({home, blog, about, editorial, highlight, insights, contact}) => {
 	const router = useRouter();
 	if (router.isFallback) return <Loading/>;
 	if (!home) return <NotFound/>;
@@ -50,11 +50,11 @@ const Home = ({home, blog, about, editorial, highlights, insights, contact}) => 
 				</Grid>}
 			</Grid>
 
-			{highlights &&
+			{highlight &&
 			<HighlightsSection
-					title={highlights.title}
-					subtitle={highlights.subtitle}
-					stories={highlights.stories}
+					title={highlight.title}
+					subtitle={highlight.subtitle}
+					stories={highlight.stories}
 			/>}
 
 			{about &&
