@@ -13,9 +13,9 @@ const InsightsSection = ({title, subtitle, reports}) => {
 
 				{reports &&
 				<div className={styles.articles}>
-					{_.map(_.slice(reports, 0, 2), (report) => {
+					{_.map(reports, (report, key) => {
 						return <ArticleBox
-								key={report.id}
+								key={key}
 								title={report.title}
 								subtitle={report.subtitle}
 								image={report.image}

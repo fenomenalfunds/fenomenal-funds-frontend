@@ -1,9 +1,7 @@
 import styles from './../styles/components/document-box.module.scss';
 import Image from "./image";
-import _ from 'lodash';
 import {useState} from "react";
-import Grid from '@material-ui/core/Grid';
-import CloseButton from "./close-button";
+import WideOverlay from "./wide-overlay";
 
 const DocumentBox = ({title, subtitle, icon, type, body, files}) => {
 	const [open, setOpen] = useState(false);
@@ -22,32 +20,13 @@ const DocumentBox = ({title, subtitle, icon, type, body, files}) => {
 			</div>
 		</div>
 
-		<div className={styles.overlay} style={(open ? {display:'flex'} : null)}>
-			<Grid container spacing={0} justify="center">
-				<Grid item lg={10}>
-					<CloseButton  func={() => setOpen(false)}/>
-					<div className={styles.overlayContent}>
-						<article className={styles.content}>
-							<div className={styles.image}>
-								<figure>
-									<Image image={icon}/>
-								</figure>
-							</div>
-							<div className={styles.text}>
-								<h1>{title}</h1>
-								<div dangerouslySetInnerHTML={{__html: body}} className={styles.body} />
-								{files &&
-								_.map(files, (file, key) => {
-									return <a key={key} href={file.url} download target="_blank" className={`btn red ${styles.dlc}`}>
-										{file.caption ? file.caption : `Download ${file.ext}`}
-									</a>
-								})}
-							</div>
-						</article>
-					</div>
-				</Grid>
-			</Grid>
-		</div>
+		<WideOverlay
+			title={title}
+			body={body}
+			icon={icon}
+			files={files}
+			open={open}
+		 func={() => setOpen(false)}/>
 	</>
 }
 

@@ -2,7 +2,7 @@ import {Image, Placeholder, Transformation} from 'cloudinary-react';
 import {getLocalUrl} from "../lib/media";
 
 const getCloudinaryDetails = (src) => {
-	if(src.startsWith('http://localhost')) {
+	if(src.startsWith('https')) {
 		const url = new URL(src);
 		if (url.host === 'res.cloudinary.com') {
 			try {
@@ -51,7 +51,6 @@ const CloudImage = (props) => {
 			<img
 					src={imageUrl}
 					alt={image.alternativeText || image.caption}
-					title={image.alternativeText || image.caption}
 			/>
 	);
 };
