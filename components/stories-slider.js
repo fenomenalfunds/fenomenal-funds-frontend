@@ -25,8 +25,8 @@ class StoriesSlider extends Component{
 		const settings = {
 			dots: false,
 			arrows: false,
-			infinite: false,
-			speed: 500,
+			infinite: true,
+			speed: 1000,
 			autoplay: true,
 			slidesToShow: 5,
 			slidesToScroll: 1,
@@ -35,10 +35,15 @@ class StoriesSlider extends Component{
 					breakpoint: 600,
 					settings: {
 						slidesToShow: 2,
-						slidesToScroll: 1,
-						infinite: false,
-						dots: false,
-						arrows: false
+						slidesToScroll: 2,
+						initialSlide: 2
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1
 					}
 				}
 			]
@@ -46,9 +51,9 @@ class StoriesSlider extends Component{
 
 		return <div className={styles.storiesSlider}>
 			<Slider ref={c => (this.slider = c)} {...settings} className={styles.slider}>
-				{_.map(this.props.slides, (slide) => {
+				{_.map(this.props.slides, (slide, key) => {
 					return <StoryBox
-						key={slide.id}
+						key={key}
 						title={slide.title}
 						subtitle={slide.subtitle}
 						cover={slide.cover}

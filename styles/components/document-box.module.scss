@@ -9,6 +9,11 @@
 	align-items: start;
 	grid-template-columns: 1fr 4fr;
 
+	@include respond-to(phone) {
+		grid-gap: 0;
+		grid-template-columns: 1fr;
+	}
+
 	.icon {
 		figure {
 			@include aspect-ratio(1 1, 100%, true, high);
@@ -17,6 +22,11 @@
 	}
 
 	.description {
+
+		@include respond-to(phone) {
+			padding: 1em 0 0 0;
+		}
+
 		small {
 			display: block;
 			font-size: .8rem;
@@ -27,68 +37,6 @@
 		h4 {
 			font-weight: bold;
 			margin: 0 0 .5em 0;
-		}
-	}
-}
-
-.overlay {
-	display: none;
-	position: fixed;
-	top: 50%;
-	left: 0;
-	transform: translateY(-50%);
-	background-color: $ff-color-alt-green;
-	z-index: 1000;
-	max-height: 85%;
-	box-shadow: 3px 5px 7px 2px rgba(0, 0, 0, 0.40);
-
-	&.active {
-		display: flex !important;
-	}
-
-	.overlayContent {
-
-		.content {
-			display: grid;
-			grid-gap: 2em;
-			padding: 3em 0;
-			grid-template-columns: 1fr 2fr;
-
-			.image {
-				figure {
-					@include aspect-ratio(4 3, 100%, true);
-				}
-			}
-
-			.text {
-				color: $ff-color-white;
-
-				h1 {
-					margin: 0 0 1rem 0;
-				}
-
-				.dlc {
-					margin: 0 1em 1em 0;
-				}
-
-				.body {
-					color: $ff-color-white !important;
-					margin: 0 0 2em 0;
-					padding: 1em 1em 2em 0;
-					max-height: 30em;
-					overflow-y: auto;
-					@include scrollbars(.5em, $ff-color-green, $ff-color-dark-green);
-
-					p {
-						color: $ff-color-white;
-					}
-
-					blockquote {
-						font-size: 1rem;
-						margin-left: 2em;
-					}
-				}
-			}
 		}
 	}
 }

@@ -1,8 +1,6 @@
 import styles from './../styles/components/Home.module.scss';
-import _ from 'lodash';
 import Grid from '@material-ui/core/Grid';
 import LargeArticleBox from "../components/large-article-box";
-import ArticleBox from "../components/article-box";
 import Layout from "../layout/website-layout";
 import Seo from "../components/seo";
 import {fetchHomeContent} from "../lib/api";
@@ -16,7 +14,7 @@ import {useRouter} from "next/router";
 import Loading from "../components/loading";
 import InsightsSection from "../components/insights-section";
 
-const Home = ({home, blog, about, editorial, highlight, insights, contact}) => {
+const Home = ({home, blog, about, editorial, highlight, insight, contact}) => {
 	const router = useRouter();
 	if (router.isFallback) return <Loading/>;
 	if (!home) return <NotFound/>;
@@ -65,11 +63,11 @@ const Home = ({home, blog, about, editorial, highlight, insights, contact}) => {
 			/>}
 
 			{/* INSIGHTS SECTION */}
-			{insights &&
+			{insight &&
 			<InsightsSection
-					title={insights.title}
-					subtitle={insights.subtitle}
-					reports={insights.reports}
+					title={insight.title}
+					subtitle={insight.subtitle}
+					reports={insight.reports}
 			/>}
 
 			{/* BLOG SECTION */}

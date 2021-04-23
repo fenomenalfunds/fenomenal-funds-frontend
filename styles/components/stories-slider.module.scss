@@ -6,10 +6,17 @@
 	position: relative;
 	width: 100%;
 	max-width: 1366px;
-	overflow: hidden;
 	margin: 2em auto 0 auto;
 
+	@include respond-to(tablet) {
+		max-width: 600px;
+	}
+
+	@include respond-to(phone) {
+		max-width: 350px;
+	}
+
 	.slider {
-		width: 100%;
+		margin-right: -1em;
 	}
 }

@@ -8,10 +8,18 @@
 	.article {
 		padding: 8em 0;
 
+		@include respond-to(phone) {
+			padding: 5em 0;
+		}
+
 		header {
 			width: 70%;
 			margin: 0 auto;
 			text-align: center;
+
+			@include respond-to(phone) {
+				width: 100%;
+			}
 		}
 	}
 
@@ -20,6 +28,10 @@
 		grid-gap: 5em;
 		padding: 3em 0;
 		grid-template-columns: repeat(3, 1fr);
+
+		@include respond-to(phone) {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.documents {
@@ -40,6 +52,10 @@
 			grid-gap: 2em;
 			grid-template-columns: repeat(2, 1fr);
 			grid-template-rows: repeat(3, 1fr);
+
+			@include respond-to(phone) {
+				grid-template-columns: 1fr;
+			}
 		}
 	}
 }

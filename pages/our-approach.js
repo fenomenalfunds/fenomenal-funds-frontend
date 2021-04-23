@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import _ from 'lodash';
-import withRouter from 'next/router';
 import styles from './../styles/our-approach.module.scss';
 import Grid from '@material-ui/core/Grid';
 import Layout from "../layout/website-layout";
@@ -14,10 +13,11 @@ import {getStrapiMedia} from "../lib/media";
 import Image from "../components/image";
 import ShortArticle from "../components/short-article";
 import LongArticle from "../components/long-article";
+import CloudVideo from "../components/video";
 
 class OurApproachPage extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			play: false,
 			muted: true,
@@ -27,6 +27,7 @@ class OurApproachPage extends Component {
 	}
 
 	handlePlay = () => {
+		console.info('###### refs ######', this.ref);
 		this.setState({play: !this.state.play})
 	}
 
@@ -64,22 +65,11 @@ class OurApproachPage extends Component {
 				<Grid item xs={12}>
 					<article>
 						<section className={styles.videoHeader}>
-							<figure className={styles.video}>
+							<div className={styles.video}>
 								{approach.video ?
-										<ReactPlayer
-												ref={this.ref}
-												url={this.state.url}
-												controls={false}
-												width="100%"
-												height="100%"
-												playsinline={false}
-												muted={this.state.muted}
-												volume={this.state.volume}
-												playing={this.state.play}
-												loop={true}
-										/> :
+										<CloudVideo forwardRef={this.ref} video={approach.video}/> :
 										<Image image={approach.cover}/>}
-							</figure>
+							</div>
 
 							{!this.state.play &&
 							<div className={styles.caption}>
