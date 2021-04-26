@@ -25,7 +25,7 @@ const InsightsSection = ({title, subtitle, reports}) => {
 				</div>}
 
 				<div>
-					<Link href="/learnings">
+					<Link href="/insights">
 						<a className="btn red">View all insights</a>
 					</Link>
 				</div>
