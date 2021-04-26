@@ -1,7 +1,7 @@
+import styles from './../styles/components/stories-slider.module.scss';
 import React, {Component} from "react";
 import Slider from 'react-slick';
 import _ from 'lodash';
-import styles from './../styles/components/stories-slider.module.scss';
 import StoryBox from "./story-box";
 
 class StoriesSlider extends Component{
@@ -32,14 +32,6 @@ class StoriesSlider extends Component{
 			slidesToScroll: 1,
 			responsive: [
 				{
-					breakpoint: 600,
-					settings: {
-						slidesToShow: 2,
-						slidesToScroll: 2,
-						initialSlide: 2
-					}
-				},
-				{
 					breakpoint: 480,
 					settings: {
 						slidesToShow: 1,
@@ -50,16 +42,28 @@ class StoriesSlider extends Component{
 		};
 
 		return <div className={styles.storiesSlider}>
-			<Slider ref={c => (this.slider = c)} {...settings} className={styles.slider}>
-				{_.map(this.props.slides, (slide, key) => {
-					return <StoryBox
-						key={key}
-						title={slide.title}
-						subtitle={slide.subtitle}
-						cover={slide.cover}
-					/>
-				})}
-			</Slider>
+			{this.props.slides.length >= 5 ?
+					<Slider ref={c => (this.slider = c)} {...settings} className={styles.slider}>
+						{_.map(this.props.slides, (slide, key) => {
+							return <StoryBox
+									key={key}
+									title={slide.title}
+									subtitle={slide.subtitle}
+									cover={slide.cover}
+							/>
+						})}
+					</Slider> :
+					<div className={styles.noSlider}>
+						{_.map(this.props.slides, (slide, key) => {
+							return <StoryBox
+									key={key}
+									title={slide.title}
+									subtitle={slide.subtitle}
+									cover={slide.cover}
+							/>
+						})}
+					</div>
+			}
 		</div>
 	}
 }

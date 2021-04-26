@@ -18,13 +18,14 @@
 		align-items: end;
 		justify-content: center;
 		grid-auto-flow: row;
-		grid-template-rows: 5fr 1fr;
+		grid-template-rows: auto;
 		top: 0;
 		left: 0;
 		width: 101%;
 		height: 100%;
 		padding: .5em;
 		background-color: rgba($ff-color-black, .5);
+		overflow: hidden;
 
 		h4 {
 			margin: 0 0 .5em 0;
