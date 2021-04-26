@@ -19,4 +19,14 @@
 	.slider {
 		margin-right: -1em;
 	}
+
+	.noSlider {
+		width: 100%;
+		display: grid;
+		grid-gap: 1em;
+		grid-auto-flow: column;
+		justify-content: center;
+		align-items: center;
+		grid-template-columns: repeat(4, 1fr);
+	}
 }

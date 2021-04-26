@@ -3,7 +3,7 @@ import {Grid} from "@material-ui/core";
 import StoriesSlider from "./stories-slider";
 
 const HighlightsSection = ({title, subtitle, stories}) => {
-	return <section className={styles.insights}>
+	return <section className={styles.highlights}>
 		<Grid container spacing={0}>
 			<Grid item lg={12} xs={12}>
 				<hr className={styles.divider} />
