@@ -43,14 +43,13 @@
 		justify-content: center;
 		text-align: center;
 		grid-template-columns: 2fr 5em 2fr;
-		grid-template-rows: repeat(2, 1fr);
+		grid-template-rows: auto; //repeat(2, 1fr);
 		gap: 2em;
 		flex-grow: 0;
 
 		@include respond-to(phone) {
 			grid-template-areas: "circle1" "circle2" "circle3";
 			grid-template-columns: 1fr;
-			grid-template-rows: repeat(3, 1fr);
 		}
 
 		section {
@@ -67,7 +66,7 @@
 				grid-area: circle2;
 			}
 
-			&:last-child {
+			&:nth-child(3) {
 				grid-area: circle3;
 			}
 		}
