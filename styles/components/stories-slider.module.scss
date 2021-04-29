@@ -5,7 +5,6 @@
 .storiesSlider {
 	position: relative;
 	width: 100%;
-	max-width: 1366px;
 	margin: 2em auto 0 auto;
 
 	@include respond-to(tablet) {

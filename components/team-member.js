@@ -1,11 +1,11 @@
 import styles from './../styles/components/team-box.module.scss';
 import propTypes from 'prop-types';
-import Image from "./image";
+import ProfilePhoto from "./profile-photo";
 
 const TeamMember = ({name, slug, position, image}) => {
 	return <div className={styles.teamMember}>
 		<figure className={styles.photo}>
-			<Image image={image} />
+			<ProfilePhoto image={image} />
 		</figure>
 		<p className={styles.caption}>
 			<span>{name}</span>
