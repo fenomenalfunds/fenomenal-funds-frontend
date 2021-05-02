@@ -1,4 +1,6 @@
 import '../styles/globals.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import App from 'next/app';
 import Head from 'next/head';
 import {getStrapiMedia} from "../lib/media";
@@ -16,7 +18,7 @@ function MyApp({Component, pageProps}) {
 	if (router.isFallback) return <Loading/>;
 
 	const {global, navigation} = pageProps;
-	if(!global) return <NotFound />;
+	if (!global) return <NotFound/>;
 
 	return <>
 		<Head>
@@ -27,7 +29,7 @@ function MyApp({Component, pageProps}) {
 		</Head>
 
 		<GlobalContext.Provider value={global}>
-			<Navigation items={navigation} />
+			<Navigation items={navigation}/>
 			<Component {...pageProps} />
 		</GlobalContext.Provider>
 	</>

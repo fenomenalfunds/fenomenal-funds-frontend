@@ -16,7 +16,7 @@ const ShortArticle = ({image, title, subtitle, body}) => {
 		</div>
 
 		<div className={styles.secondaryCaption}>
-			<h2 className="">{subtitle}</h2>
+			<h2 className={styles.subtitle}>{subtitle}</h2>
 		</div>
 	</div>
 }

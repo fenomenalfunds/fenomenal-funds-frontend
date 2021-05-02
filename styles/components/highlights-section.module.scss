@@ -16,5 +16,20 @@
 
 	.content {
 		padding: 3em 0;
+
+		.stories {
+			width: 100%;
+			max-width: 1366px;
+			margin: 2em auto;
+
+			@include respond-to(tablet) {
+				max-width: 962px;
+			}
+
+			@include respond-to(phone) {
+				max-width: 360px;
+			}
+		}
 	}
+
 }

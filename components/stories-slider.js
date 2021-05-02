@@ -42,15 +42,16 @@ class StoriesSlider extends Component{
 		};
 
 		return <div className={styles.storiesSlider}>
-			{this.props.slides.length >= 5 ?
-					<Slider ref={c => (this.slider = c)} {...settings} className={styles.slider}>
+			{this.props.slides.length > 5 ?
+					<Slider ref={c => (this.slider = c)} {...settings}>
 						{_.map(this.props.slides, (slide, key) => {
-							return <StoryBox
-									key={key}
+							return <div key={key}>
+								<StoryBox
 									title={slide.title}
 									subtitle={slide.subtitle}
 									cover={slide.cover}
-							/>
+									/>
+							</div>
 						})}
 					</Slider> :
 					<div className={styles.noSlider}>
