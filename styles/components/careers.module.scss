@@ -1,0 +1,38 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.careers {
+	background: $gradient-2;
+
+	.header {
+		padding: 10em 0;
+		width: 60%;
+		margin: 0 auto;
+		text-align: center;
+
+		@include respond-to(phone) {
+			padding: 5em 0;
+			width: 100%;
+		}
+	}
+
+	.positions {
+
+		.title {
+			text-align: center;
+		}
+
+		.positionsGrid {
+			margin: 5em 0;
+			display: grid;
+			grid-gap: 4em;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: auto;
+
+			@include respond-to(phone) {
+				grid-template-columns: 1fr;
+			}
+		}
+	}
+}

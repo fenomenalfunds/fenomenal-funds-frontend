@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ProfilePhoto from "./profile-photo";
 
 const SquareArticleBox = ({title, subtitle, image, link}) => {
-	return <div className={styles.coverArticleBox}>
+	return <div className={styles.squareArticleBox}>
 		<Link href={link}>
 			<a>
 				<figure className={styles.image}>

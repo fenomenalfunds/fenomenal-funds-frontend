@@ -12,12 +12,10 @@
 		.video {
 			@include aspect-ratio(16 9, 100%, true);
 
-			section {
+			& > div {
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
+				width: 100% !important;
+				height: 100% !important;
 			}
 		}
 
@@ -32,19 +30,40 @@
 			transition: all .2s ease-in;
 			z-index: 1000;
 
+			&.nocaption {
+				display: none;
+
+				@include respond-to(phone) {
+					display: block;
+				}
+			}
+
+			@include respond-to(phone) {
+				position: relative;
+				top: auto;
+				left: auto;
+				height: auto;
+				backdrop-filter: none;
+			}
+
 			.text {
 				position: absolute;
 				bottom: 2em;
 				right: 2em;
 				width: 30%;
+				text-align: right;
+
+				@include respond-to(phone) {
+					position: relative;
+					bottom: auto;
+					right: auto;
+					width: 100%;
+					padding: 1em;
+					text-align: left;
+				}
 
 				.title {
 					font-weight: bold;
-					text-align: right;
-				}
-
-				.subtitle {
-					text-align: right;
 				}
 			}
 		}
@@ -71,6 +90,11 @@
 			transform: translateX(-50%) translateY(-50%);
 			z-index: 1001;
 			transition: all .2s ease-in-out;
+
+			@include respond-to(phone) {
+				top: 10%;
+				transform: translateY(-10%) translateX(-50%);
+			}
 
 			&:hover {
 				color: $ff-color-white;

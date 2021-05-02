@@ -1,7 +1,7 @@
 import {Image, Placeholder, Transformation} from 'cloudinary-react';
 import {getLocalUrl} from "../lib/media";
 
-const getCloudinaryDetails = (src) => {
+export const getCloudinaryDetails = (src) => {
 	if(src.startsWith('https')) {
 		const url = new URL(src);
 		if (url.host === 'res.cloudinary.com') {

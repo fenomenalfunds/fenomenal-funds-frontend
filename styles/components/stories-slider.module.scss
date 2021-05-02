@@ -3,20 +3,12 @@
 @import "styles/mixins";
 
 .storiesSlider {
-	position: relative;
+	/*position: relative;
 	width: 100%;
-	margin: 2em auto 0 auto;
-
-	@include respond-to(tablet) {
-		max-width: 600px;
-	}
-
-	@include respond-to(phone) {
-		max-width: 350px;
-	}
+	margin: 2em auto 0 auto;*/
 
 	.slider {
-		margin-right: -1em;
+		//margin-right: -1em;
 	}
 
 	.noSlider {
@@ -26,6 +18,6 @@
 		grid-auto-flow: column;
 		justify-content: center;
 		align-items: center;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: auto;
 	}
 }

@@ -2,7 +2,7 @@
 @import "styles/variables";
 @import "styles/mixins";
 
-.coverArticleBox {
+.squareArticleBox {
 	position: relative;
 	overflow: hidden;
 
@@ -25,8 +25,8 @@
 		backdrop-filter: brightness(.5);
 		transition: all .3s ease-in-out;
 
-		.title {
-
+		@include respond-to(phone) {
+			opacity: 1;
 		}
 
 		.subtitle {

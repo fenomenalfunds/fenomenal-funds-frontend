@@ -13,7 +13,7 @@ const LongArticle = ({title, subtitle, body, image}) => {
 		</div>
 
 		<div className={styles.body}>
-			<h2>{subtitle}</h2>
+			<h2 className={styles.subtitle}>{subtitle}</h2>
 			<div className={styles.text} dangerouslySetInnerHTML={{__html:body}} />
 		</div>
 	</article>

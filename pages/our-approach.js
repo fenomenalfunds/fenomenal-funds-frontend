@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import _ from 'lodash';
 import styles from './../styles/our-approach.module.scss';
+import _ from 'lodash';
 import Grid from '@material-ui/core/Grid';
 import Layout from "../layout/website-layout";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -8,7 +8,6 @@ import {faPlay, faPause, faVolumeMute, faVolumeUp} from "@fortawesome/free-solid
 import {fetchApproachContent} from "../lib/api";
 import Seo from "../components/seo";
 import NotFound from "../components/not-found";
-import ReactPlayer from "react-player";
 import {getStrapiMedia} from "../lib/media";
 import Image from "../components/image";
 import ShortArticle from "../components/short-article";
@@ -27,7 +26,6 @@ class OurApproachPage extends Component {
 	}
 
 	handlePlay = () => {
-		console.info('###### refs ######', this.ref);
 		this.setState({play: !this.state.play})
 	}
 
@@ -61,65 +59,70 @@ class OurApproachPage extends Component {
 		return <Layout>
 			<Seo seo={approach.seo}/>
 
-			<Grid container justify="center" spacing={0} className={styles.ourApproach}>
-				<Grid item xs={12}>
-					<article>
-						<section className={styles.videoHeader}>
-							<div className={styles.video}>
-								{approach.video ?
-										<CloudVideo forwardRef={this.ref} video={approach.video}/> :
-										<Image image={approach.cover}/>}
-							</div>
-
-							{!this.state.play &&
-							<div className={styles.caption}>
-								<div className={styles.text}>
-									<h1 className={styles.title}>{approach.title}</h1>
-									<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: approach.subtitle}}/>
+			<div className={styles.ourApproach}>
+				<Grid container justify="center" spacing={0}>
+					<Grid item xs={12} lg={12}>
+						<article>
+							<section className={styles.videoHeader}>
+								<div className={styles.video}>
+									{approach.video ?
+											<CloudVideo
+													playing={this.state.play}
+													forwardRef={this.ref}
+													video={this.props.approach.video}
+											/> :
+											<Image image={approach.cover}/>}
 								</div>
-							</div>}
 
-							{(approach.video && !this.state.play) &&
-							<button type="button" className={styles.playButton} onClick={this.handlePlay}>
-								<FontAwesomeIcon icon={faPlay} aria-label="Play button"/>
-							</button>}
+								<div className={`${styles.caption} ${this.state.play ? styles.nocaption : null}`}>
+									<div className={styles.text}>
+										<h1 className={styles.title}>{approach.title}</h1>
+										<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: approach.subtitle}}/>
+									</div>
+								</div>
 
-							{(approach.video && this.state.play) &&
-							<button type="button" className={styles.pauseButton} onClick={this.handlePlay}>
-								<FontAwesomeIcon icon={faPause} aria-label="Play button"/>
-							</button>}
+								{(approach.video && !this.state.play) &&
+								<button type="button" className={styles.playButton} onClick={this.handlePlay}>
+									<FontAwesomeIcon icon={faPlay} aria-label="Play button"/>
+								</button>}
 
-							{(approach.video && (this.state.play && this.state.muted)) &&
-							<button type="button" className={styles.mutedButton} onClick={() => this.setState({muted: false})}>
-								<FontAwesomeIcon icon={faVolumeMute} aria-label="Volume Muted button"/>
-							</button>}
+								{(approach.video && this.state.play) &&
+								<button type="button" className={styles.pauseButton} onClick={this.handlePlay}>
+									<FontAwesomeIcon icon={faPause} aria-label="Play button"/>
+								</button>}
 
-							{(approach.video && (this.state.play && !this.state.muted)) &&
-							<button type="button" className={styles.mutedButton} onClick={() => this.setState({muted: true})}>
-								<FontAwesomeIcon icon={faVolumeUp} aria-label="Volume On button"/>
-							</button>}
-						</section>
+								{(approach.video && (this.state.play && this.state.muted)) &&
+								<button type="button" className={styles.mutedButton} onClick={() => this.setState({muted: false})}>
+									<FontAwesomeIcon icon={faVolumeMute} aria-label="Volume Muted button"/>
+								</button>}
 
-						{_.map(approach.section, (section, key) => {
-							return section.long_style ?
-									<LongArticle
-											key={key}
-											title={section.title}
-											subtitle={section.subtitle}
-											image={section.image[0]}
-											body={section.body}
-									/> :
-									<ShortArticle
-											key={key}
-											title={section.title}
-											subtitle={section.subtitle}
-											image={section.image[0]}
-											body={section.body}
-									/>
-						})}
-					</article>
+								{(approach.video && (this.state.play && !this.state.muted)) &&
+								<button type="button" className={styles.mutedButton} onClick={() => this.setState({muted: true})}>
+									<FontAwesomeIcon icon={faVolumeUp} aria-label="Volume On button"/>
+								</button>}
+							</section>
+
+							{_.map(approach.section, (section, key) => {
+								return section.long_style ?
+										<LongArticle
+												key={key}
+												title={section.title}
+												subtitle={section.subtitle}
+												image={section.image[0]}
+												body={section.body}
+										/> :
+										<ShortArticle
+												key={key}
+												title={section.title}
+												subtitle={section.subtitle}
+												image={section.image[0]}
+												body={section.body}
+										/>
+							})}
+						</article>
+					</Grid>
 				</Grid>
-			</Grid>
+			</div>
 		</Layout>
 	}
 }

@@ -5,8 +5,11 @@ import {fetchAboutContent} from "../lib/api";
 import Seo from "../components/seo";
 import Image from "../components/image";
 import AboutSection from "../components/about-section";
+import NotFound from "../components/not-found";
 
 const AboutUsPage = ({about, editorial}) => {
+	if(!about) return <NotFound />;
+
 	return <Layout>
 		<Seo seo={about.seo} />
 
