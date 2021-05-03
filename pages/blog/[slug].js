@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Layout from "../../layout/website-layout";
 import moment from "moment";
 import CoverArticleBox from "../../components/cover-article-box";
-import {fetchArticleDetail} from "../../lib/api";
+import {fetchArticleDetail, fetchRelatedArticles} from "../../lib/api";
 import Seo from "../../components/seo";
 import Image from "../../components/image";
 import NotFound from "../../components/not-found";
@@ -32,8 +32,8 @@ const BlogDetail = ({article, related}) => {
 							</p>}
 							{article.tags &&
 							<p className={styles.tags}>
-								{_.map(article.tags, (tag) => {
-									return <span key={tag.id}>{tag.tag}</span>
+								{_.map(article.tags, (tag, t) => {
+									return <span key={t}>{tag.tag}</span>
 								})}
 							</p>}
 						</div>
@@ -48,9 +48,9 @@ const BlogDetail = ({article, related}) => {
 					<h2 className={styles.title}>Related posts</h2>
 
 					<div className={styles.articles}>
-						{_.map(related, (article) => {
+						{_.map(related, (article, a) => {
 							return <CoverArticleBox
-									key={article.id}
+									key={a}
 									title={article.title}
 									subtitle={article.subtitle}
 									image={article.thumbnail}
@@ -67,17 +67,14 @@ const BlogDetail = ({article, related}) => {
 }
 
 export async function getStaticProps({params}, preview = {}) {
-	/*const articles = await fetchAPI(`/articles?slug=${params.slug}`);
+	const data = await fetchArticleDetail(params.slug, preview);
 
-	let where = articles ? _.join(_.map(articles[0].tags, (t) => `_where[0][tags_in]=${t.id}`), '&') : '';
-
-	const related = articles ? await fetchAPI(`/articles?_limit=4&id_ne=${articles[0].id}&${where}`) : [];*/
-
-	const data = await fetchArticleDetail(params.slug, '"women", "test"', preview);
+	const related = data ? await fetchRelatedArticles(params.slug, _.join(_.map(data.article.tags, t => `"${t.slug}"`), ', '), data.article.category.slug) : [];
 
 	return {
 		props: {
-			...data
+			...data,
+			...related
 		},
 		revalidate: true
 	}
