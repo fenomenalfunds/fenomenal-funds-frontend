@@ -63,6 +63,7 @@ class OurApproachPage extends Component {
 				<Grid container justify="center" spacing={0}>
 					<Grid item xs={12} lg={12}>
 						<article>
+							{approach.video &&
 							<section className={styles.videoHeader}>
 								<div className={styles.video}>
 									{approach.video ?
@@ -100,7 +101,7 @@ class OurApproachPage extends Component {
 								<button type="button" className={styles.mutedButton} onClick={() => this.setState({muted: true})}>
 									<FontAwesomeIcon icon={faVolumeUp} aria-label="Volume On button"/>
 								</button>}
-							</section>
+							</section>}
 
 							{_.map(approach.section, (section, key) => {
 								return section.long_style ?

@@ -64,6 +64,10 @@
 			.intro {
 				columns: 2;
 
+				ul {
+					margin: 0;
+				}
+
 				@include respond-to(phone) {
 					columns: 1;
 					font-style: italic;
