@@ -4,30 +4,31 @@ import Grid from "@material-ui/core/Grid";
 import Layout from "../../layout/website-layout";
 import moment from "moment";
 import CoverArticleBox from "../../components/cover-article-box";
-import {fetchArticleDetail, fetchRelatedArticles} from "../../lib/api";
+import {fetchArticleDetail, fetchBlogRoutes, fetchRelatedArticles} from "../../lib/api";
 import Seo from "../../components/seo";
 import Image from "../../components/image";
 import NotFound from "../../components/not-found";
 
 const BlogDetail = ({article, related}) => {
-	if(!article) return <NotFound />;
+	if (_.isEmpty(article)) return <NotFound link="/blog" text="Return to blog" />;
 
 	return <Layout>
-		<Seo seo={article.seo} />
+		<Seo seo={article.seo}/>
 
 		<Grid container justify="center" spacing={0} className={styles.blogDetail}>
 			<Grid item xs={10}>
 				<article className={styles.article}>
 					<figure className={styles.image}>
-						<Image image={article.image} />
+						<Image image={article.image}/>
 					</figure>
 					<div className={styles.header}>
 						<div className={styles.title}>
 							<h1>{article.title}</h1>
-							{!_.isEmpty(article.author) && <p className={styles.author}>{article.author.fullname && article.author.fullname}</p>}
+							{!_.isEmpty(article.author) &&
+							<p className={styles.author}>{article.author.fullname && article.author.fullname}</p>}
 							{article.publish && <p className={styles.date}>{moment(article.publish).format('LL')}</p>}
 							{article.category && <p className={styles.category}>
-								{article.category.icon && <Image image={article.category.icon} />}
+								{article.category.icon && <Image image={article.category.icon}/>}
 								{article.category.name}
 							</p>}
 							{article.tags &&
@@ -37,10 +38,10 @@ const BlogDetail = ({article, related}) => {
 								})}
 							</p>}
 						</div>
-						<div className={styles.intro} dangerouslySetInnerHTML={{__html: article.intro}} />
+						<div className={styles.intro} dangerouslySetInnerHTML={{__html: article.intro}}/>
 					</div>
 
-					<div className={styles.body} dangerouslySetInnerHTML={{__html: article.body}} />
+					<div className={styles.body} dangerouslySetInnerHTML={{__html: article.body}}/>
 				</article>
 
 				{(related && !_.isEmpty(related)) &&
@@ -69,7 +70,14 @@ const BlogDetail = ({article, related}) => {
 export async function getStaticProps({params}, preview = {}) {
 	const data = await fetchArticleDetail(params.slug, preview);
 
-	const related = data ? await fetchRelatedArticles(params.slug, _.join(_.map(data.article.tags, t => `"${t.slug}"`), ', '), data.article.category.slug) : [];
+	const related = (!_.isEmpty(data.article) && !_.isEmpty(data.article.tags)) ?
+			await fetchRelatedArticles(
+					params.slug,
+					_.join(_.map(data.article.tags, t => `"${t.slug}"`), ', '),
+					data.article.category.slug
+			) : [];
+
+	if(_.isEmpty(data.article)) return { notFound: true }
 
 	return {
 		props: {
@@ -81,8 +89,10 @@ export async function getStaticProps({params}, preview = {}) {
 }
 
 export async function getStaticPaths() {
+	const paths = await fetchBlogRoutes();
+
 	return {
-		paths: [],
+		paths: paths,
 		fallback: true
 	}
 }

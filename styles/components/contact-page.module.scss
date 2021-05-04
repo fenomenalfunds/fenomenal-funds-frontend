@@ -1,0 +1,20 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.contact {
+	background: $gradient-2;
+
+	.body {
+		display: grid;
+		padding: 10em 0;
+		grid-gap: 10%;
+		grid-template-columns: repeat(2, 1fr);
+
+		@include respond-to(phone) {
+			padding: 5em 0;
+			grid-gap: 3em;
+			grid-template-columns: 1fr;
+		}
+	}
+}
