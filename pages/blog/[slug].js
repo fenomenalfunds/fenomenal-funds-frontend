@@ -74,7 +74,7 @@ export async function getStaticProps({params}, preview = {}) {
 			await fetchRelatedArticles(
 					params.slug,
 					_.join(_.map(data.article.tags, t => `"${t.slug}"`), ', '),
-					data.article.category.slug
+					(data.article.category ? data.article.category.slug : '')
 			) : [];
 
 	if(_.isEmpty(data.article)) return { notFound: true }
