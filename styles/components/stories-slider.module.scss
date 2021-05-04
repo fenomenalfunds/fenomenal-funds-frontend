@@ -3,21 +3,22 @@
 @import "styles/mixins";
 
 .storiesSlider {
-	/*position: relative;
+	position: relative;
 	width: 100%;
-	margin: 2em auto 0 auto;*/
-
-	.slider {
-		//margin-right: -1em;
-	}
+	margin: 2em auto 0 auto;
 
 	.noSlider {
 		width: 100%;
 		display: grid;
 		grid-gap: 1em;
 		grid-auto-flow: column;
+		grid-auto-columns: (1fr / 5);
 		justify-content: center;
 		align-items: center;
-		grid-template-columns: auto;
+
+		@include respond-to(phone) {
+			grid-auto-columns: 1fr;
+			grid-auto-flow: row;
+		}
 	}
 }

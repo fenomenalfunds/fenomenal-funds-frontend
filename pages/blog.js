@@ -5,8 +5,11 @@ import {fetchBlogContent} from "../lib/api";
 import Seo from "../components/seo";
 import Image from "../components/image";
 import ArticleGrid from "../components/article-grid";
+import NotFound from "../components/not-found";
 
 const Blog = ({blog, articles}) => {
+	if(!blog) return <NotFound />;
+
 	return <Layout>
 		<Seo seo={blog.seo} />
 

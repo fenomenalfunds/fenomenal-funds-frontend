@@ -26,6 +26,14 @@
 				font-size: 3em;
 				font-weight: bold;
 			}
+
+			.subtitle {
+				color: $ff-color-white !important;
+
+				a {
+					color: $ff-color-white !important;
+				}
+			}
 		}
 	}
 
