@@ -1,0 +1,53 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.pagination {
+	text-align: center;
+	margin: 2em auto;
+
+	.pages {
+		display: grid;
+		grid-auto-flow: column;
+		justify-content: center;
+		align-items: center;
+		grid-template-columns: auto;
+		padding: 0;
+		list-style-type: none;
+		margin-bottom:0;
+
+		.page {
+			font-size: .9rem;
+			padding: 0 .5em;
+
+			&.edge {
+				&:first-of-type{
+					margin-left: 1em;
+				}
+				&:last-of-type{
+					margin-right: 1em;
+				}
+			}
+
+			a {
+				display: inline-block;
+				color: $ff-color-white;
+				text-decoration: none;
+				padding: .1em .4em;
+
+				&.active {
+					color: $ff-color-purple;
+					background-color: $ff-color-white;
+					border-radius: .2em;
+				}
+
+				svg {
+					display:block;
+					margin-top: 0.2em;
+				}
+			}
+		}
+	}
+
+	.meta { font-size: 0.75em;}
+}

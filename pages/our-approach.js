@@ -103,7 +103,8 @@ class OurApproachPage extends Component {
 								</button>}
 							</section>}
 
-							{_.map(approach.section, (section, key) => {
+							{approach.section &&
+							_.map(approach.section, (section, key) => {
 								return section.long_style ?
 										<LongArticle
 												key={key}
@@ -119,7 +120,7 @@ class OurApproachPage extends Component {
 												image={section.image[0]}
 												body={section.body}
 										/>
-							})}
+							})}}
 						</article>
 					</Grid>
 				</Grid>
