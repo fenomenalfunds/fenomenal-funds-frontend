@@ -14,7 +14,7 @@ const AboutUsPage = ({about, editorial}) => {
 		<Seo seo={about.seo} />
 
 		<Grid container justify="center" className={styles.aboutUs}>
-			<Grid item xs={10} lg={10}>
+			<Grid item xs={11} lg={10}>
 				<article>
 					<section className={styles.header} dangerouslySetInnerHTML={{__html: about.intro}} />
 
