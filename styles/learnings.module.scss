@@ -8,7 +8,7 @@
 	.article {
 		padding: 8em 0;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			padding: 5em 0;
 		}
 
@@ -17,7 +17,7 @@
 			margin: 0 auto;
 			text-align: center;
 
-			@include respond-to(phone) {
+			@include respond-to(phone, tablet) {
 				width: 100%;
 			}
 		}
@@ -31,6 +31,10 @@
 
 		@include respond-to(phone) {
 			grid-template-columns: 1fr;
+		}
+
+		@include respond-to(tablet) {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
@@ -53,7 +57,7 @@
 			grid-template-columns: repeat(2, 1fr);
 			grid-template-rows: repeat(3, 1fr);
 
-			@include respond-to(phone) {
+			@include respond-to(phone, tablet) {
 				grid-template-columns: 1fr;
 			}
 		}

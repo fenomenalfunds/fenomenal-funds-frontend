@@ -3,7 +3,7 @@
 @import "styles/mixins";
 
 .teamBox {
-	@include aspect-ratio(1 1, 32em);
+	@include aspect-ratio(1 1, 35em);
 	display: inline-block;
 	border-radius: 100%;
 	text-align: center;
@@ -32,12 +32,13 @@
 	.members {
 		display: grid;
 		width: 75%;
-		margin: 0 auto;
+		margin: 2em auto;
 		grid-gap: 1em;
 		grid-template-areas: "c1 c2 c3 c4" "c5 c6 c7 c8" ". c9 c10 .";
 		grid-template-rows: repeat(3, 140px);
 		grid-template-columns: repeat(4, 1fr);
 		justify-content: center;
+		align-items: center;
 		transition: all .3s ease;
 
 		@for $i from 1 through 15 {
