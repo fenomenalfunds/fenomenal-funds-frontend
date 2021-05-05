@@ -17,7 +17,7 @@ const getCloudinaryDetails = (src) => {
 		}
 	}
 
-	return null;
+	return src;
 };
 
 const ProfilePhoto = (props) => {

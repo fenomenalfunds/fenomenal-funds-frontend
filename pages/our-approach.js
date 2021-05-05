@@ -120,7 +120,7 @@ class OurApproachPage extends Component {
 												image={section.image[0]}
 												body={section.body}
 										/>
-							})}}
+							})}
 						</article>
 					</Grid>
 				</Grid>

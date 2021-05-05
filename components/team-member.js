@@ -2,8 +2,8 @@ import styles from './../styles/components/team-box.module.scss';
 import propTypes from 'prop-types';
 import ProfilePhoto from "./profile-photo";
 
-const TeamMember = ({name, slug, position, image}) => {
-	return <div className={styles.teamMember}>
+const TeamMember = ({name, slug, position, image, func}) => {
+	return <div className={styles.teamMember} onClick={func}>
 		<figure className={styles.photo}>
 			<ProfilePhoto image={image} />
 		</figure>
@@ -19,6 +19,11 @@ TeamMember.propTypes = {
 	name: propTypes.string.isRequired,
 	slug: propTypes.string.isRequired,
 	position: propTypes.string
+}
+
+TeamMember.defaultProps = {
+	image: {url: `${process.env.NEXT_PUBLIC_BASE_URL}/FF_2021_ImagePlaceholder_510x288.jpg`},
+	name: 'Please add name'
 }
 
 export default TeamMember;

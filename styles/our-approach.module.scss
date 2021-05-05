@@ -3,7 +3,7 @@
 @import "styles/mixins";
 
 .ourApproach {
-	background-color: $gradient-2;
+	background: $gradient-2;
 
 	.videoHeader {
 		position: relative;
@@ -11,12 +11,6 @@
 
 		.video {
 			@include aspect-ratio(16 9, 100%, true);
-
-			& > div {
-				position: absolute;
-				width: 100% !important;
-				height: 100% !important;
-			}
 		}
 
 		.caption {
@@ -33,12 +27,12 @@
 			&.nocaption {
 				display: none;
 
-				@include respond-to(phone) {
+				@include respond-to(phone, tablet) {
 					display: block;
 				}
 			}
 
-			@include respond-to(phone) {
+			@include respond-to(phone, tablet) {
 				position: relative;
 				top: auto;
 				left: auto;
@@ -53,7 +47,7 @@
 				width: 30%;
 				text-align: right;
 
-				@include respond-to(phone) {
+				@include respond-to(phone, tablet) {
 					position: relative;
 					bottom: auto;
 					right: auto;
@@ -91,7 +85,7 @@
 			z-index: 1001;
 			transition: all .2s ease-in-out;
 
-			@include respond-to(phone) {
+			@include respond-to(phone, tablet) {
 				top: 10%;
 				transform: translateY(-10%) translateX(-50%);
 			}
