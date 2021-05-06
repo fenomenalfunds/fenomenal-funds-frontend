@@ -29,7 +29,7 @@ const ContactSection = ({title, subtitle, email}) => {
 							<textarea id="message" rows="5" placeholder="Type your message here"/>
 						</Grid>
 						<Grid item xs={12} style={{textAlign: "right"}}>
-							<button type="submit" className="btn">Send</button>
+							<button type="submit" className="btn red">Send</button>
 						</Grid>
 					</Grid>
 				</div>

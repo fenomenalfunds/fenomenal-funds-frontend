@@ -34,8 +34,10 @@
 			grid-gap: 2em;
 			padding: 3em 0;
 			grid-template-columns: 1fr 2fr;
+			grid-template-rows: auto;
 
 			@include respond-to(phone, tablet) {
+				grid-gap: 1em;
 				grid-template-columns: 1fr;
 				padding: 0;
 			}
@@ -45,8 +47,8 @@
 					@include aspect-ratio(4 3, 100%, true);
 
 					@include respond-to(tablet) {
-						@include aspect-ratio(4 3, 50%, true);
-						margin: 2em 0;
+						@include aspect-ratio(4 3, 40%, true);
+						margin: 2em 0 1em 0;
 					}
 				}
 
@@ -79,7 +81,7 @@
 					overflow-y: auto;
 					@include scrollbars(.5em, $ff-color-green, $ff-color-dark-green);
 
-					@include respond-to(phone) {
+					@include respond-to(phone, tablet) {
 						padding: 1em 1em 1em 0;
 						max-height: 17em;
 					}

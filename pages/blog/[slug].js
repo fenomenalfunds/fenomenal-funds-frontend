@@ -16,7 +16,7 @@ const BlogDetail = ({article, related}) => {
 		<Seo seo={article.seo}/>
 
 		<Grid container justify="center" spacing={0} className={styles.blogDetail}>
-			<Grid item xs={10}>
+			<Grid item xs={11} lg={10}>
 				<article className={styles.article}>
 					<figure className={styles.image}>
 						<Image image={article.image}/>

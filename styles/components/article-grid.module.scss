@@ -19,6 +19,13 @@
 		grid-template-rows: auto;
 	}
 
+	@include respond-to(tablet) {
+		grid-gap: 1em;
+		grid-template-areas: "large large" "small1 small2" "small3 small4" "small5 small6";
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto;
+	}
+
 	& article {
 		&:first-child {
 			grid-area: large;
@@ -26,6 +33,10 @@
 
 			@include respond-to(phone) {
 				grid-column-start: span 1;
+			}
+
+			@include respond-to(tablet) {
+				grid-column-start: span 2;
 			}
 		}
 

@@ -22,7 +22,7 @@
 		grid-auto-flow: column;
 		grid-template-columns: 15em auto;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			grid-auto-flow: row;
 			grid-template-columns: auto;
 		}
@@ -43,11 +43,11 @@
 		justify-content: center;
 		text-align: center;
 		grid-template-columns: 2fr 5em 2fr;
-		grid-template-rows: auto; //repeat(2, 1fr);
+		grid-template-rows: auto;
 		gap: 2em;
 		flex-grow: 0;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			grid-template-areas: "circle1" "circle2" "circle3";
 			grid-template-columns: 1fr;
 		}
@@ -57,7 +57,7 @@
 				grid-area: circle1;
 				grid-column-start: span 3;
 
-				@include respond-to(phone) {
+				@include respond-to(phone, tablet) {
 					grid-column-start: span 1;
 				}
 			}

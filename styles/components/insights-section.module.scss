@@ -16,7 +16,7 @@
 		margin: 0 auto;
 		max-width: 70%;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			max-width: none;
 		}
 	}

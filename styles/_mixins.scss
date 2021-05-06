@@ -193,12 +193,9 @@
 	$height: 0 !default;
 
 	@if is-percentage($width){
-
 		$h: percentage(nth($ratio, 2) / nth($ratio, 1));
 		$height: ((strip-unit($h) * strip-unit($width)) / 100) * 1%;
-
 	} @else {
-
 		$height: (nth($ratio, 2) / nth($ratio, 1)) * $width;
 	}
 
@@ -214,8 +211,8 @@
 			position: absolute;
 			top: 0;
 			right: 0;
-			bottom: 0;
-			left: 0;
+			/*bottom: 0;
+			left: 0;*/
 			margin: auto;
 			@if $adjust == high {
 				height: 100%;

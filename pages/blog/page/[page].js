@@ -25,7 +25,7 @@ const Page = ({blog, articles, page, start, total}) => {
 		<Seo seo={blog.seo} />
 
 		<Grid container justify="center" spacing={0} className={styles.blog}>
-			<Grid item xs={10} lg={10}>
+			<Grid item xs={11} lg={10}>
 				<section>
 					<div className={styles.header}>
 						<Image image={blog.image} className={styles.logo} />

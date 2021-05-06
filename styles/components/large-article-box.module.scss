@@ -9,7 +9,7 @@
 	padding: 0;
 	margin: 4em 0;
 
-	@include respond-to(phone) {
+	@include respond-to(phone, tablet) {
 		grid-auto-flow: row;
 		grid-template-columns: auto;
 	}
@@ -21,6 +21,10 @@
 			@include aspect-ratio(2 3, 100%, true, high);
 			margin: 0;
 			background-color: rgba($ff-color-white, .1);
+
+			@include respond-to(tablet) {
+				@include aspect-ratio(4 3, 100%, true);
+			}
 		}
 
 		.textOverlay {
@@ -71,7 +75,7 @@
 			color: $ff-color-purple;
 			text-align: right;
 
-			@include respond-to(phone) {
+			@include respond-to(phone, tablet) {
 				padding: 1em 1.5em;
 				text-align: left;
 			}

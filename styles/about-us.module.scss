@@ -13,7 +13,7 @@
 	.header {
 		padding: 0 0 12em 0;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			padding: 0 0 6em 0;
 		}
 
@@ -32,7 +32,7 @@
 		align-items: start;
 		grid-template-columns: 1fr 1.5fr;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			grid-auto-flow: row;
 			grid-gap: 2em;
 			grid-template-columns: auto;
@@ -47,7 +47,7 @@
 		.body {
 			text-align: right;
 
-			@include respond-to(phone) {
+			@include respond-to(phone, tablet) {
 				text-align: left;
 			}
 
@@ -65,7 +65,7 @@
 		grid-template-columns: 1fr 1.5fr;
 		grid-template-areas: "title title" "desc visual";
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			padding: 5em 0 3em 0;
 			grid-gap: 2em;
 			grid-template-areas: "visual" "title" "desc";
@@ -75,7 +75,7 @@
 		&.alt {
 			grid-template-areas: "title title" "visual desc";
 
-			@include respond-to(phone) {
+			@include respond-to(phone, tablet) {
 				grid-template-areas: "title" "visual" "desc";
 			}
 		}
@@ -94,7 +94,12 @@
 
 			figure {
 				@include aspect-ratio(4 3, 100%, true, high);
+
+				@include respond-to(tablet) {
+					@include aspect-ratio(4 3, 100%, true);
+				}
 			}
+
 		}
 	}
 
@@ -113,20 +118,6 @@
 				text-align: center;
 				max-width: 70%;
 				margin: 0 auto;
-			}
-		}
-
-		.membersBubbles {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			flex-flow: wrap;
-			text-align: center;
-			gap: 3em;
-			flex-grow: 0;
-
-			&>div {
-				flex-basis: 35%;
 			}
 		}
 	}
