@@ -20,6 +20,10 @@
 			padding: 3em 0;
 		}
 
+		@include respond-to(tablet) {
+			width: 80%;
+		}
+
 		.caption {
 			font-size: 2em;
 			font-weight: 100;

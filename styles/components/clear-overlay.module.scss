@@ -37,7 +37,7 @@
 		grid-gap: 3em;
 		grid-template-columns: 1fr 2fr;
 
-		@include respond-to(phone, tablet) {
+		@include respond-to(phone) {
 			grid-template-columns: 1fr;
 			grid-template-rows: .5fr 1fr;
 			grid-gap: 1em;

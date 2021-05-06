@@ -32,6 +32,11 @@
 		grid-template-columns: repeat(3, 1fr);
 		margin: 5em 0;
 
+		@include respond-to(tablet) {
+			grid-auto-flow: row;
+			grid-template-columns: repeat(2, 1fr);
+		}
+
 		@include respond-to(phone) {
 			grid-auto-flow: row;
 			grid-template-columns: auto;

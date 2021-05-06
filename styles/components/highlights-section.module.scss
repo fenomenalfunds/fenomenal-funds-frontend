@@ -17,6 +17,10 @@
 	.content {
 		padding: 3em 0;
 
+		@include respond-to(tablet) {
+			padding: 3em 1em;
+		}
+
 		.stories {
 			width: 100%;
 			max-width: 1366px;

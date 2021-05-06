@@ -8,7 +8,7 @@
 	.article {
 		padding: 12em 0;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			padding: 6em 0;
 		}
 
@@ -17,7 +17,7 @@
 			max-width: 70%;
 			margin: 0 auto 12em auto;
 
-			@include respond-to(phone) {
+			@include respond-to(phone, tablet) {
 				max-width: none;
 				margin: 0 auto 6em auto;
 			}
@@ -43,7 +43,7 @@
 		align-items: center;
 		grid-template-columns: 1fr 1.5fr;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			grid-template-columns: 1fr;
 		}
 
@@ -56,6 +56,10 @@
 			@include respond-to(phone) {
 				grid-template-columns: 1fr;
 				grid-template-rows: auto;
+			}
+
+			@include respond-to(tablet) {
+				grid-template-columns: repeat(2, 1fr);
 			}
 		}
 	}
@@ -86,7 +90,10 @@
 
 			@include respond-to(phone) {
 				grid-template-columns: 1fr;
-				grid-template-rows: auto;
+			}
+
+			@include respond-to(tablet) {
+				grid-template-columns: repeat(2, 1fr);
 			}
 		}
 	}

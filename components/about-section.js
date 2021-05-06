@@ -8,7 +8,7 @@ import Image from "./image";
 const AboutSection = ({title, subtitle, image, teams, background = true}) => {
 	return <section className={`${styles.about} ${background ? '' : styles.alt}`}>
 		<Grid container justify="center">
-			<Grid item xs={11} lg={10}>
+			<Grid item xs={12} lg={10}>
 				<div className={styles.titleBox}>
 					<h2 className={styles.title}>{title}</h2>
 					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: subtitle}} />

@@ -19,7 +19,7 @@
 		padding: 5em;
 		font-weight: 400;
 
-		@include respond-to(phone) {
+		@include respond-to(phone, tablet) {
 			padding: 1em;
 		}
 
