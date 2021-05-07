@@ -7,7 +7,7 @@
 
 	.article {
 		color: $ff-color-purple;
-		padding: 8em 0 3em 0;
+		padding: 8em 0 0 0;
 
 		.image {
 			@include aspect-ratio(25 9, 100%, true);
@@ -81,14 +81,27 @@
 			}
 		}
 
-		.body {
-			padding: 2em 0;
+	}
 
-			img {
-				float: right;
-				width: 500px;
-				margin: 0 0 1em 1em;
-			}
+	.body {
+		padding: 0 0 5em 0;
+		color: $ff-color-purple;
+
+		img {
+			float: right;
+			width: 500px;
+			margin: 0 0 1em 1em;
+		}
+	}
+
+	.downloads {
+		Color: $ff-color-dark-salmon;
+		text-align: right;
+
+		a {
+			display: inline-block;
+			clear: left;
+			margin: .7em 0;
 		}
 	}
 
