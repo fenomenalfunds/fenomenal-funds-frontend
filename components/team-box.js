@@ -49,6 +49,7 @@ render() {
 
 			<div className={styles.members}>
 				{_.map(members, (member, key) => {
+					console.log('###### member #####', member);
 					return <TeamMember
 							key={key}
 							name={member.fullname}

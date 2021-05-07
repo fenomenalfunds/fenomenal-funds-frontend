@@ -28,6 +28,7 @@ const LearningsPage = ({learnings}) => {
 							return <ReportBox
 									key={report.id}
 									title={report.title}
+									slug={report.slug}
 									subtitle={report.subtitle}
 									image={report.image}
 							/>
