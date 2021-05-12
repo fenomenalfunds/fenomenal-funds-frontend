@@ -24,7 +24,6 @@ const ProfilePage = ({data}) => {
 	const [user, setUser] = useState(data);
 
 	function handleChange(e) {
-		console.log('target', e.target.value);
 		setUser({
 			...user,
 			[e.target.name]: e.target.value

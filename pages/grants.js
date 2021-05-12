@@ -30,20 +30,20 @@ const GrantDetail = ({grants, blog}) => {
 							<p className={styles.subtitle}>{grants.text[0] && grants.text[0].subtitle}</p>
 						</div>
 						<div className={styles.mosaic}>
-							{_.map(grants.articles, (art, a) => {
+							{_.map(grants.grant_articles, (art, a) => {
 								return <SquareArticleBox
 										key={a}
 										title={art.title}
 										subtitle={art.subtitle}
 										image={art.thumbnail}
-										link={`/blog/${art.slug}`}
+										link={`/grants/${art.slug}`}
 								/>
 							})}
 						</div>
 					</div>
 				</article>
 
-				{blog &&
+				{(blog && !_.isEmpty(blog.articles)) &&
 				<aside className={styles.blog}>
 					<div className={styles.titleBox}>
 						<h2 className={styles.title}>Blog</h2>
