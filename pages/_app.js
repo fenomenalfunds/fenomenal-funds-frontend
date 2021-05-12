@@ -10,6 +10,8 @@ import {useRouter} from "next/router";
 import Loading from "../components/loading";
 import NotFound from "../components/not-found";
 import Navigation from "../components/navigation";
+import _ from 'lodash';
+import {redirectUser} from "../lib/auth";
 
 export const GlobalContext = createContext({});
 
@@ -17,7 +19,7 @@ function MyApp({Component, pageProps}) {
 	const router = useRouter();
 	if (router.isFallback) return <Loading/>;
 
-	const {global, navigation} = pageProps;
+	const {global, navigation, session} = pageProps;
 	if (!global) return <NotFound/>;
 
 	return <>
@@ -29,7 +31,7 @@ function MyApp({Component, pageProps}) {
 		</Head>
 
 		<GlobalContext.Provider value={global}>
-			<Navigation items={navigation}/>
+			<Navigation items={navigation} user={session}/>
 			<Component {...pageProps} />
 		</GlobalContext.Provider>
 	</>
@@ -37,16 +39,27 @@ function MyApp({Component, pageProps}) {
 
 MyApp.getInitialProps = async (ctx) => {
 	const appProps = await App.getInitialProps(ctx);
+
 	const [global, navigation] = await Promise.all([
 		fetchAPI("/global"),
 		fetchAPI('/navigation/render/1?type=tree')
 	]);
 
+	let session = ctx.ctx.req ? ctx.ctx.req.cookies : {};
+	session = (!_.isEmpty(session) && !_.isEmpty(session.__react_session__)) ? JSON.parse(session.__react_session__) : {};
+
+	if(!session || !session.jwt) {
+		if(ctx.router.pathname === '/user/profile' || ctx.router.pathname === '/resources') {
+			redirectUser(ctx.ctx, '/login');
+		}
+	}
+
 	return {
 		...appProps,
 		pageProps: {
 			global,
-			navigation
+			navigation,
+			session
 		}
 	};
 }

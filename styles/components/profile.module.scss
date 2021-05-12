@@ -1,0 +1,54 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.profile {
+	padding: 5em 0;
+	background: $gradient-3;
+
+	.logout {
+		text-align: right;
+	}
+
+	.photo {
+		@include aspect-ratio(1 1, 100%, true);
+		border-radius: 100%;
+		background-color: rgba($ff-color-black, .3);
+	}
+
+	input, textarea {
+		color: $ff-color-white;
+	}
+
+	textarea {
+		min-height: 15em;
+		line-height: 1.4;
+		@include scrollbars(.8em, $ff-color-salmon, $ff-color-white);
+	}
+
+	.row {
+		margin: 1em 0;
+
+		&.half {
+			display: inline-block;
+			width: 47.5%;
+
+			&:nth-child(even) {
+				margin-left: 5%;
+			}
+		}
+
+		&.right {
+			text-align: right;
+		}
+
+		&>button {
+			text-align: center;
+			border: none;
+			padding: .5em 1em;
+			border-radius: .3em;
+			color: $ff-color-white;
+			background-color: $ff-color-red;
+		}
+	}
+}

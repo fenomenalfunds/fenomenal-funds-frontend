@@ -4,9 +4,9 @@ import styles from './../styles/components/navigation.module.scss';
 import {useState} from "react";
 import CloseButton from "./close-button";
 import {useRouter} from "next/router";
+import ProfilePhoto from "./profile-photo";
 
-const Navigation = ({items}) => {
-
+const Navigation = ({items, user}) => {
 	const [active, setActive] = useState(false);
 	const router = useRouter();
 
@@ -43,11 +43,24 @@ const Navigation = ({items}) => {
 				})}
 			</ul>
 			<ul className={styles.secNav}>
+				{!_.isEmpty(user) ?
 				<li>
-					<Link href={`/`}>
-						<a className={styles.btn}>Login</a>
+					<Link href={`/user/profile`}>
+						<a className={styles.btn}>
+							<p>{user.username}</p>
+							<figure>
+								<ProfilePhoto image={{url: user.photo}} />
+							</figure>
+						</a>
 					</Link>
-				</li>
+				</li> :
+				<li>
+					<Link href={`/login`}>
+						<a className={styles.btn}>
+							<span>Login</span>
+						</a>
+					</Link>
+				</li>}
 			</ul>
 		</div>
 	</nav>

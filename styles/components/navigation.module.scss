@@ -149,6 +149,7 @@
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
+		overflow: hidden;
 
 		@include respond-to(phone, tablet) {
 			padding: 1em;
@@ -156,15 +157,43 @@
 		}
 
 		.btn {
-			font-size: .8em;
-			text-transform: uppercase;
-			padding: .5em 2em;
-			border-radius: 3px;
-			border: 1px solid $ff-color-white;
+			display: grid;
+			grid-gap: .6em;
+			grid-auto-flow: column;
+			align-items: center;
+			border-radius: .3em;
+			cursor: pointer;
+			font-size: .8rem;
+			background-color: darken($ff-color-purple, 10%);
+
+			span {
+				font-size: .8em;
+				text-transform: uppercase;
+				padding: .5em 2em;
+				border-radius: 3px;
+				border: 1px solid $ff-color-white;
+			}
 
 			@include respond-to(phone, tablet) {
 				color: $ff-color-purple;
 				border-color: $ff-color-purple;
+			}
+
+			figure {
+				display: inline-block;
+				width: 3.5em;
+				height: 3.5em;
+				padding: .5em;
+
+				img {
+					border-radius: 100%;
+					overflow: hidden;
+				}
+			}
+
+			p {
+				margin: 0;
+				padding: .5em;
 			}
 		}
 	}
