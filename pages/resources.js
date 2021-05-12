@@ -1,5 +1,9 @@
+import Layout from "../layout/website-layout";
+
 const CareersPage = () => {
-	return <div>Coming soon</div>
+	return <Layout>
+		Resources
+	</Layout>
 }
 
 export default CareersPage;

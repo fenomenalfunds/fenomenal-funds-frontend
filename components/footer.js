@@ -61,7 +61,7 @@ const Footer = () => {
 					Subscribe to our newsletter
 				</label>
 				<div className={styles.fieldGroup}>
-					<input type="email" id="email" placeholder="E-mail address" />
+					<input type="email" id="newsletter" placeholder="E-mail address" />
 					<button type="button">Ok</button>
 				</div>
 			</div>
