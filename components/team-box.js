@@ -49,12 +49,11 @@ render() {
 
 			<div className={styles.members}>
 				{_.map(members, (member, key) => {
-					console.log('###### member #####', member);
 					return <TeamMember
 							key={key}
 							name={member.fullname}
-							slug={member.username}
-							position={member.position}
+							slug={member.slug}
+							position={member.job}
 							image={member.photo}
 							func={() => this.handleClick(member.fullname, member.position, member.about, member.photo)}
 					/>

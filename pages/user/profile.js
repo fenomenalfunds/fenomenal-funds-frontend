@@ -6,7 +6,7 @@ import {ReactSession as Session} from 'react-client-session';
 import ProfilePhoto from "../../components/profile-photo";
 import {useState} from "react";
 import {useRouter} from "next/router";
-import {redirectUser} from "../../lib/auth";
+
 
 const ProfilePage = ({data}) => {
 	const router = useRouter();

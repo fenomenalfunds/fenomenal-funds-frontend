@@ -4,7 +4,6 @@ import CloseButton from "./close-button";
 import ProfilePhoto from "./profile-photo";
 
 const ClearOverlay = ({title, subtitle, text, image, func, open}) => {
-	console.log('&&&&& open &&&&&', open);
 	return <div className={`${styles.clearOverlay} ${open ? styles.open : ''}`}>
 		<div className={styles.content}>
 			<div className={styles.image}>
