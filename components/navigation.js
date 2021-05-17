@@ -43,13 +43,13 @@ const Navigation = ({items, user}) => {
 				})}
 			</ul>
 			<ul className={styles.secNav}>
-				{!_.isEmpty(user) ?
+				{(!_.isEmpty(user) && !_.isEmpty(user.photo.url)) ?
 				<li>
 					<Link href={`/user/profile`}>
 						<a className={styles.btn}>
-							<p>{user.username}</p>
+							<p>{user.fullname}</p>
 							<figure>
-								<ProfilePhoto image={{url: user.photo}} />
+								<ProfilePhoto image={user.photo} />
 							</figure>
 						</a>
 					</Link>

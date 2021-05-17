@@ -12,6 +12,7 @@ import NotFound from "../components/not-found";
 import Navigation from "../components/navigation";
 import _ from 'lodash';
 import {redirectUser} from "../lib/auth";
+import {parseCookies} from "nookies";
 
 export const GlobalContext = createContext({});
 
@@ -45,10 +46,9 @@ MyApp.getInitialProps = async (ctx) => {
 		fetchAPI('/navigation/render/1?type=tree')
 	]);
 
-	let session = ctx.ctx.req ? ctx.ctx.req.cookies : {};
-	session = (!_.isEmpty(session) && !_.isEmpty(session.__react_session__)) ? JSON.parse(session.__react_session__) : {};
+	let cookies = parseCookies(ctx.ctx);
 
-	if(!session || !session.jwt) {
+	if(!cookies.jwt) {
 		if(ctx.router.pathname === '/user/profile' || ctx.router.pathname === '/resources') {
 			redirectUser(ctx.ctx, '/login');
 		}
@@ -59,7 +59,10 @@ MyApp.getInitialProps = async (ctx) => {
 		pageProps: {
 			global,
 			navigation,
-			session
+			session: {
+				fullname: cookies.fullname || '',
+				photo: {url: cookies.photo} || {}
+			}
 		}
 	};
 }

@@ -1,16 +1,14 @@
-import _ from 'lodash';
 import styles from './../styles/components/login.module.scss';
 import {useState} from 'react';
-import {useRouter} from 'next/router';
+import Router from 'next/router';
 import Layout from "../layout/website-layout";
 import Grid from "@material-ui/core/Grid";
 import {userLogin} from "../lib/auth";
-import {ReactSession as Session} from 'react-client-session';
+import {destroyCookie, parseCookies, setCookie} from "nookies";
 
 function Login() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const router = useRouter();
 
 	async function handleLogin() {
 		const loginInfo = {
@@ -21,14 +19,28 @@ function Login() {
 		const loginResponse = await userLogin(loginInfo);
 
 		if(loginResponse.jwt) {
-			Session.setStoreType('cookie');
-			Session.set('jwt', loginResponse.jwt);
-			Session.set('id', loginResponse.user.id);
-			Session.set('username', loginResponse.user.username);
-			Session.set('email', loginResponse.user.email);
-			Session.set('photo', loginResponse.user.photo.url);
+			setCookie(null, 'jwt', loginResponse.jwt, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: '/',
+			});
+			setCookie(null, 'id', loginResponse.user.id, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: '/',
+			});
+			setCookie(null, 'fullname', loginResponse.user.fullname, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: '/',
+			});
+			setCookie(null, 'email', loginResponse.user.email, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: '/',
+			});
+			setCookie(null, 'photo', loginResponse.user.photo.url, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: '/',
+			});
 
-			router.push('/user/profile');
+			Router.push('/user/profile');
 		} else {
 			console.error('Failed to login ', loginResponse);
 		}
@@ -54,6 +66,18 @@ function Login() {
 			</Grid>
 		</Grid>
 	</Layout>;
+}
+
+export async function getServeSideProps(ctx) {
+	console.log('COOKIE IN LOGIN', parseCookies(ctx), ctx);
+	destroyCookie(ctx, 'jwt');
+	destroyCookie(ctx, 'id');
+	destroyCookie(ctx, 'fullname');
+	destroyCookie(ctx, 'photo');
+
+	return {
+		props: {}
+	}
 }
 
 export default Login;
