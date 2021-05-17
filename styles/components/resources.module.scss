@@ -1,0 +1,12 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.resources {
+	background: $gradient-2;
+
+	.header {
+		padding: 10em 0;
+		text-align: center;
+	}
+}

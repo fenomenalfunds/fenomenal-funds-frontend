@@ -6,6 +6,7 @@ import {ReactSession as Session} from 'react-client-session';
 import ProfilePhoto from "../../components/profile-photo";
 import {useState} from "react";
 import {useRouter} from "next/router";
+import {parseCookies, destroyCookie} from "nookies";
 
 
 const ProfilePage = ({data}) => {
@@ -13,10 +14,10 @@ const ProfilePage = ({data}) => {
 
 	function handleLogout() {
 		console.log('logout');
-		Session.remove('username');
-		Session.remove('email');
-		Session.remove('photo');
-		Session.remove('id');
+		destroyCookie(null, 'username');
+		destroyCookie(null, 'email');
+		destroyCookie(null, 'photo');
+		destroyCookie(null, 'id');
 		console.log('Logged out');
 		router.push('/login');
 	}
@@ -86,9 +87,11 @@ const ProfilePage = ({data}) => {
 	</Layout>
 }
 
-export async function getServerSideProps({req}) {
-	const cookie = JSON.parse(req.cookies.__react_session__);
-	const data = await fetchProfileContent(cookie.jwt, cookie.id);
+export async function getServerSideProps(ctx) {
+	const cookies = parseCookies(ctx);
+	const data = await fetchProfileContent(cookies.jwt, cookies.id);
+
+	if(!data) return {notFound:true}
 
 	return {
 		props: {
