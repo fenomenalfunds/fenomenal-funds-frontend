@@ -25,7 +25,7 @@ const CareersPage = ({career, positions}) => {
 						<h1 className={styles.title}>Positions</h1>
 
 						<div className={styles.positionsGrid}>
-							{_.map(positions, (position, p) => {
+							{!_.isEmpty(positions) ? _.map(positions, (position, p) => {
 								return <PositionBox
 									key={p}
 									category={position.job_category && position.job_category.title}
@@ -33,7 +33,7 @@ const CareersPage = ({career, positions}) => {
 									subtitle={position.short_description}
 									publisher={position.publisher}
 								/>
-							})}
+							}) : <p>There are no positions available at the moment.</p>}
 						</div>
 					</section>
 				</article>

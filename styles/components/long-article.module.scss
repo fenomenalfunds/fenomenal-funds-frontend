@@ -9,65 +9,44 @@
 	.image {
 		@include aspect-ratio(16 9, 100%, true);
 		margin-bottom: 2em;
-
-		&:after {
-			content: ' ';
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			backdrop-filter: brightness(.6);
-		}
 	}
 
 	.caption {
+		padding: 0 3em;
+
+		@include respond-to(phone) {
+			padding: 0 1em;
+		}
 
 		.title {
 			font-weight: bold;
-			position: absolute;
-			top: -4rem;
-			right: 2rem;
 			font-size: 2.4em;
-			width: 100%;
-			max-width: 25rem;
-			text-align: right;
 
 			@include respond-to(phone) {
-				position: relative;
-				top: auto;
-				right: auto;
-				max-width: none;
-				text-align: left;
 				padding: 0 1rem;
 			}
 		}
 
 		.subtitle {
-			position: absolute;
-			bottom: 1em;
-			right: 2em;
-			max-width: 22em;
-			text-align: right;
-
-			@include respond-to(phone) {
-				position: relative;
-				bottom: auto;
-				right: auto;
-				max-width: none;
-			}
 		}
 	}
 
 	.body {
-		columns: 2;
-		column-gap: 3em;
-		padding: 3em;
+		max-width: 80%;
+		margin-left: 20%;
+		padding: 1em 3em 3em 3em;
+		text-align: right;
+
+		@include respond-to(tablet) {
+			max-width: 90%;
+			margin-left: 10%;
+		}
 
 		@include respond-to(phone) {
-			columns: 1;
+			max-width: none;
 			padding: 1em;
+			margin: 0;
+			text-align: left;
 		}
 
 		.subtitle {
@@ -88,6 +67,7 @@
 					display: block;
 					bottom: 0;
 					left: 0;
+					min-width: 30%;
 					width: 100%;
 					padding: .5em;
 					font-size: .8em;

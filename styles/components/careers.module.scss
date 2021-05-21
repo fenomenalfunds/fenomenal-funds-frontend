@@ -30,6 +30,10 @@
 			grid-template-columns: repeat(2, 1fr);
 			grid-template-rows: auto;
 
+			p {
+				text-align: center;
+			}
+
 			@include respond-to(phone, tablet) {
 				grid-template-columns: 1fr;
 			}
