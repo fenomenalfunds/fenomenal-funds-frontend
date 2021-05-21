@@ -13,6 +13,7 @@ import Image from "../components/image";
 import ShortArticle from "../components/short-article";
 import LongArticle from "../components/long-article";
 import CloudVideo from "../components/video";
+import ReactPlayer from "react-player";
 
 class OurApproachPage extends Component {
 	constructor(props) {
@@ -63,26 +64,26 @@ class OurApproachPage extends Component {
 				<Grid container justify="center" spacing={0}>
 					<Grid item xs={12} lg={12}>
 						<article>
+							<div className={`${styles.header}`}>
+								<div className={styles.title} dangerouslySetInnerHTML={{__html: approach.tagline}} />
+							</div>
+
 							{approach.video &&
 							<section className={styles.videoHeader}>
 								<div className={styles.video}>
 									{approach.video ?
-											<CloudVideo
-													playing={this.state.play}
-													forwardRef={this.ref}
-													video={this.props.approach.video}
+											<ReactPlayer
+													url={approach.video.url}
+													light={approach.cover.url}
+													width={`100%`}
+													height={`100%`}
+													controls={true}
+													playIcon={<FontAwesomeIcon icon={faPlay} aria-label="Play button"/>}
 											/> :
 											<Image image={approach.cover}/>}
 								</div>
 
-								<div className={`${styles.caption} ${this.state.play ? styles.nocaption : null}`}>
-									<div className={styles.text}>
-										<h1 className={styles.title}>{approach.title}</h1>
-										<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: approach.subtitle}}/>
-									</div>
-								</div>
-
-								{(approach.video && !this.state.play) &&
+								{/*(approach.video && !this.state.play) &&
 								<button type="button" className={styles.playButton} onClick={this.handlePlay}>
 									<FontAwesomeIcon icon={faPlay} aria-label="Play button"/>
 								</button>}
@@ -100,7 +101,7 @@ class OurApproachPage extends Component {
 								{(approach.video && (this.state.play && !this.state.muted)) &&
 								<button type="button" className={styles.mutedButton} onClick={() => this.setState({muted: true})}>
 									<FontAwesomeIcon icon={faVolumeUp} aria-label="Volume On button"/>
-								</button>}
+								</button>*/}
 							</section>}
 
 							{approach.section &&
@@ -134,6 +135,7 @@ export default OurApproachPage;
 export async function getStaticProps(preview = {}) {
 	const data = await fetchApproachContent(preview);
 
+	console.log(data);
 	return {
 		props: {
 			...data

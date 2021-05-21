@@ -69,7 +69,6 @@ function Login() {
 }
 
 export async function getServeSideProps(ctx) {
-	console.log('COOKIE IN LOGIN', parseCookies(ctx), ctx);
 	destroyCookie(ctx, 'jwt');
 	destroyCookie(ctx, 'id');
 	destroyCookie(ctx, 'fullname');
