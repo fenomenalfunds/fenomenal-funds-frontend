@@ -45,7 +45,7 @@ const ReportDetail = ({report}) => {
 				<div className={styles.body} dangerouslySetInnerHTML={{__html: report.body}}/>
 			</Grid>
 			<Grid item xs={11} lg={2}>
-				<div className={styles.downloads}>
+				{!_.isEmpty(report.documents) ? <div className={styles.downloads}>
 					Downloadable resources
 
 					{_.map(report.documents, (document, d) => {
@@ -55,7 +55,7 @@ const ReportDetail = ({report}) => {
 							</a>
 						</p>
 					})}
-				</div>
+				</div> : ' '}
 			</Grid>
 		</Grid>
 	</Layout>
