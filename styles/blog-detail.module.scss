@@ -92,6 +92,11 @@
 			width: 500px;
 			margin: 0 0 1em 1em;
 		}
+
+		a {
+			color: $ff-color-purple !important;
+			text-decoration: underline;
+		}
 	}
 
 	.downloads {
