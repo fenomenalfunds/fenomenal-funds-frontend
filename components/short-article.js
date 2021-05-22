@@ -11,7 +11,7 @@ const ShortArticle = ({image, title, subtitle, body}) => {
 		<div className={styles.caption}>
 			<div className={styles.text}>
 				<h1 className={styles.title}>{title}</h1>
-				<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: body}} />
+				<div className={styles.body} dangerouslySetInnerHTML={{__html: body}} />
 			</div>
 		</div>
 

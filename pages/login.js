@@ -1,5 +1,6 @@
 import styles from './../styles/components/login.module.scss';
 import {useState} from 'react';
+import _ from 'lodash';
 import Router from 'next/router';
 import Layout from "../layout/website-layout";
 import Grid from "@material-ui/core/Grid";
@@ -9,6 +10,7 @@ import {destroyCookie, parseCookies, setCookie} from "nookies";
 function Login() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const [message, setMessage] = useState({status: '', text: []});
 
 	async function handleLogin() {
 		const loginInfo = {
@@ -40,9 +42,18 @@ function Login() {
 				path: '/',
 			});
 
+			setMessage({
+				status: styles.success,
+				text: [{message: "Login successful"}]
+			})
+
 			Router.push('/user/profile');
 		} else {
 			console.error('Failed to login ', loginResponse);
+			setMessage({
+				status: styles.error,
+				text: loginResponse.message[0].messages
+			})
 		}
 
 	}
@@ -62,6 +73,11 @@ function Login() {
 						</label>
 						<button type="button" className="btn red" onClick={() => handleLogin()}>Login</button>
 					</form>
+					{!_.isEmpty(message.text) && <div className={`${styles.feedback} ${message.status}`}>
+						{_.map(message.text, (msg, m) => {
+							return <p key={m}>{msg.message}</p>
+						})}
+					</div>}
 				</div>
 			</Grid>
 		</Grid>

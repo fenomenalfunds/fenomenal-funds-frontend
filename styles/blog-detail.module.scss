@@ -9,12 +9,16 @@
 		color: $ff-color-purple;
 		padding: 8em 0 0 0;
 
+		@include respond-to(phone) {
+			padding-top: 3em;
+		}
+
 		.image {
 			@include aspect-ratio(25 9, 100%, true);
 			margin: 0 0 3em 0;
 
 			@include respond-to(phone, tablet) {
-				@include aspect-ratio(16 9, 100%, true);
+				@include aspect-ratio(4 3, 100%, true, high);
 			}
 		}
 

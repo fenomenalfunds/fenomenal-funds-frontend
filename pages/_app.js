@@ -46,8 +46,6 @@ MyApp.getInitialProps = async (ctx) => {
 		fetchAPI('/navigation/render/1?type=tree')
 	]);
 
-	console.log('NAVIGATION  ', navigation);
-
 	let cookies = parseCookies(ctx.ctx);
 
 	if(!cookies.jwt) {
