@@ -4,9 +4,10 @@ import Image from "./image";
 
 const LongArticle = ({title, subtitle, body, image}) => {
 	return <article className={styles.longArticle}>
+		{(image && image.url) &&
 		<figure className={styles.image}>
 			<Image image={image} />
-		</figure>
+		</figure>}
 
 		<div className={styles.caption}>
 			<h1 className={styles.title}>{title}</h1>

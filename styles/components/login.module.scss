@@ -22,4 +22,23 @@
 			}
 		}
 	}
+
+	.feedback {
+		margin: 1em 0;
+		padding: .5em 1em;
+		border-radius: .5em;
+		background-color: rgba($ff-color-white, .8);
+
+		&.error {
+			color: $ff-color-red;
+		}
+
+		&.success {
+			color: $ff-color-green;
+		}
+
+		p {
+			margin: 0;
+		}
+	}
 }
