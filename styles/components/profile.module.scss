@@ -11,7 +11,7 @@
 	}
 
 	.photo {
-		@include aspect-ratio(1 1, 100%, true);
+		@include aspect-ratio(1 1, 100%, true, high);
 		border-radius: 100%;
 		background-color: rgba($ff-color-black, .3);
 	}

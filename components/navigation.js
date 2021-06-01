@@ -4,6 +4,7 @@ import styles from './../styles/components/navigation.module.scss';
 import {useState} from "react";
 import CloseButton from "./close-button";
 import ProfilePhoto from "./profile-photo";
+import Image from "./image";
 
 const Navigation = ({items, user}) => {
 	const [active, setActive] = useState(false);
@@ -24,11 +25,24 @@ const Navigation = ({items, user}) => {
 				</li>
 				{_.map(items, (item, key) => {
 					return item.type === 'INTERNAL' ?
-							<li key={key}>
-								<Link href={item.path}>
-									<a>{item.title}</a>
-								</Link>
-							</li>
+							item.path === '/resources' ?
+										user.fullname ? <li key={key}>
+													<a onClick={() => {
+														router.push(item.path)
+														setActive(false);
+													}}>
+														{item.title}
+													</a>
+												</li> : ''
+									:
+									<li key={key}>
+										<a onClick={() => {
+											router.push(item.path)
+											setActive(false);
+										}}>
+											{item.title}
+										</a>
+									</li>
 							:
 							<li key={key}>
 								<a href={item.path} target="_blank" rel="noreferrer">
@@ -38,13 +52,15 @@ const Navigation = ({items, user}) => {
 				})}
 			</ul>
 			<ul className={styles.secNav}>
-				{(!_.isEmpty(user) && !_.isEmpty(user.photo.url)) ?
+				{!_.isEmpty(user.fullname) ?
 				<li>
 					<Link href={`/user/profile`}>
-						<a className={styles.btn}>
+						<a className={`${styles.btn} ${styles.profile}`}>
 							<p>{user.fullname}</p>
 							<figure>
-								<ProfilePhoto image={user.photo} />
+								{!user.photo.url ? <img src="/FF_2021_ImagePlaceholder_510x288.jpg" alt={user.fullname}/> :
+										<ProfilePhoto image={user.photo}/>
+								}
 							</figure>
 						</a>
 					</Link>

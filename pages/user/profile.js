@@ -39,7 +39,10 @@ const ProfilePage = ({data}) => {
 			<Grid container spacing={5} justify="center">
 				<Grid item xs={11} lg={2}>
 					<figure className={styles.photo}>
-						<ProfilePhoto image={user.photo} />
+						{user.photo ?
+								<ProfilePhoto image={user.photo}/> :
+								<img src="/FF_2021_ImagePlaceholder_510x288.jpg" alt={user.fullname}/>
+						}
 					</figure>
 				</Grid>
 				<Grid item xs={11} lg={6}>
