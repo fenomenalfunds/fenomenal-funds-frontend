@@ -1,10 +1,12 @@
 import styles from './../styles/components/resources.module.scss';
+import _ from 'lodash';
 import Layout from "../layout/website-layout";
 import {parseCookies} from "nookies";
 import {fetchResourcesContent} from "../lib/api";
 import Seo from "../components/seo";
 import NotFound from "../components/not-found";
 import Grid from "@material-ui/core/Grid";
+import ResourceBox from "../components/resource-box";
 
 const CareersPage = ({content, resources}) => {
 	if(!content) return <NotFound />;
@@ -16,9 +18,22 @@ const CareersPage = ({content, resources}) => {
 			<Grid item xs={11} lg={10}>
 				<div className={styles.header}>
 					<h1 className={styles.title}>{content.title}</h1>
-					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: content.about}} />
+					<div className={styles.subtitle} dangerouslySetInnerHTML={{__html: content.subtitle}} />
 				</div>
 			</Grid>
+		</Grid>
+		<Grid item xs={11} lg={8}>
+			<div className={styles.resourcesList}>
+				{_.map(resources, (item, i) => {
+					return <ResourceBox
+							key={i}
+							title={item.title}
+							subtitle={item.subtitle}
+							image={item.thumbnail}
+							slug={item.slug}
+					/>
+				})}
+			</div>
 		</Grid>
 	</Layout>
 }
