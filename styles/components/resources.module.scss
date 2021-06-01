@@ -9,4 +9,17 @@
 		padding: 10em 0;
 		text-align: center;
 	}
+
+}
+
+.resourcesList {
+	display: grid;
+	grid-gap: 5em;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: auto;
+	margin-bottom: 5em;
+
+	@include respond-to(phone) {
+		grid-template-columns: 1fr;
+	}
 }

@@ -1,0 +1,13 @@
+@import "styles/variables";
+@import "styles/colors";
+@import "styles/mixins";
+
+.resourceBox {
+	.image {
+		@include aspect-ratio(4 3, 100%, true);
+	}
+
+	.details {
+
+	}
+}
