@@ -9,7 +9,6 @@ const TeamMember = ({name, slug, position, image, func}) => {
 		</figure>
 		<p className={styles.caption}>
 			<span>{name}</span>
-			{position && <><br/> {position}</>}
 		</p>
 	</div>
 }

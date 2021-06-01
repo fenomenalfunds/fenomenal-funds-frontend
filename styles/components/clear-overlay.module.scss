@@ -11,7 +11,7 @@
 	min-height: 20em;
 	width: 100%;
 	transform: translateY(-50%);
-	background-color: rgba($ff-color-purple, .8);
+	background-color: rgba($ff-color-purple, .9);
 	z-index: 200;
 
 	@include respond-to(phone, tablet) {

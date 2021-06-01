@@ -25,7 +25,7 @@ const AboutSection = ({title, subtitle, image, teams, background = true}) => {
 						return<TeamBox
 								key={k}
 								title={team.title}
-								members={team.users}
+								members={team.team_members}
 								variant={(k !== 0)}
 							/>
 					})}

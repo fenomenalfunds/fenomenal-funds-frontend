@@ -3,12 +3,10 @@ import Link from 'next/link';
 import styles from './../styles/components/navigation.module.scss';
 import {useState} from "react";
 import CloseButton from "./close-button";
-import {useRouter} from "next/router";
 import ProfilePhoto from "./profile-photo";
 
 const Navigation = ({items, user}) => {
 	const [active, setActive] = useState(false);
-	const router = useRouter();
 
 	return <nav className={active ? styles.navigationActive : styles.navigation}>
 		<div className={styles.navContainer}>
@@ -27,12 +25,9 @@ const Navigation = ({items, user}) => {
 				{_.map(items, (item, key) => {
 					return item.type === 'INTERNAL' ?
 							<li key={key}>
-								<a onClick={() => {
-									router.push(item.path)
-									setActive(false);
-								}}>
-									{item.title}
-								</a>
+								<Link href={item.path}>
+									<a>{item.title}</a>
+								</Link>
 							</li>
 							:
 							<li key={key}>

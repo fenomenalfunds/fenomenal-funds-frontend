@@ -67,6 +67,7 @@
 }
 
 .teamMember {
+	cursor: pointer;
 
 	@include respond-to(phone) {
 		//flex-basis: 48%;

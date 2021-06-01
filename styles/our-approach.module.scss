@@ -20,7 +20,6 @@
 		.title {
 			font-size: 2.7em;
 			font-weight: bold;
-			max-width: 70%;
 
 			@include respond-to(phone, tablet) {
 				max-width: none;
