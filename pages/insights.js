@@ -30,7 +30,7 @@ const LearningsPage = ({learnings}) => {
 									title={report.title}
 									slug={report.slug}
 									subtitle={report.subtitle}
-									image={report.image}
+									image={report.thumbnail}
 							/>
 						})}
 					</div>}

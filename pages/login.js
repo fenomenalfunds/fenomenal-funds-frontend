@@ -37,10 +37,12 @@ function Login() {
 				maxAge: 30 * 24 * 60 * 60,
 				path: '/',
 			});
-			setCookie(null, 'photo', loginResponse.user.photo.url, {
-				maxAge: 30 * 24 * 60 * 60,
-				path: '/',
-			});
+
+			!_.isEmpty(loginResponse.user.photo) &&
+				setCookie(null, 'photo', loginResponse.user.photo.url, {
+					maxAge: 30 * 24 * 60 * 60,
+					path: '/',
+				});
 
 			setMessage({
 				status: styles.success,

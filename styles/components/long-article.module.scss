@@ -32,10 +32,8 @@
 	}
 
 	.body {
-		max-width: 80%;
-		margin-left: 20%;
+		margin: 0 auto;
 		padding: 1em 3em 3em 3em;
-		text-align: right;
 
 		@include respond-to(tablet) {
 			max-width: 90%;
