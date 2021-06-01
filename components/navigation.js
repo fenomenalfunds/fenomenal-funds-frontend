@@ -4,9 +4,10 @@ import styles from './../styles/components/navigation.module.scss';
 import {useState} from "react";
 import CloseButton from "./close-button";
 import ProfilePhoto from "./profile-photo";
-import Image from "./image";
+import {useRouter} from "next/router";
 
 const Navigation = ({items, user}) => {
+	const router = useRouter();
 	const [active, setActive] = useState(false);
 
 	return <nav className={active ? styles.navigationActive : styles.navigation}>
