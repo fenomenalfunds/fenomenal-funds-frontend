@@ -11,7 +11,7 @@
 	}
 
 	.image {
-		@include aspect-ratio(1 1, 100%, true, high);
+		@include aspect-ratio(1 1.5, 100%, true, high);
 	}
 
 	.content {

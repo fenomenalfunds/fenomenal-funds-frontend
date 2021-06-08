@@ -2,7 +2,6 @@ import styles from './../../styles/components/profile.module.scss';
 import Layout from "../../layout/website-layout";
 import Grid from "@material-ui/core/Grid";
 import {fetchProfileContent} from "../../lib/api";
-import {ReactSession as Session} from 'react-client-session';
 import ProfilePhoto from "../../components/profile-photo";
 import {useState} from "react";
 import {useRouter} from "next/router";
@@ -14,6 +13,7 @@ const ProfilePage = ({data}) => {
 
 	function handleLogout() {
 		console.log('logout');
+		destroyCookie(null, 'jwt');
 		destroyCookie(null, 'username');
 		destroyCookie(null, 'email');
 		destroyCookie(null, 'photo');
@@ -33,7 +33,7 @@ const ProfilePage = ({data}) => {
 
 	return <Layout>
 		<Grid container justify="center" spacing={5} className={styles.profile}>
-			<Grid item xs={11} lg={8} className={styles.logout}>
+			<Grid item xs={11} lg={6} className={styles.logout}>
 				<button type="button" className="btn red" onClick={() => handleLogout()}>LogOut</button>
 			</Grid>
 			<Grid container spacing={5} justify="center">
@@ -45,7 +45,7 @@ const ProfilePage = ({data}) => {
 						}
 					</figure>
 				</Grid>
-				<Grid item xs={11} lg={6}>
+				<Grid item xs={11} lg={4}>
 					<form onSubmit={() => handleSubmit}>
 						<div className={`${styles.row} ${styles.half}`}>
 							<label htmlFor="username">
@@ -61,17 +61,10 @@ const ProfilePage = ({data}) => {
 							</label>
 						</div>
 
-						<div className={styles.row}>
+						<div className={`${styles.row} ${styles.half}`}>
 							<label htmlFor="email">
 								Email
 								<input type="email" id="email" name="email" value={user.email} placeholder="name@domain.com" onChange={handleChange} />
-							</label>
-						</div>
-
-						<div className={styles.row}>
-							<label htmlFor="about">
-								About
-								<textarea name="about" id="about" onChange={handleChange} value={user.about} />
 							</label>
 						</div>
 
@@ -80,7 +73,7 @@ const ProfilePage = ({data}) => {
 						</div>
 
 						<div className={`${styles.row} ${styles.right} ${styles.half}`}>
-							<button type="button" className={styles.submit}>Apply</button>
+							<button type="button" className={styles.submit}>Save</button>
 						</div>
 
 					</form>
