@@ -3,11 +3,15 @@ import React, {Component} from "react";
 import Slider from 'react-slick';
 import _ from 'lodash';
 import StoryBox from "./story-box";
+import SocialStories from "./social-stories";
 
 class StoriesSlider extends Component{
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			play: false
+		}
 		this.next = this.next.bind(this);
 		this.prev = this.prev.bind(this);
 	}
@@ -65,6 +69,7 @@ class StoriesSlider extends Component{
 						})}
 					</div>
 			}
+			<SocialStories playlist={this.props.slides} play={this.state.play} />
 		</div>
 	}
 }
