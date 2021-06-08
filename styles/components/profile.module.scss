@@ -33,16 +33,17 @@
 			display: inline-block;
 			width: 47.5%;
 
-			&:nth-child(even) {
+			&.right {
 				margin-left: 5%;
 			}
 
-			&:nth-child(odd) {
+			&.left {
+				text-align: left;
 				padding-right: 5%;
 			}
 		}
 
-		&.right {
+		&.rightAlign {
 			text-align: right;
 		}
 

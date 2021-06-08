@@ -47,32 +47,42 @@ const ProfilePage = ({data}) => {
 				</Grid>
 				<Grid item xs={11} lg={4}>
 					<form onSubmit={() => handleSubmit}>
-						<div className={`${styles.row} ${styles.half}`}>
+						<div className={`${styles.row} ${styles.half} ${styles.left}`}>
 							<label htmlFor="username">
 								Username
 								<input type="text" id="username" name="username" value={user.username} placeholder="username" onChange={handleChange} />
 							</label>
 						</div>
 
-						<div className={`${styles.row} ${styles.half}`}>
+						<div className={`${styles.row} ${styles.half} ${styles.right}`}>
 							<label htmlFor="fullname">
 								Full Name
 								<input type="text" id="fullname" name="fullname" value={user.fullname} placeholder="Name Last name" onChange={handleChange} />
 							</label>
 						</div>
 
-						<div className={`${styles.row} ${styles.half}`}>
+						<div className={`${styles.row}`}>
 							<label htmlFor="email">
 								Email
 								<input type="email" id="email" name="email" value={user.email} placeholder="name@domain.com" onChange={handleChange} />
 							</label>
 						</div>
 
-						<div className={`${styles.row} ${styles.half}`}>
-							<a href="/user/password" className={styles.password}>Change password</a>
+						<div className={`${styles.row} ${styles.half} ${styles.left}`}>
+							<label htmlFor="passwd">
+								Password
+								<input type="password" name="passwd" id="passwd" placeholder="Password" onChange={handleChange} value={user.password} />
+							</label>
 						</div>
 
-						<div className={`${styles.row} ${styles.right} ${styles.half}`}>
+						<div className={`${styles.row} ${styles.half} ${styles.right}`}>
+							<label htmlFor="passwd2">
+								Confirm password
+								<input type="password" name="passwd2" id="passwd2" placeholder="Password" onChange={handleChange} value={user.password} />
+							</label>
+						</div>
+
+						<div className={`${styles.row} ${styles.rightAlign}`}>
 							<button type="button" className={styles.submit}>Save</button>
 						</div>
 
