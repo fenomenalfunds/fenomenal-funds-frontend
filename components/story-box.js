@@ -1,8 +1,8 @@
 import styles from './../styles/components/story-box.module.scss';
 import Image from "./image";
 
-const StoryBox = ({title, subtitle, cover, video}) => {
-	return <div className={styles.storyBox}>
+const StoryBox = ({title, subtitle, cover, video, click}) => {
+	return <div className={styles.storyBox} onClick={click}>
 		<figure className={styles.cover}>
 			<Image image={cover} />
 		</figure>

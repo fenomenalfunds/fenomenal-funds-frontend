@@ -5,7 +5,7 @@ import Router from 'next/router';
 import Layout from "../layout/website-layout";
 import Grid from "@material-ui/core/Grid";
 import {userLogin} from "../lib/auth";
-import {destroyCookie, parseCookies, setCookie} from "nookies";
+import Session from "react-session-api";
 
 function Login() {
 	const [username, setUsername] = useState('');
@@ -21,35 +21,26 @@ function Login() {
 		const loginResponse = await userLogin(loginInfo);
 
 		if(loginResponse.jwt) {
-			setCookie(null, 'jwt', loginResponse.jwt, {
-				maxAge: 30 * 24 * 60 * 60,
-				path: '/',
-			});
-			setCookie(null, 'id', loginResponse.user.id, {
-				maxAge: 30 * 24 * 60 * 60,
-				path: '/',
-			});
-			setCookie(null, 'fullname', loginResponse.user.fullname, {
-				maxAge: 30 * 24 * 60 * 60,
-				path: '/',
-			});
-			setCookie(null, 'email', loginResponse.user.email, {
-				maxAge: 30 * 24 * 60 * 60,
-				path: '/',
+			Session.set('ff-session', {
+				jwt: loginResponse.jwt,
+				...loginResponse
 			});
 
-			!_.isEmpty(loginResponse.user.photo) &&
-				setCookie(null, 'photo', loginResponse.user.photo.url, {
-					maxAge: 30 * 24 * 60 * 60,
-					path: '/',
+			Session.onSet((data) => {
+				setMessage({
+					status: styles.success,
+					text: [{message: `Welcome ${data}`}]
 				});
 
-			setMessage({
+				Router.push('/user/profile');
+			});
+
+			/*setMessage({
 				status: styles.success,
 				text: [{message: "Login successful"}]
 			})
 
-			Router.push('/user/profile');
+			Router.push('/user/profile');*/
 		} else {
 			console.error('Failed to login ', loginResponse);
 			setMessage({
@@ -87,10 +78,7 @@ function Login() {
 }
 
 export async function getServeSideProps(ctx) {
-	destroyCookie(ctx, 'jwt');
-	destroyCookie(ctx, 'id');
-	destroyCookie(ctx, 'fullname');
-	destroyCookie(ctx, 'photo');
+	Session.clear();
 
 	return {
 		props: {}

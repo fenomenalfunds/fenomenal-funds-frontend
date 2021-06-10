@@ -7,6 +7,7 @@ import ProfilePhoto from "./profile-photo";
 import {useRouter} from "next/router";
 
 const Navigation = ({items, user}) => {
+
 	const router = useRouter();
 	const [active, setActive] = useState(false);
 
@@ -27,7 +28,7 @@ const Navigation = ({items, user}) => {
 				{_.map(items, (item, key) => {
 					return item.type === 'INTERNAL' ?
 							item.path === '/resources' ?
-										user.fullname ? <li key={key}>
+										user ? <li key={key}>
 													<a onClick={() => {
 														router.push(item.path)
 														setActive(false);
@@ -53,7 +54,7 @@ const Navigation = ({items, user}) => {
 				})}
 			</ul>
 			<ul className={styles.secNav}>
-				{!_.isEmpty(user.fullname) ?
+				{!_.isEmpty(user) ?
 				<li>
 					<Link href={`/user/profile`}>
 						<a className={`${styles.btn} ${styles.profile}`}>
