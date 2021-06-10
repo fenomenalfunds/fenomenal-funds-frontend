@@ -3,17 +3,33 @@ import React, {Component} from "react";
 import Slider from 'react-slick';
 import _ from 'lodash';
 import StoryBox from "./story-box";
-import SocialStories from "./social-stories";
+import dynamic from "next/dynamic";
+const SocialStories = dynamic(() => import("./social-stories"), {ssr: false});
 
 class StoriesSlider extends Component{
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			play: false
+			play: false,
+			index: 0,
+			stories: _.map(props.slides, (story) => {
+				return {
+					content: (props) => {
+						return <div className={styles.story} style={{backgroundImage: `url(${story.cover ? story.cover.url : null})`}}>
+							<h1>{story.title}</h1>
+						</div>},
+					styles: {
+						width: '100%',
+						height: '100%'
+					}
+				}
+			})
 		}
 		this.next = this.next.bind(this);
 		this.prev = this.prev.bind(this);
+		this.handleClick = this.handleClick.bind(this);
+		this.closeStories = this.closeStories.bind(this);
 	}
 
 	next() {
@@ -22,6 +38,19 @@ class StoriesSlider extends Component{
 
 	prev() {
 		this.slider.slickPrev();
+	}
+
+	handleClick(index) {
+		return this.setState({
+			play: true,
+			index: index
+		})
+	}
+
+	closeStories() {
+		return this.setState({
+			play: false
+		});
 	}
 
 	render() {
@@ -51,10 +80,11 @@ class StoriesSlider extends Component{
 						{_.map(this.props.slides, (slide, key) => {
 							return <div key={key}>
 								<StoryBox
-									title={slide.title}
-									subtitle={slide.subtitle}
-									cover={slide.cover}
-									/>
+										title={slide.title}
+										subtitle={slide.subtitle}
+										cover={slide.cover}
+										onClick={() => this.handleClick(key)}
+								/>
 							</div>
 						})}
 					</Slider> :
@@ -65,11 +95,18 @@ class StoriesSlider extends Component{
 									title={slide.title}
 									subtitle={slide.subtitle}
 									cover={slide.cover}
+									click={() => this.handleClick(key)}
 							/>
 						})}
 					</div>
 			}
-			<SocialStories playlist={this.props.slides} play={this.state.play} />
+
+			{this.state.play &&
+			<SocialStories
+					stories={this.state.stories}
+					index={this.state.index}
+					func={() => this.closeStories()}
+			/>}
 		</div>
 	}
 }

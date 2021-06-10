@@ -10,9 +10,8 @@ import {useRouter} from "next/router";
 import Loading from "../components/loading";
 import NotFound from "../components/not-found";
 import Navigation from "../components/navigation";
-import _ from 'lodash';
 import {redirectUser} from "../lib/auth";
-import {parseCookies} from "nookies";
+import Session from 'react-session-api';
 
 export const GlobalContext = createContext({});
 
@@ -46,9 +45,11 @@ MyApp.getInitialProps = async (ctx) => {
 		fetchAPI('/navigation/render/1?type=tree')
 	]);
 
-	let cookies = parseCookies(ctx.ctx);
+	let session = Session.get('ffsession');
 
-	if(!cookies.jwt) {
+	console.log('session', session, Session.get("ffsession"));
+
+	if(!session) {
 		if(ctx.router.pathname === '/user/profile' || ctx.router.pathname === '/resources') {
 			redirectUser(ctx.ctx, '/login');
 		}
@@ -59,10 +60,7 @@ MyApp.getInitialProps = async (ctx) => {
 		pageProps: {
 			global,
 			navigation,
-			session: {
-				fullname: cookies.fullname || '',
-				photo: {url: cookies.photo} || {}
-			}
+			session: session ? session : null
 		}
 	};
 }
