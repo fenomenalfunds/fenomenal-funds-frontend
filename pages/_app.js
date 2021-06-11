@@ -10,7 +10,7 @@ import {useRouter} from "next/router";
 import Loading from "../components/loading";
 import NotFound from "../components/not-found";
 import Navigation from "../components/navigation";
-import {redirectUser} from "../lib/auth";
+import {getUser, redirectUser} from "../lib/auth";
 import Session from 'react-session-api';
 
 export const GlobalContext = createContext({});
@@ -45,11 +45,9 @@ MyApp.getInitialProps = async (ctx) => {
 		fetchAPI('/navigation/render/1?type=tree')
 	]);
 
-	let session = Session.get('ffsession');
+	let session = getUser(ctx.ctx);
 
-	console.log('session', session, Session.get("ffsession"));
-
-	if(!session) {
+	if(!session.jwt) {
 		if(ctx.router.pathname === '/user/profile' || ctx.router.pathname === '/resources') {
 			redirectUser(ctx.ctx, '/login');
 		}

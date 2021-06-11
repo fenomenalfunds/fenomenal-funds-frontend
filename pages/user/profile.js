@@ -6,19 +6,13 @@ import ProfilePhoto from "../../components/profile-photo";
 import {useState} from "react";
 import {useRouter} from "next/router";
 import {parseCookies, destroyCookie} from "nookies";
+import {getUser} from "../../lib/auth";
 
 
 const ProfilePage = ({data}) => {
 	const router = useRouter();
 
 	function handleLogout() {
-		console.log('logout');
-		destroyCookie(null, 'jwt');
-		destroyCookie(null, 'username');
-		destroyCookie(null, 'email');
-		destroyCookie(null, 'photo');
-		destroyCookie(null, 'id');
-		console.log('Logged out');
 		router.push('/login');
 	}
 
@@ -94,7 +88,7 @@ const ProfilePage = ({data}) => {
 }
 
 export async function getServerSideProps(ctx) {
-	const cookies = parseCookies(ctx);
+	const cookies = getUser(ctx);
 	const data = await fetchProfileContent(cookies.jwt, cookies.id);
 
 	if(!data) return {notFound:true}

@@ -4,10 +4,10 @@ import _ from 'lodash';
 import Router from 'next/router';
 import Layout from "../layout/website-layout";
 import Grid from "@material-ui/core/Grid";
-import {userLogin} from "../lib/auth";
+import {destroyUser, setUser, userLogin} from "../lib/auth";
 import Session from "react-session-api";
 
-function Login() {
+function Login({ctx}) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [message, setMessage] = useState({status: '', text: []});
@@ -21,26 +21,17 @@ function Login() {
 		const loginResponse = await userLogin(loginInfo);
 
 		if(loginResponse.jwt) {
-			Session.set('ff-session', {
+			setUser(ctx, {
 				jwt: loginResponse.jwt,
-				...loginResponse
+				...loginResponse.user
 			});
 
-			Session.onSet((data) => {
-				setMessage({
-					status: styles.success,
-					text: [{message: `Welcome ${data}`}]
-				});
-
-				Router.push('/user/profile');
-			});
-
-			/*setMessage({
+			setMessage({
 				status: styles.success,
-				text: [{message: "Login successful"}]
-			})
+				text: [{message: `Welcome ${loginResponse.user.fullname}`}]
+			});
 
-			Router.push('/user/profile');*/
+			Router.push('/user/profile');
 		} else {
 			console.error('Failed to login ', loginResponse);
 			setMessage({
@@ -78,10 +69,12 @@ function Login() {
 }
 
 export async function getServeSideProps(ctx) {
-	Session.clear();
+	destroyUser(ctx);
 
 	return {
-		props: {}
+		props: {
+			ctx
+		}
 	}
 }
 
