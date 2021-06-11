@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import _ from 'lodash';
 import StoryBox from "./story-box";
 import dynamic from "next/dynamic";
+import Image from "./image";
 const SocialStories = dynamic(() => import("./social-stories"), {ssr: false});
 
 class StoriesSlider extends Component{
@@ -16,8 +17,14 @@ class StoriesSlider extends Component{
 			stories: _.map(props.slides, (story) => {
 				return {
 					content: (props) => {
-						return <div className={styles.story} style={{backgroundImage: `url(${story.cover ? story.cover.url : null})`}}>
-							<h1>{story.title}</h1>
+						return <div className={styles.story}>
+							<figure className={styles.background}>
+								<Image image={story.image[0]} />
+							</figure>
+							<div className={styles.content}>
+								<h1>{story.title}</h1>
+								<div className={styles.body} dangerouslySetInnerHTML={{__html: story.text}} />
+							</div>
 						</div>},
 					styles: {
 						width: '100%',
@@ -83,7 +90,7 @@ class StoriesSlider extends Component{
 										title={slide.title}
 										subtitle={slide.subtitle}
 										cover={slide.cover}
-										onClick={() => this.handleClick(key)}
+										click={() => this.handleClick(key)}
 								/>
 							</div>
 						})}
