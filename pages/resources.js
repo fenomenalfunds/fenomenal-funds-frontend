@@ -7,6 +7,7 @@ import Seo from "../components/seo";
 import NotFound from "../components/not-found";
 import Grid from "@material-ui/core/Grid";
 import ResourceBox from "../components/resource-box";
+import {getUser} from "../lib/auth";
 
 const CareersPage = ({content, resources}) => {
 	if(!content) return <NotFound />;
@@ -39,7 +40,7 @@ const CareersPage = ({content, resources}) => {
 }
 
 export async function getServerSideProps(ctx) {
-	const cookies = parseCookies(ctx);
+	const cookies = getUser(ctx);
 	const data = await fetchResourcesContent(cookies.jwt);
 
 	return {
