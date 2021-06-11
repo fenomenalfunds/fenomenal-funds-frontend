@@ -5,7 +5,7 @@ import StoriesSlider from "./stories-slider";
 const HighlightsSection = ({title, subtitle, stories}) => {
 	return <section className={styles.highlights}>
 		<Grid container spacing={0} justify="center">
-			<Grid item lg={12} xs={12} style={{overflow:'hidden'}}>
+			<Grid item lg={12} xs={11} style={{overflow:'hidden'}}>
 				<hr className={styles.divider} />
 				<div className={styles.content}>
 					<h1>{title}</h1>
