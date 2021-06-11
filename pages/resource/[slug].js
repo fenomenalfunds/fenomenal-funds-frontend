@@ -2,12 +2,11 @@ import styles from './../../styles/blog-detail.module.scss';
 import _ from 'lodash';
 import Grid from "@material-ui/core/Grid";
 import Layout from "../../layout/website-layout";
-import moment from "moment";
 import {fetchResourceDetail} from "../../lib/api";
 import Seo from "../../components/seo";
 import Image from "../../components/image";
 import NotFound from "../../components/not-found";
-import {parseCookies} from "nookies";
+import {getUser} from "../../lib/auth";
 
 const ResourceDetail = ({document, related}) => {
 	if (_.isEmpty(document)) return <NotFound link="/resources" text="Return to resources"/>;
@@ -18,9 +17,10 @@ const ResourceDetail = ({document, related}) => {
 		<Grid container justify="center" spacing={0} className={styles.blogDetail}>
 			<Grid item xs={11} lg={10}>
 				<article className={styles.article}>
+					{document.image &&
 					<figure className={styles.image}>
 						<Image image={document.image}/>
-					</figure>
+					</figure>}
 					<div className={styles.header}>
 						<div className={styles.title}>
 							<h1>{document.title}</h1>
@@ -49,8 +49,8 @@ const ResourceDetail = ({document, related}) => {
 	</Layout>
 }
 
-export async function getServerSideProps(ctx, preview = {}) {
-	const cookies = parseCookies(ctx);
+export async function getServerSideProps(ctx) {
+	const cookies = getUser(ctx);
 	const data = await fetchResourceDetail(cookies.jwt, ctx.params.slug);
 
 	if (_.isEmpty(data.document)) return {notFound: true}
