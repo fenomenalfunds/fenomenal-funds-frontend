@@ -56,7 +56,7 @@ const GrantArticleDetail = ({article, related}) => {
 									subtitle={article.subtitle}
 									image={article.thumbnail}
 									author={article.author}
-									publish={moment(article.publish).calendar()}
+									publish={article.publish ? moment(article.publish).calendar() : null}
 									link={`/grants/${article.slug}`}
 							/>
 						})}
