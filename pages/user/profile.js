@@ -13,7 +13,7 @@ const ProfilePage = ({data}) => {
 	const router = useRouter();
 
 	function handleLogout() {
-		router.push('/login');
+		router.push('/logout');
 	}
 
 	const [user, setUser] = useState(data);

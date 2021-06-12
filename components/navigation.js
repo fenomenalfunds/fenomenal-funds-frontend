@@ -60,7 +60,7 @@ const Navigation = ({items, user}) => {
 						<a className={`${styles.btn} ${styles.profile}`}>
 							<p>{user.fullname}</p>
 							<figure>
-								{!_.isEmpty(user.photo) ? <img src="/FF_2021_ImagePlaceholder_510x288.jpg" alt={user.fullname}/> :
+								{_.isEmpty(user.photo) ? <img src="/FF_2021_ImagePlaceholder_510x288.jpg" alt={user.fullname}/> :
 										<ProfilePhoto image={user.photo}/>
 								}
 							</figure>
