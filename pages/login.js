@@ -69,7 +69,6 @@ function Login({ctx}) {
 }
 
 export async function getServeSideProps(ctx) {
-	destroyUser(ctx);
 
 	return {
 		props: {

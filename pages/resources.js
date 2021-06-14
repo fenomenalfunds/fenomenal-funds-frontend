@@ -41,7 +41,7 @@ const CareersPage = ({content, resources}) => {
 
 export async function getServerSideProps(ctx) {
 	const cookies = getUser(ctx);
-	const data = await fetchResourcesContent(cookies.jwt);
+	const data = await fetchResourcesContent(ctx, cookies.jwt);
 
 	return {
 		props: {
