@@ -5,7 +5,6 @@ import {fetchProfileContent} from "../../lib/api";
 import ProfilePhoto from "../../components/profile-photo";
 import {useState} from "react";
 import {useRouter} from "next/router";
-import {parseCookies, destroyCookie} from "nookies";
 import {getUser, updateUser} from "../../lib/auth";
 import Image from "../../components/image";
 
@@ -54,7 +53,7 @@ const ProfilePage = ({data}) => {
 						<div className={`${styles.row} ${styles.half} ${styles.left}`}>
 							<label htmlFor="username">
 								Username
-								<input type="text" id="username" name="username" value={user.username} placeholder="username" onChange={handleChange} />
+								<input type="text" id="username" name="username" value={user.username} placeholder="username" onChange={handleChange} autoComplete="username" />
 							</label>
 						</div>
 
@@ -68,21 +67,21 @@ const ProfilePage = ({data}) => {
 						<div className={`${styles.row}`}>
 							<label htmlFor="email">
 								Email
-								<input type="email" id="email" name="email" value={user.email} placeholder="name@domain.com" onChange={handleChange} />
+								<input type="email" id="email" name="email" value={user.email} placeholder="name@domain.com" onChange={handleChange} autoComplete="email" />
 							</label>
 						</div>
 
 						<div className={`${styles.row} ${styles.half} ${styles.left}`}>
 							<label htmlFor="passwd">
 								Password
-								<input type="password" name="passwd" id="passwd" placeholder="Password" onChange={handleChange} value={user.password} />
+								<input type="password" name="passwd" id="passwd" placeholder="Password" onChange={handleChange} value={user.password} autoComplete="new-password" />
 							</label>
 						</div>
 
 						<div className={`${styles.row} ${styles.half} ${styles.right}`}>
 							<label htmlFor="passwd2">
 								Confirm password
-								<input type="password" name="passwd2" id="passwd2" placeholder="Password" onChange={handleChange} value={user.password} />
+								<input type="password" name="passwd2" id="passwd2" placeholder="Password" onChange={handleChange} value={user.password} autoComplete="new-password" />
 							</label>
 						</div>
 

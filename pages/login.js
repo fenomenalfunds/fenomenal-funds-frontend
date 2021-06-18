@@ -4,10 +4,9 @@ import _ from 'lodash';
 import Router from 'next/router';
 import Layout from "../layout/website-layout";
 import Grid from "@material-ui/core/Grid";
-import {destroyUser, setUser, userLogin} from "../lib/auth";
-import Session from "react-session-api";
+import {destroyUser, getUser, setUser, userLogin} from "../lib/auth";
 
-function Login({ctx}) {
+function Login() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [message, setMessage] = useState({status: '', text: []});
@@ -21,17 +20,21 @@ function Login({ctx}) {
 		const loginResponse = await userLogin(loginInfo);
 
 		if(loginResponse.jwt) {
-			setUser(ctx, {
+			if(setUser(this, {
 				jwt: loginResponse.jwt,
-				...loginResponse.user
-			});
+				id: loginResponse.user.id,
+				username: loginResponse.user.username,
+				photo: loginResponse.user.photo,
+				fullname: loginResponse.user.fullname,
+				email: loginResponse.user.email
+			})) {
+				setMessage({
+					status: styles.success,
+					text: [{message: `Welcome ${loginResponse.user.fullname}`}]
+				});
 
-			setMessage({
-				status: styles.success,
-				text: [{message: `Welcome ${loginResponse.user.fullname}`}]
-			});
-
-			Router.push('/user/profile');
+				Router.push('/user/profile');
+			}
 		} else {
 			console.error('Failed to login ', loginResponse);
 			setMessage({
@@ -49,11 +52,11 @@ function Login({ctx}) {
 					<form>
 						<label htmlFor="email">
 							Email
-							<input type="email" onChange={e => setUsername(e.target.value)} value={username} placeholder="Email"/>
+							<input type="email" onChange={e => setUsername(e.target.value)} value={username} placeholder="Email" autoComplete="email" />
 						</label>
 						<label htmlFor="password">
 							Password
-							<input type="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Password"/>
+							<input type="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Password" autoComplete="current-password" />
 						</label>
 						<button type="button" className="btn red" onClick={() => handleLogin()}>Login</button>
 					</form>
@@ -69,6 +72,8 @@ function Login({ctx}) {
 }
 
 export async function getServeSideProps(ctx) {
+	destroyUser(ctx);
+	console.log('getUser', getUser(ctx));
 
 	return {
 		props: {
