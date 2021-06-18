@@ -10,10 +10,30 @@
 		text-align: right;
 	}
 
+	.photoInput {
+		input {
+			visibility: hidden;
+		}
+	}
+
 	.photo {
 		@include aspect-ratio(1 1, 100%, true, high);
 		border-radius: 100%;
+		cursor: pointer;
 		background-color: rgba($ff-color-black, .3);
+
+		&:after {
+			content: 'Edit photo';
+			color: $ff-color-white;
+			text-align: center;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: calc(100% - 2em);
+			padding: 1em;
+			z-index: 2;
+			background-color: rgba($ff-color-black, .4);
+		}
 	}
 
 	input, textarea {

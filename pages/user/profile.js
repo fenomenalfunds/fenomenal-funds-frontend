@@ -5,8 +5,8 @@ import {fetchProfileContent} from "../../lib/api";
 import ProfilePhoto from "../../components/profile-photo";
 import {useState} from "react";
 import {useRouter} from "next/router";
-import {parseCookies, destroyCookie} from "nookies";
-import {getUser} from "../../lib/auth";
+import {getUser, updateUser} from "../../lib/auth";
+import Image from "../../components/image";
 
 
 const ProfilePage = ({data}) => {
@@ -22,7 +22,13 @@ const ProfilePage = ({data}) => {
 		setUser({
 			...user,
 			[e.target.name]: e.target.value
-		})
+		});
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		console.log('SUBMIT', e, 'USER', user);
+		updateUser(this, user);
 	}
 
 	return <Layout>
@@ -32,19 +38,22 @@ const ProfilePage = ({data}) => {
 			</Grid>
 			<Grid container spacing={5} justify="center">
 				<Grid item xs={11} lg={2}>
-					<figure className={styles.photo}>
-						{user.photo ?
-								<ProfilePhoto image={user.photo}/> :
-								<img src="/FF_2021_ImagePlaceholder_510x288.jpg" alt={user.fullname}/>
-						}
-					</figure>
+					<label htmlFor="photo" className={styles.photoInput}>
+						<figure className={styles.photo}>
+							{user.photo ?
+									<ProfilePhoto image={user.photo}/> :
+									<Image src="/FF_2021_ImagePlaceholder_510x288.jpg" alt={user.fullname}/>
+							}
+						</figure>
+						<input type="file" id="photo" name="photo" onChange={handleChange} />
+					</label>
 				</Grid>
 				<Grid item xs={11} lg={4}>
-					<form onSubmit={() => handleSubmit}>
+					<form onSubmit={handleSubmit}>
 						<div className={`${styles.row} ${styles.half} ${styles.left}`}>
 							<label htmlFor="username">
 								Username
-								<input type="text" id="username" name="username" value={user.username} placeholder="username" onChange={handleChange} />
+								<input type="text" id="username" name="username" value={user.username} placeholder="username" onChange={handleChange} autoComplete="username" />
 							</label>
 						</div>
 
@@ -58,26 +67,26 @@ const ProfilePage = ({data}) => {
 						<div className={`${styles.row}`}>
 							<label htmlFor="email">
 								Email
-								<input type="email" id="email" name="email" value={user.email} placeholder="name@domain.com" onChange={handleChange} />
+								<input type="email" id="email" name="email" value={user.email} placeholder="name@domain.com" onChange={handleChange} autoComplete="email" />
 							</label>
 						</div>
 
 						<div className={`${styles.row} ${styles.half} ${styles.left}`}>
 							<label htmlFor="passwd">
 								Password
-								<input type="password" name="passwd" id="passwd" placeholder="Password" onChange={handleChange} value={user.password} />
+								<input type="password" name="passwd" id="passwd" placeholder="Password" onChange={handleChange} value={user.password} autoComplete="new-password" />
 							</label>
 						</div>
 
 						<div className={`${styles.row} ${styles.half} ${styles.right}`}>
 							<label htmlFor="passwd2">
 								Confirm password
-								<input type="password" name="passwd2" id="passwd2" placeholder="Password" onChange={handleChange} value={user.password} />
+								<input type="password" name="passwd2" id="passwd2" placeholder="Password" onChange={handleChange} value={user.password} autoComplete="new-password" />
 							</label>
 						</div>
 
 						<div className={`${styles.row} ${styles.rightAlign}`}>
-							<button type="button" className={styles.submit}>Save</button>
+							<button type="submit">Save</button>
 						</div>
 
 					</form>

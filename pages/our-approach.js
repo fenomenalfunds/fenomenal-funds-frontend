@@ -135,7 +135,6 @@ export default OurApproachPage;
 export async function getStaticProps(preview = {}) {
 	const data = await fetchApproachContent(preview);
 
-	console.log(data);
 	return {
 		props: {
 			...data
