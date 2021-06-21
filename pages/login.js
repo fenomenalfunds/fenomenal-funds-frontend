@@ -6,7 +6,7 @@ import Layout from "../layout/website-layout";
 import Grid from "@material-ui/core/Grid";
 import {destroyUser, getUser, setUser, userLogin} from "../lib/auth";
 
-function Login() {
+function Login({ctx}) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [message, setMessage] = useState({status: '', text: []});
@@ -20,7 +20,7 @@ function Login() {
 		const loginResponse = await userLogin(loginInfo);
 
 		if(loginResponse.jwt) {
-			if(setUser(this, {
+			if(setUser(ctx, {
 				jwt: loginResponse.jwt,
 				id: loginResponse.user.id,
 				username: loginResponse.user.username,
