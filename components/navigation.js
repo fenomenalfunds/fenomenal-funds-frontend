@@ -3,11 +3,13 @@ import Link from 'next/link';
 import styles from './../styles/components/navigation.module.scss';
 import {useState} from "react";
 import CloseButton from "./close-button";
-import ProfilePhoto from "./profile-photo";
 import {useRouter} from "next/router";
+import UserInfo from "./user-info";
+import {useAuth} from "../lib/auth.context";
 
 const Navigation = ({items, user}) => {
 
+	const [state, dispatch] = useAuth();
 	const router = useRouter();
 	const [active, setActive] = useState(false);
 
@@ -28,7 +30,7 @@ const Navigation = ({items, user}) => {
 				{_.map(items, (item, key) => {
 					return item.type === 'INTERNAL' ?
 							item.path === '/resources' ?
-										user ? <li key={key}>
+										state ? <li key={key}>
 													<a onClick={() => {
 														router.push(item.path)
 														setActive(false);
@@ -54,26 +56,7 @@ const Navigation = ({items, user}) => {
 				})}
 			</ul>
 			<ul className={styles.secNav}>
-				{!_.isEmpty(user.fullname) ?
-				<li>
-					<Link href={`/user/profile`}>
-						<a className={`${styles.btn} ${styles.profile}`}>
-							<p>{user.fullname}</p>
-							<figure>
-								{_.isEmpty(user.photo) ? <img src="/FF_2021_ImagePlaceholder_510x288.jpg" alt={user.fullname}/> :
-										<ProfilePhoto image={user.photo}/>
-								}
-							</figure>
-						</a>
-					</Link>
-				</li> :
-				<li>
-					<Link href={`/login`}>
-						<a className={styles.btn}>
-							<span>Login</span>
-						</a>
-					</Link>
-				</li>}
+				<UserInfo user={state} />
 			</ul>
 		</div>
 	</nav>

@@ -11,7 +11,7 @@ import Loading from "../components/loading";
 import NotFound from "../components/not-found";
 import Navigation from "../components/navigation";
 import {getUser, redirectUser} from "../lib/auth";
-import Session from 'react-session-api';
+import {AuthProvider} from "../lib/auth.context";
 
 export const GlobalContext = createContext({});
 
@@ -20,9 +20,9 @@ function MyApp({Component, pageProps}) {
 	if (router.isFallback) return <Loading/>;
 
 	const {global, navigation, session} = pageProps;
-	if (!global) return <NotFound/>;
+	if (!global) return <NotFound link="" text="" />;
 
-	return <>
+	return <AuthProvider>
 		<Head>
 			<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"/>
 			<meta name="theme-color" content="#fff"/>
@@ -34,7 +34,7 @@ function MyApp({Component, pageProps}) {
 			<Navigation items={navigation} user={session}/>
 			<Component {...pageProps} />
 		</GlobalContext.Provider>
-	</>
+	</AuthProvider>
 }
 
 MyApp.getInitialProps = async (ctx) => {
@@ -45,20 +45,19 @@ MyApp.getInitialProps = async (ctx) => {
 		fetchAPI('/navigation/render/1?type=tree')
 	]);
 
-	let session = getUser(ctx.ctx);
+	/*let session = getUser(ctx.ctx);
 
 	if(!session.jwt) {
 		if(ctx.router.pathname === '/user/profile' || ctx.router.pathname === '/resources') {
 			redirectUser(ctx.ctx, '/login');
 		}
-	}
+	}*/
 
 	return {
 		...appProps,
 		pageProps: {
 			global,
-			navigation,
-			session: session ? session : null
+			navigation
 		}
 	};
 }

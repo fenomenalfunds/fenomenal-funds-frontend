@@ -51,7 +51,7 @@ const ResourceDetail = ({document, related}) => {
 
 export async function getServerSideProps(ctx) {
 	const cookies = getUser(ctx);
-	const data = await fetchResourceDetail(ctx, cookies.jwt, ctx.params.slug);
+	const data = await fetchResourceDetail(ctx, cookies, ctx.params.slug);
 
 	if (_.isEmpty(data.document)) return {notFound: true}
 

@@ -35,6 +35,10 @@
     "reactjs-media": "^1.5.1",
     "sass": "^1.32.8",
     "slick-carousel": "^1.8.1",
+    "universal-cookie": "^4.0.4",
     "zuck.js": "^1.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.4"
   }
 }

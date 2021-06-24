@@ -10,7 +10,7 @@ const PositionBox = ({title, subtitle, category, publisher}) => {
 				<a href={`mailto:${publisher.email}?subject=Application for ${title}`} target="_blank">Apply</a>
 			</div>}
 		</h4>
-		<p>{subtitle}</p>
+		<p className={styles.description}>{subtitle}</p>
 		<hr/>
 	</div>
 }
