@@ -1,4 +1,5 @@
 import styles from './../../styles/components/profile.module.scss';
+import Link from 'next/link';
 import Layout from "../../layout/website-layout";
 import Grid from "@material-ui/core/Grid";
 import {fetchProfileContent} from "../../lib/api";
@@ -7,13 +8,18 @@ import {useState} from "react";
 import {useRouter} from "next/router";
 import {getUser, updateUser} from "../../lib/auth";
 import Image from "../../components/image";
+import TokenService from "../../lib/token.service";
+import {useAuth} from "../../lib/auth.context";
 
 
 const ProfilePage = ({data}) => {
 	const router = useRouter();
+	const [auth, authDispatch] = useAuth();
 
 	function handleLogout() {
-		router.push('/logout');
+		const tokenService = new TokenService();
+		tokenService.deleteToken();
+		router.push('/login');
 	}
 
 	const [user, setUser] = useState(data);
@@ -34,7 +40,12 @@ const ProfilePage = ({data}) => {
 	return <Layout>
 		<Grid container justify="center" spacing={5} className={styles.profile}>
 			<Grid item xs={11} lg={6} className={styles.logout}>
-				<button type="button" className="btn red" onClick={() => handleLogout()}>LogOut</button>
+				<button type="button" className="btn red" onClick={() => {
+					authDispatch({
+						type: "removeAuthDetails"
+					});
+					handleLogout();
+				}}>Logout</button>
 			</Grid>
 			<Grid container spacing={5} justify="center">
 				<Grid item xs={11} lg={2}>
@@ -98,7 +109,8 @@ const ProfilePage = ({data}) => {
 
 export async function getServerSideProps(ctx) {
 	const cookies = getUser(ctx);
-	const data = await fetchProfileContent(cookies.jwt, cookies.id);
+	const data = await fetchProfileContent(cookies);
+
 
 	if(!data) return {notFound:true}
 
